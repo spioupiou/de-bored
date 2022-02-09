@@ -41,6 +41,3 @@ yarn-debug.log*
 .DS_Store
 
 # Ignore config files
-Gemfile.lock
-yarn.lock
-/db/schema.rb
