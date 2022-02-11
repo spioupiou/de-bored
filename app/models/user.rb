@@ -11,10 +11,6 @@ class User < ApplicationRecord
     false
   end
 
-  def will_save_change_to_email?
-    false
-  end
-
   private
 
   def set_nickname
