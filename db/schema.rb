@@ -10,71 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_11_011559) do
+ActiveRecord::Schema.define(version: 2022_02_12_092720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "games_data", force: :cascade do |t|
+  create_table "games_contents", force: :cascade do |t|
     t.text "content"
     t.bigint "game_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_games_data_on_game_id"
+    t.index ["game_id"], name: "index_games_contents_on_game_id"
   end
 
-  create_table "lobbies", force: :cascade do |t|
+  create_table "instances", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_lobbies_on_game_id"
-    t.index ["user_id"], name: "index_lobbies_on_user_id"
+    t.string "status"
+    t.integer "pin"
+    t.index ["game_id"], name: "index_instances_on_game_id"
+    t.index ["user_id"], name: "index_instances_on_user_id"
   end
 
   create_table "player_inputs", force: :cascade do |t|
     t.bigint "player_id", null: false
-    t.bigint "lobby_id", null: false
-    t.string "input_type"
-    t.text "input_value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lobby_id"], name: "index_player_inputs_on_lobby_id"
+    t.bigint "instance_id", null: false
+    t.string "type"
+    t.text "value"
+    t.index ["instance_id"], name: "index_player_inputs_on_instance_id"
     t.index ["player_id"], name: "index_player_inputs_on_player_id"
   end
 
   create_table "players", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "lobby_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lobby_id"], name: "index_players_on_lobby_id"
+    t.bigint "instance_id", null: false
+    t.index ["instance_id"], name: "index_players_on_instance_id"
     t.index ["user_id"], name: "index_players_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
+    t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string "username"
+    t.string "nickname"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "games_data", "games"
-  add_foreign_key "lobbies", "games"
-  add_foreign_key "lobbies", "users"
-  add_foreign_key "player_inputs", "lobbies"
+  add_foreign_key "games_contents", "games"
+  add_foreign_key "instances", "games"
+  add_foreign_key "instances", "users"
+  add_foreign_key "player_inputs", "instances"
   add_foreign_key "player_inputs", "players"
-  add_foreign_key "players", "lobbies"
+  add_foreign_key "players", "instances"
   add_foreign_key "players", "users"
 end

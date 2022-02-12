@@ -1,10 +1,10 @@
-class CreateLobbies < ActiveRecord::Migration[6.0]
+class CreateInstances < ActiveRecord::Migration[6.0]
   def change
-    create_table :lobbies do |t|
+    create_table :instances do |t|
       t.references :game, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-
-      t.timestamps
+      t.string :status
+      t.integer :pin
     end
   end
 end
