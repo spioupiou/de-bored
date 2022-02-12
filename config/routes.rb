@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'games#index' # our landing page with selection of games
+  resources :instances, only: [:create, :show, :update] do
+    resources :player_inputs, only: [:create, :index]
+  end
 end
