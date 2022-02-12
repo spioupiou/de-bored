@@ -1,4 +1,4 @@
-class CreateGamesDataSeeds
+class CreateGamesContentsSeeds
 
   def self.generate_sentences
     [
