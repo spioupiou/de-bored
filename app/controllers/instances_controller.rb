@@ -2,10 +2,10 @@ class InstancesController < ApplicationController
   def create # Create the game instance
     if user_signed_in?
       # Create an instance with current_user as host
+      # Instance default status will be "waiting"
       @instance = Instance.create!(
         game_id: params[:game_id],
-        user_id: current_user.id,
-        status: "pending"
+        user_id: current_user.id
       )
 
       # Make the host a player
