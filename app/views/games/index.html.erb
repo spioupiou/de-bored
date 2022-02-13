@@ -3,7 +3,11 @@
     <div class="col-sm-12 text-center">
       <h1 class="p-5">Games</h1>
       <div class="d-flex align-items-center justify-content-center p-1" style="margin: 0 auto; border: 1px solid black; font-size: 20px; width: 200px; height: 100px;">
-        <p>Never Had I ever</p> <!-- Will change to Game Instance variable -->
+        <% @games.each do |game| %>
+          <%= link_to instances_path(game_id: game.id), method: :post do %> <%#=  , %>
+            <p><%= game.name%></p>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
