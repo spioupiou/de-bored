@@ -3,8 +3,21 @@
     <div class="col-sm-12 text-center">
       <h1 class="p-5">Games</h1>
       <div class="d-flex align-items-center justify-content-center p-1" style="margin: 0 auto; border: 1px solid black; font-size: 20px; width: 200px; height: 100px;">
-        <p>Never Had I ever</p> <!-- Will change to Game Instance variable -->
+
+        <% @games.each do |game| %>
+          <!-- Card space for Front End Master Hiro -->
+          <p><%= game.name%></p>
       </div>
+
+          <!-- Buttons "Join" and "Create" -->
+          <%= link_to instances_path(game_id: game.id), method: :post do %>
+            <div class="btn btn-primary">Create a Lobby</div>
+          <% end %>
+
+          <div class="btn btn-primary">Join a Lobby</div>
+
+        <% end %>
+
     </div>
   </div>
 </div>
