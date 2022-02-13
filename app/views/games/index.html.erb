@@ -15,6 +15,10 @@
           <% end %>
 
           <div class="btn btn-primary">Join a Lobby</div>
+          <%= form_with url: join_instances_path, method: :post do |f| %>
+            <%= f.text_field :pin, value: params[:pin] %>
+            <%= f.submit "Search"%>
+          <% end %>
 
         <% end %>
 

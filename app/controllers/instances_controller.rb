@@ -8,6 +8,10 @@ class InstancesController < ApplicationController
         status: "pending"
       )
 
+      # Simplistic pin number
+      @instance.pin = 100_000 + @instance.id
+      @instance.save
+
       # Make the host a player
       Player.create!(
         user_id: current_user.id,
@@ -18,6 +22,15 @@ class InstancesController < ApplicationController
       redirect_to instance_path(@instance)
     else
       redirect_to new_user_session_path # If user not signed in, redirect him
+    end
+  end
+
+  def join
+    @instance = Instance.find_by_pin(params[:pin])
+    if @instance.blank?
+      redirect_to root_path, notice: "Lobby not found"
+    else
+      redirect_to instance_path(@instance)
     end
   end
 
