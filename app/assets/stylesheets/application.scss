@@ -11,3 +11,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// remove default features on a tags like underlines
+// placed this here for now but we can move this to a dedicated file later
+a {
+  text-decoration: none;
+  display: inline-block;
+}
