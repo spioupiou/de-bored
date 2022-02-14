@@ -1,14 +1,12 @@
 class InstancesController < ApplicationController
-  def create # Create the game instance
-
+  def create 
     # If user not signed in, redirect him
     redirect_to new_user_session_path unless user_signed_in?
 
-    # Create an instance with current_user as host
+    # Create an instance with current_user as host, instance default status is "waiting"
     @instance = Instance.create!(
       game_id: params[:game_id],
       user_id: current_user.id,
-      status: "pending"
     )
 
     # Simplistic pin number
