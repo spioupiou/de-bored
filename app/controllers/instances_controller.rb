@@ -23,6 +23,11 @@ class InstancesController < ApplicationController
 
   def show # Display the game instance with users subscribed (web socket)
     @instance = Instance.find(params[:id])
+<<<<<<< HEAD
+=======
+    @game = Game.find(@instance.game_id)
+    @player = User.find(@instance.user_id)
+>>>>>>> c98f7131d567b65df288af5adf9a88a1ed36b813
   end
 
   def update # Update the status, pending -> ongoing -> completed
