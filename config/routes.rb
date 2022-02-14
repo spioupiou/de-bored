@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   root to: 'games#index' # our landing page with selection of games
   resources :instances, only: [:create, :show, :update] do
     resources :player_inputs, only: [:create, :index]
-    collection do
-      post :join # to join the instance via pin
-    end
   end
+  resources :players, only: [:create]
 end

@@ -10,15 +10,18 @@
       </div>
 
           <!-- Buttons "Join" and "Create" -->
-          <%= link_to instances_path(game_id: game.id), method: :post do %>
-            <div class="btn btn-primary">Create a Lobby</div>
-          <% end %>
+          <div class="my-2">
+            <%= link_to instances_path(game_id: game.id), method: :post do %>
+              <div class="btn btn-primary">Create a Lobby</div>
+            <% end %>
+          </div>
 
-          <div class="btn btn-primary">Join a Lobby</div>
-          <%= form_with url: join_instances_path, method: :post do |f| %>
-            <%= f.text_field :pin, value: params[:pin] %>
-            <%= f.submit "Search"%>
-          <% end %>
+          <div class="my-2">
+            <%= form_with url: players_path, method: :post do |f| %>
+              <%= f.text_field :pin, value: params[:pin] %>
+              <%= f.submit "Join a Lobby", class: "btn btn-primary" %>
+            <% end %>
+          </div>
 
         <% end %>
 
