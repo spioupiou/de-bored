@@ -1,15 +1,15 @@
 import consumer from "./consumer";
 
 const initInstanceChannel = () => {
-  console.log("Connection complete");
   const instanceContainer = document.getElementById("instance")
   if (instanceContainer) {
     const id = instanceContainer.dataset.instanceId;
-    console.log("Instance id: ", id);
+    const player = instanceContainer.dataset.playerName
+    const playerId= instanceContainer.dataset.playerId;
 
-    consumer.subscriptions.create({ channel: "InstanceChannel" }, {
+    consumer.subscriptions.create({ channel: "InstanceChannel", id :id }, {
       connected() {
-        console.log("InstanceChannel connected");
+        console.log(`Welcome ${player}, id:${playerId} to Instance Channel ${id}`);
       },
 
       disconnected() {

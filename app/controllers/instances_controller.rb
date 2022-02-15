@@ -14,6 +14,7 @@ class InstancesController < ApplicationController
         instance_id: @instance.id
       )
 
+
       # Redirect to instance show page
       redirect_to instance_path(@instance)
     else

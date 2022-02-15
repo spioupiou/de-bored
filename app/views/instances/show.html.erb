@@ -1,4 +1,14 @@
-<div id="instance" data-instance-id="<%=@instance.id%>">
-<h2>Host: <%= @player.nickname %></h2>
-<h2>Game: <%= @game.name %></h2>
+<!-- Added data-player-name to see if player.username is being passed to JS-->
+<div id="instance" data-instance-id="<%=@instance.id%>" data-player-id="<%=@player.id%>" data-player-name="<%=@player.username%>">
+<h2>Players:</h2>
+<ul>
+  <% @players.each do |player| %>
+    <% user = User.find(player.user_id)%>
+    <li><%= user.nickname%></li>
+  <% end %>
+</ul>
+
+<h2>Pin number:</h2>
+<%= @instance.pin %>
+
 </div>
