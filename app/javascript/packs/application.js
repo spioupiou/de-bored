@@ -28,6 +28,8 @@ import {initInstanceChannel} from '../channels/instance_channel'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+
+// next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
 import "@fontsource/play";
 import "@fontsource/dosis";
