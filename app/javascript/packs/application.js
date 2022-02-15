@@ -25,8 +25,12 @@ require("channels")
 // External imports
 import "bootstrap";
 import {initInstanceChannel} from '../channels/instance_channel'
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import "@fontsource/roboto";
+import "@fontsource/play";
+import "@fontsource/dosis";
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
