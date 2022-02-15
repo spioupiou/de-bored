@@ -1,5 +1,5 @@
 class InstancesController < ApplicationController
-  def create 
+  def create
     # If user not signed in, redirect him
     redirect_to new_user_session_path unless user_signed_in?
 
@@ -8,7 +8,6 @@ class InstancesController < ApplicationController
       game_id: params[:game_id],
       user_id: current_user.id,
     )
-    end
   
     # Simplistic pin number
     @instance.pin = 100_000 + @instance.id
