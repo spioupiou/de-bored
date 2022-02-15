@@ -8,7 +8,8 @@ class InstancesController < ApplicationController
       game_id: params[:game_id],
       user_id: current_user.id,
     )
-
+    end
+  
     # Simplistic pin number
     @instance.pin = 100_000 + @instance.id
     @instance.save
@@ -21,6 +22,7 @@ class InstancesController < ApplicationController
 
     # Redirect to instance show page
     redirect_to instance_path(@instance)
+
   end
 
   def show # Display the game instance with users subscribed (web socket)
