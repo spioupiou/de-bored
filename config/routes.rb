@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :instances, only: [:create, :show, :update] do
     resources :player_inputs, only: [:create, :index]
   end
+  resources :players, only: [:create]
 end

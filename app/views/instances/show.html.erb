@@ -1,5 +1,7 @@
+
 <!-- Added data-player-name to see if player.username is being passed to JS-->
 <div id="instance" data-instance-id="<%=@instance.id%>" data-player-id="<%=@player.id%>" data-player-name="<%=@player.username%>">
+
 <h2>Players:</h2>
 <ul>
   <% @players.each do |player| %>
@@ -12,3 +14,4 @@
 <%= @instance.pin %>
 
 </div>
+
