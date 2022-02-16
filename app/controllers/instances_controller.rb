@@ -18,7 +18,7 @@ class InstancesController < ApplicationController
       user_id: current_user.id,
       instance_id: @instance.id
     )
-
+    
     # Redirect to instance show page
     redirect_to instance_path(@instance)
 
@@ -29,6 +29,7 @@ class InstancesController < ApplicationController
     @game = Game.find(@instance.game_id)
     @host = User.find(@instance.user_id)
     @players = Player.where(instance_id: @instance.id)
+    @player_inputs = PlayerInput.new
   end
 
   def update # Update the status, pending -> ongoing -> completed

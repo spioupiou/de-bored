@@ -1,17 +1,16 @@
+<div class="container-fluid">
+  <!-- Added data-player-name to see if player.username is being passed to JS-->
+  <div id="instance" data-instance-id="<%=@instance.id%>" data-player-id="<%=@instance.user_id%>" data-player-name="<%=@instance.user.username%>">
 
-<!-- Added data-player-name to see if player.username is being passed to JS-->
-<div id="instance" data-instance-id="<%=@instance.id%>" data-host-id="<%=@instance.user_id%>" data-host-name="<%=@instance.user.username%>">
+  <!-- Players Waiting page -->
+  <div id="waiting-page">
+    <%= render "show_waiting", players: @players, instance: @instance %>
+    <%= simple_form_for [@instance, @player_inputs] do |f| %>
+    <!-- Implement logic/condition so than only Host should see/use this -->
+      <%= f.submit "Start Game", class:"btn btn-secondary" %>
+    <% end %>
+  </div>
 
-<h2>Players:</h2>
-<ul>
-  <% @players.each do |player| %>
-    <% user = User.find(player.user_id)%>
-    <li><%= user.nickname%></li>
-  <% end %>
-</ul>
-
-<h2>Pin number:</h2>
-<%= @instance.pin %>
-
+  </div>
 </div>
 

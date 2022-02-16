@@ -1,0 +1,11 @@
+ <h4>Players:</h4>
+    <ul>
+    <% players.each do |player| %>
+        <% user = User.find(player.user_id)%>
+        <li><%= user.nickname%></li>
+    <% end %>
+    </ul>
+
+    <h4>Pin number:</h4>
+    <%= instance.pin %>
+

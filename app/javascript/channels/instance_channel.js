@@ -2,6 +2,8 @@ import consumer from "./consumer";
 
 const initInstanceChannel = () => {
   const instanceContainer = document.getElementById("instance")
+  const questionContainer = document.getElementById("waiting-page")
+
   if (instanceContainer) {
     const id = instanceContainer.dataset.instanceId;
     const player = instanceContainer.dataset.playerName
@@ -18,6 +20,7 @@ const initInstanceChannel = () => {
 
       received(data) {
         console.log("InstanceChannel received", data);
+        questionContainer.innerHTML = data;
       }
     });
   }
