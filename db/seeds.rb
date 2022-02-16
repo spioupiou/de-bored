@@ -1,11 +1,11 @@
 # Require other files
 require_relative '../db/seeds/users_seeds'
-require_relative '../db/seeds/games_contents_seeds'
+require_relative '../db/seeds/game_contents_seeds'
 
 # Destroy previous seeds
 puts "Deleting previous seeds..."
 
-GamesContent.destroy_all
+GameContent.destroy_all
 Game.destroy_all
 User.destroy_all
 
@@ -31,7 +31,7 @@ puts "Game created!"
 # Create Contents for Never Have I ever
 puts "Creating contents for 'Never Have I Ever'..."
 
-sentences = CreateGamesContentsSeeds.generate_sentences
-sentences.each { |sentence| GamesContent.create!(content: sentence, game_id: game.id) }
+sentences = CreateGameContentsSeeds.generate_sentences
+sentences.each { |sentence| GameContent.create!(content: sentence, game_id: game.id) }
 
 puts "Contents for the game have been created!"
