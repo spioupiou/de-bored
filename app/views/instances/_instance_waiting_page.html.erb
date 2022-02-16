@@ -1,0 +1,12 @@
+<h2>Players:</h2>
+<ul>
+  <% players.each do |player| %>
+    <% user = User.find(player.user_id)%>
+    <li><%= user.nickname%></li>
+  <% end %>
+</ul>
+
+<h2>Pin number:</h2>
+<%= instance.pin %>
+
+<%= link_to "Start Game", instance_path(instance), class: "btn btn-primary", remote: true %>
