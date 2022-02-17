@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <!-- Added data-player-name to see if player.username is being passed to JS-->
-  <div id="instance" data-instance-id="<%=@instance.id%>" data-player-id="<%=@instance.user_id%>" data-player-name="<%=@instance.user.username%>">
+  <div id="instance" data-instance-id="<%=@instance.id%>" data-host-id="<%=@instance.user_id%>" data-host-name="<%=@instance.user.username%>" data-player-name="<%=@each_player_name%>" data-player-id="<%=@each_player_id%>">
 
   <!-- Players Waiting page -->
   <div id="waiting-page">
@@ -10,7 +10,5 @@
       <%= f.submit "Start Game", class:"btn btn-secondary" %>
     <% end %>
   </div>
-
   </div>
 </div>
-

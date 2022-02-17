@@ -5,6 +5,7 @@ class Instance < ApplicationRecord
   has_many :player_inputs, dependent: :destroy
 
   validates :status, presence: true, inclusion: { in: ['waiting', 'ongoing', 'done'] }
-  
+  validates :max_players, presence:true, numericality: { greater_than_or_equal_to: 2 }
+
   enum status: { waiting: 'waiting', ongoing: 'ongoing', done: 'done' }
 end
