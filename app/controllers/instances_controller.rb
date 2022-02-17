@@ -18,7 +18,7 @@ class InstancesController < ApplicationController
       user_id: current_user.id,
       instance_id: @instance.id
     )
-    
+
     # Redirect to instance show page
     redirect_to instance_path(@instance)
 
@@ -38,5 +38,15 @@ class InstancesController < ApplicationController
   end
 
   def update # Update the status, pending -> ongoing -> completed
+    @instance = Instance.find(params[:id])
+    @instance.status = "ongoing"
+    @game = Game.find(@instance.game_id)
+
+    if @instance.save
+      InstanceChannel.broadcast_to(
+        @instance,
+        render_to_string(partial: "instances/show_question", locals: { game: @game })
+      )
+    end
   end
 end
