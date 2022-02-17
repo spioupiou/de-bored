@@ -1,4 +1,4 @@
 class GameContent < ApplicationRecord
-  belongs_to :game
+  belongs_to :rounds
   validates :content, presence: true
 end
