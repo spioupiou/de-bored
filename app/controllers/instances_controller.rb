@@ -29,7 +29,6 @@ class InstancesController < ApplicationController
     @game = Game.find(@instance.game_id)
     @host = User.find(@instance.user_id)
     @players = Player.where(instance_id: @instance.id)
-    @player_inputs = PlayerInput.new
 
     # To grab the list of players' names in the instance (Also includes the host name...)
     @player_ids = @players.map(&:user_id)
