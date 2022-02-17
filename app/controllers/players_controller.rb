@@ -5,11 +5,15 @@ class PlayersController < ApplicationController
     @instance = Instance.find_by_pin(params[:pin])
     if @instance.blank?
       redirect_to root_path, notice: "Lobby not found"
-    else # Need some logic to not create dupplicate users (will implement later)
-      Player.create!(
-        user_id: current_user.id,
-        instance_id: @instance.id
-      )
+    else
+      # Avoid dupplicate player
+      player = Player.where(user_id: current_user.id, instance_id: @instance.id)
+      if player.blank?
+        Player.create!(
+          user_id: current_user.id,
+          instance_id: @instance.id
+        )
+      end
       redirect_to instance_path(@instance)
     end
 

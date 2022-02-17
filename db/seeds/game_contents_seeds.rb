@@ -1,4 +1,4 @@
-class CreateGamesContentsSeeds
+class CreateGameContentsSeeds
   def self.generate_sentences
     [
       "pretended to know someone I didn't.",
