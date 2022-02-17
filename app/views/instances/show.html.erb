@@ -3,7 +3,15 @@
 <div id="instance" data-instance-id="<%=@instance.id%>" data-host-id="<%=@instance.user_id%>" data-host-name="<%=@instance.user.username%>">
 
 <!-- Waiting page -->
-  <%= render "instance_waiting_page", players: @players, instance: @instance  %>
+  <%#= render "instance_waiting_page", players: @players, instance: @instance, game: @game %>
+
+<!-- to test/view, comment waiting page partial above and uncomment partial below -->
+
+<!-- Question page--> 
+  <%= render  "instance_question_page" %> 
+
+<!-- Result page -->
+  <%#= render "instance_result_page" %>
 
 </div>
 
