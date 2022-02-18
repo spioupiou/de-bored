@@ -4,7 +4,7 @@
     <div class="container-players col-lg-6 col-md-4 col-sm-6 p-3 bg-white" style="border-bottom: 3px solid #F4F4F4; height: 360px; overflow: auto;">
       <div class="d-flex justify-content-between">
         <h5>Players:</h5>
-        <p>0 / 5</p> <!--number of players here -->
+        <p> <%= players.count %> / X</p> <!--number of players here -->
       </div>
         <% players.each do |player| %>
           <% user = User.find(player.user_id)%>
