@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
     @instance = Instance.find_by_pin(params[:pin])
 
     if @instance.blank?
-      redirect_to root_path, notice: "Lobby not found"
+      redirect_to root_path, alert: "Lobby not found"
     else
       new_player = Player.new(
         user: current_user,
