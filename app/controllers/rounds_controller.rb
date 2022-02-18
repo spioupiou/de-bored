@@ -2,17 +2,21 @@ class RoundsController < ApplicationController
   # Start creating a round after Start button or Next Question button has been clicked
   def create
     @instance = Instance.find(params[:instance_id])
-    @instance.status = "ongoing"
+
+    if @instance.status != "ongoing"
+      @instance.status = "ongoing"
+      @instance.save
+    end
 
     @game_content = GameContent.all.sample
     rounds = Round.where(instance_id: @instance.id)
-    @round = Round.create!(
+    @round = Round.new(
       number: rounds.count + 1,
       game_content_id: @game_content.id,
       instance_id: @instance.id
     )
 
-    if @instance.save
+    if @round.save
       InstanceChannel.broadcast_to(
         @instance,
         render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
