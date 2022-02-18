@@ -24,12 +24,10 @@ require("channels")
 
 // External imports
 import "bootstrap";
-import { initInstanceChannel } from '../channels/instance_channel'
-
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-
+import { initInstanceChannel } from '../channels/instance_channel'
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
 import "@fontsource/play";

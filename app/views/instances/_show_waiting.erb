@@ -4,7 +4,7 @@
     <div class="col-lg-6 col-md-4 col-sm-6 p-3 bg-white" style="border-bottom: 3px solid #F4F4F4; height: 360px; overflow: auto;">
       <div class="d-flex justify-content-between">
         <h5>Players:</h5>
-        <p>0 / 5</p> <!--number of players here -->
+        <p> <%= players.count %> / <%= instance.max_players %></p> <!--number of players here -->
       </div>
         <% players.each do |player| %>
           <% user = User.find(player.user_id)%>
@@ -21,14 +21,15 @@
       <h5 class="text-center">Game Settings</h5>
       <div class="players d-flex justify-content-between">
         <div>
-          <p>Players:</p>
+          <p>Max Players:</p>
         </div>
         <div>
           <select class="form-select" aria-label="Default select example">
-            <option selected>1</option>
-            <option value="1">2</option>
-            <option value="2">3</option>
-            <option value="3">4</option>
+            <option selected><%= instance.max_players %></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
           </select>
         </div>
       </div>
