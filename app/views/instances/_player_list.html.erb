@@ -1,0 +1,6 @@
+<% players.each do |player| %>
+    <% user = User.find(player.user_id)%>
+    <div class="card my-2 shadow-sm p-3 bg-light rounded">
+        <%= user.nickname%>
+    </div>
+<% end %>

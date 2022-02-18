@@ -44,8 +44,10 @@ class InstancesController < ApplicationController
     if @instance.save
       InstanceChannel.broadcast_to(
         @instance,
-        render_to_string(partial: "instances/show_question", locals: { game: @game })
-      )
+        { 
+          question_page: render_to_string(
+            partial: "instances/show_question", locals: { game: @game })
+        })
     end
   end
 end
