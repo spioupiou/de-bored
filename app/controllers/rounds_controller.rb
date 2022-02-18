@@ -3,7 +3,7 @@ class RoundsController < ApplicationController
   def create
     @instance = Instance.find(params[:instance_id])
 
-    if @instance.status != "ongoing"
+    if @instance.status == "ongoing"
       @instance.status = "ongoing"
       @instance.save
     end
