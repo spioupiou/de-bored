@@ -1,16 +1,16 @@
-
-<!-- Added data-player-name to see if player.username is being passed to JS-->
-<div id="instance" data-instance-id="<%=@instance.id%>" data-host-id="<%=@instance.user_id%>" data-host-name="<%=@instance.user.username%>" data-player-name="<%=@each_player_name%>" data-player-id="<%=@each_player_id%>">
+<div class="container-fluid">
+  <!-- Added data-player-name to see if player.username is being passed to JS-->
+  <div id="instance" data-instance-id="<%=@instance.id%>" data-host-id="<%=@instance.user_id%>" data-host-name="<%=@instance.user.username%>" data-player-name="<%=@each_player_name%>" data-player-id="<%=@each_player_id%>">
 
 <!-- Waiting page -->
-  <%= render "instance_waiting_page", players: @players, instance: @instance, game: @game %>
+  <%= render "show_waiting", players: @players, instance: @instance, game: @game %>
+  <!-- Start button, will also change in the future -->
 
 <!-- to test/view, comment waiting page partial above and uncomment partial below -->
 
-<!-- Question page--> 
-  <%#= render  "instance_question_page" %> 
+<!-- Question page-->
+  <%#= render  "show_question" %>
 
 <!-- Result page -->
-  <%#= render "instance_result_page" %>
-
+  <%#= render "show_result" %>
 </div>

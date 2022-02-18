@@ -1,8 +1,8 @@
-<!-- Question page, Hard coded for now, will change it soon -->
+<!-- Question Partial-->
 <div class="container-fluid" style="height: 75vh;">
   <div class="d-flex justify-content-center align-items-center h-100">
     <div class="text-center">
-      <h3>Never Had I ever enjoyed using CSS</h3> <!-- hard coded for now, must be randomly generate -->
+      <h3>Never Have I ever <%= game.game_contents.sample.content %></h3>
       <div class="p-4">
         <!-- "Yes" and "No" buttons here will be replaced -->
         <%= link_to "Yes", "#", class:"btn btn-primary m-2" %>

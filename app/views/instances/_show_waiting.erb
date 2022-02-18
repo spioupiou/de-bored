@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h3 class="py-4 text-center"><%= game.name %></h3>
+  <h3 class="py-4 text-center"><%= game.name %></h3>
   <div class="row justify-content-around">
     <div class="col-lg-6 col-md-4 col-sm-6 p-3 bg-white" style="border-bottom: 3px solid #F4F4F4; height: 360px; overflow: auto;">
       <div class="d-flex justify-content-between">
@@ -44,7 +44,7 @@
             <option value="3">4</option>
           </select>
         </div>
-        
+
       </div>
         <div class="imposter d-flex justify-content-between">
           <div>
@@ -56,13 +56,15 @@
             <option value="No">No</option>
           </select>
         </div>
-        
+
       </div>
       <p>Instance pin: <%= instance.pin %></p>
     </div>
-    <!-- Start button, will also change in the future -->
     <div class="col-12 justify-content-center text-center py-3">
-      <%= link_to "Start Game", instance_path(instance), class: "btn btn-primary w-75", remote: true %>
+      <%= simple_form_for [@instance] do |f| %>
+        <!-- Implement logic/condition so than only Host should see/use this -->
+        <%= f.submit "Start Game", class:"btn btn-primary w-75" %>
+      <% end %>
     </div>
   </div>
 </div>

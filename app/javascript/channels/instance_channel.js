@@ -2,6 +2,7 @@ import consumer from "./consumer";
 
 const initInstanceChannel = () => {
   const instanceContainer = document.getElementById("instance")
+
   if (instanceContainer) {
     const instance_id = instanceContainer.dataset.instanceId;
     const host_id = instanceContainer.dataset.hostId;
@@ -21,6 +22,7 @@ const initInstanceChannel = () => {
 
       received(data) {
         console.log("InstanceChannel received", data);
+        instanceContainer.innerHTML = data;
       }
     });
   }
