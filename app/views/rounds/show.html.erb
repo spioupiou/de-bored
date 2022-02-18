@@ -1,10 +1,9 @@
-<!-- Result Partial -->
 <div class="container-fluid">
   <h3 class="py-4 text-center">This Round's Results</h3>
   <div class="card shadow-sm p-3 bg-white rounded">
     <div class="d-flex justify-content-between align-items-center">
-    <% player_inputs.each do |player_input| %>
-      <p class="m-0"><%= player_input.player_id%></p>
+    <% @player_inputs.each do |player_input| %>
+      <p class="m-0"><%= player_input.player.user.nickname %></p>
       <p class="m-0"><%= player_input.input_value %></p>
     </div>
     <% end %>
