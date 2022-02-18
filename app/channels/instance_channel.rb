@@ -5,7 +5,8 @@ class InstanceChannel < ApplicationCable::Channel
     # stream_from "some_channel"
   end
 
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
-  end
+  # commenting this for now because we don't need it for now
+  # def unsubscribed
+  #   # Any cleanup needed when channel is unsubscribed
+  # end
 end
