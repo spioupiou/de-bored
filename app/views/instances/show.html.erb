@@ -5,7 +5,7 @@
   <!-- Players Waiting page -->
   <div id="waiting-page">
     <%= render "show_waiting", players: @players, instance: @instance %>
-    <%= simple_form_for [@instance, @player_inputs] do |f| %>
+    <%= simple_form_for [@instance] do |f| %>
     <!-- Implement logic/condition so than only Host should see/use this -->
       <%= f.submit "Start Game", class:"btn btn-secondary" %>
     <% end %>
