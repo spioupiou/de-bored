@@ -5,10 +5,11 @@ class RoundsController < ApplicationController
     @instance.status = "ongoing"
 
     @game_content = GameContent.all.sample
-    rounds = Round.where(game_content_id: @game_content.id)
+    rounds = Round.where(instance_id: @instance.id)
     @round = Round.create!(
       number: rounds.count + 1,
-      game_content_id: @game_content.id
+      game_content_id: @game_content.id,
+      instance_id: @instance.id
     )
 
     if @instance.save
