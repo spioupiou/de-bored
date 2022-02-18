@@ -1,30 +1,28 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12 text-center">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 text-center">
       <h1 class="p-5">Games</h1>
-      <div class="d-flex align-items-center justify-content-center p-1" style="margin: 0 auto; border: 1px solid black; font-size: 20px; width: 200px; height: 100px;">
 
         <% @games.each do |game| %>
           <!-- Card space for Front End Master Hiro -->
-          <p><%= game.name%></p>
-      </div>
+      <div class="card d-flex flex-column align-items-center justify-content-center p-3 bg-white shadow">
+        <div>
+          <h4><%= game.name%></h4>
+        </div>
 
           <!-- Buttons "Join" and "Create" -->
-          <div class="my-2">
-            <%= link_to instances_path(game_id: game.id), method: :post do %>
-              <div class="btn btn-primary">Create a Lobby</div>
-            <% end %>
+          <div class="d-flex justify-content-around w-100">
+            <div>
+              <%= link_to instances_path(game_id: game.id), method: :post do %>
+                <div class="btn btn-primary">Create</div>
+              <% end %>
+            </div>
+            <div>
+              <%= render "components/modal" %>
+            </div>
           </div>
-
-          <div class="my-2">
-            <%= form_with url: players_path, local: true, method: :post do |f| %>
-              <%= f.text_field :pin, value: params[:pin] %>
-              <%= f.submit "Join a Lobby", class: "btn btn-primary" %>
-            <% end %>
-          </div>
-
         <% end %>
-
+      </div>
     </div>
   </div>
 </div>
