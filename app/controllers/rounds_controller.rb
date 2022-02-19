@@ -23,4 +23,8 @@ class RoundsController < ApplicationController
       )
     end
   end
+
+  def show
+    @player_inputs = PlayerInput.where(round_id: params[:id])
+  end
 end

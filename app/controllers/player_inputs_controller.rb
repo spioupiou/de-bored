@@ -1,16 +1,15 @@
 class PlayerInputsController < ApplicationController
   def create
     # When user clicks on True or False button, an input is created
-    @player = Player.where(instance_id: @instance.id)
-    @player_input = PlayerInput.new(
+    @instance = Instance.find(params[:instance_id])
+    @round = Round.find(params[:round_id])
+    @player_input = PlayerInput.create!(
       instance_id: @instance.id,
-      player_id: @current_user,
-      input_type: "boolean",
-      # input_value: waiting for radio buttons implementation
+      player: Player.find_by(user_id: current_user.id),
+      input_type: "string",
+      input_value: params[:player_input][:input_value],
+      round_id: @round.id
     )
-    @player_input.instance = @instance
-  end
-
-  def index # Display all users's answers, True/False
+    redirect_to instance_round_path(@instance, @round)
   end
 end

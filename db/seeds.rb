@@ -5,8 +5,12 @@ require_relative '../db/seeds/game_contents_seeds'
 # Destroy previous seeds
 puts "Deleting previous seeds..."
 
+PlayerInput.destroy_all
+Round.destroy_all
 GameContent.destroy_all
 Game.destroy_all
+Player.destroy_all
+Instance.destroy_all
 User.destroy_all
 
 puts "Previous seeds have been deleted!"
