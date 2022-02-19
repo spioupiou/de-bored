@@ -36,6 +36,10 @@ $body-color: white;
     background-position-y: center;
 }
 
+#game-list{
+    border: 2px solid black
+}
+
 #players, #settings{
     background-color: $bg;
 }
