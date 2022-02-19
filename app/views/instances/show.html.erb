@@ -1,25 +1,31 @@
 <div class="container-fluid">
   <!-- Added data-player-name to see if player.username is being passed to JS-->
-  <div id="instance" data-instance-id="<%=@instance.id%>" data-host-id="<%=@instance.user_id%>" data-host-name="<%=@instance.user.username%>" data-player-name="<%=@each_player_name%>" data-player-id="<%=@each_player_id%>">
+  <div
+    id="instance"
+    data-instance-id="<%=@instance.id%>"
+    data-host-id="<%=@instance.user_id%>"
+    data-host-name="<%=@instance.user.username%>"
+    data-player-name="<%=@each_player_name%>"
+    data-player-id="<%=@each_player_id%>">
 
-<!-- Waiting page -->
+  <!-- Waiting page -->
   <%= render "show_waiting", players: @players, instance: @instance, game: @game %>
   <!-- Start button, will also change in the future -->
+  </div>
+  <!-- to test/view, comment waiting page partial above and uncomment partial below -->
 
-<!-- to test/view, comment waiting page partial above and uncomment partial below -->
-
-<!-- Question page-->
+  <!-- Question page-->
   <%#= render  "show_question" %>
 
-<!-- Result page -->
+  <!-- Result page -->
   <%#= render "show_result" %>
-        <% if current_user.present? && current_user.id == @instance.user_id %>
+  <% if current_user.present? && current_user.id == @instance.user_id %>
     <div class="col-12 justify-content-center text-center py-3">
       <% @round = Round.new %>
       <%= simple_form_for([@instance, @round]) do |f| %>
         <!-- Implement logic/condition so than only Host should see/use this -->
         <%= f.submit "Start Game", class:"btn btn-primary w-75" %>
       <% end %>
-      <% end %>
     </div>
+  <% end %>
 </div>
