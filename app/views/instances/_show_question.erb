@@ -6,8 +6,12 @@
       <h3>Never Have I ever <%= game_content.content %></h3>
       <div class="p-4">
         <!-- "Yes" and "No" buttons here will be replaced -->
-        <%= link_to "Yes", "#", class:"btn btn-primary m-2" %>
-        <%= link_to "No", "#", class:"btn btn-warning m-2" %>
+        <% @player_input = PlayerInput.new %>
+        <%= simple_form_for([@instance, @round, @player_input]) do |f| %>
+          <%= f.input :input_value, as: :radio_buttons,
+          collection: ['True', 'False'] %>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        <% end %>
         <!-------------------------------------------------->
       </div>
     </div>
