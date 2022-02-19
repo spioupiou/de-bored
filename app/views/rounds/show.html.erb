@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <h3 class="py-4 text-center">This Round's Results</h3>
   <% @player_inputs.each do |player_input| %>
-    <div class="card shadow-sm p-3 bg-white rounded">
+    <div id="card" class="card shadow-sm p-3 rounded">
       <div class="d-flex justify-content-between align-items-center">
         <p class="m-0"><%= player_input.player.user.nickname %></p>
         <p class="m-0"><%= player_input.input_value %></p>
