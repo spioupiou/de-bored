@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <h3 class="py-4 text-center"><%= game.name %></h3>
   <div class="row justify-content-around">
-    <div class="col-lg-6 col-md-4 col-sm-6 p-3 bg-white" style="border-bottom: 3px solid #F4F4F4; height: 360px; overflow: auto;">
+    <div id="players" class="col-lg-6 col-md-4 col-sm-6 p-3 my-1" style="height: 360px; overflow: auto;">
       <div class="d-flex justify-content-between">
         <h5>Players:</h5>
         <p> <%= players.count %> / <%= instance.max_players %></p> <!--number of players here -->
@@ -9,14 +9,14 @@
         <% players.each do |player| %>
           <% user = User.find(player.user_id)%>
           <div class>
-            <div class="card shadow-sm p-3 bg-white rounded">
+            <div id="card" class="card shadow-sm p-3 my-1 rounded">
               <%= user.nickname%>
             </div>
           </div>
         <% end %>
     </div>
 
-    <div class="col-lg-6 col-md-4 col-sm-6 bg-white p-3" style="height: fit-content">
+    <div id="settings" class="col-lg-6 col-md-4 col-sm-6 p-3" style="height: fit-content">
     <!-- Game Settings, select dropdowns are hardcoded for now -->
       <h5 class="text-center">Game Settings</h5>
       <div class="players d-flex justify-content-between">
@@ -59,7 +59,10 @@
         </div>
 
       </div>
-      <p>Instance pin: <%= instance.pin %></p>
+      <div class="d-flex justify-content-between">
+        <p>Instance pin:</p>
+        <p><%= instance.pin %></p>
+      </div>
     </div>
     <div class="col-12 justify-content-center text-center py-3">
       <% @round = Round.new %>

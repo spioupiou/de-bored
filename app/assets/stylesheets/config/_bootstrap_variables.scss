@@ -11,11 +11,11 @@ $font-size-base: 1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+$primary:    $mizu;
+$success:    $midori;
+$info:       $kiroi;
+$danger:     $aoi;
+$warning:    $pink;
 
 // Buttons & inputs' radius
 $border-radius:    2px;
@@ -23,3 +23,28 @@ $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
+$body-bg: $bg;
+$body-color: white;
+
+#game-index, #card{
+    background-color: $mizu;
+}
+
+#game-index{
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(117, 19, 93, 0.73)), url("assets/party.jpg");
+    background-size: cover;
+    background-position-y: center;
+}
+
+#players, #settings{
+    background-color: $bg;
+}
+
+#modal{
+    background-color: #006b8b;
+}
+
+h3{
+    font-weight: 400;
+    font-size: 2.5rem !important;
+}
