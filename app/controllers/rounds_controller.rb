@@ -19,7 +19,14 @@ class RoundsController < ApplicationController
     if @round.save
       InstanceChannel.broadcast_to(
         @instance,
-        render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
+        {
+          question_page: true,
+          question: 
+              [ 
+                render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
+              ],
+
+        }
       )
     end
   end

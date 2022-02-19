@@ -22,7 +22,17 @@ const initInstanceChannel = () => {
 
       received(data) {
         console.log("InstanceChannel received", data);
-        instanceContainer.innerHTML = data;
+        const notice_player =
+          `<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>${data.user}</strong> has joined the lobby <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button></div>`
+        if (data.waiting_page){
+          instanceContainer.innerHTML = data.page[0];
+          instanceContainer.insertAdjacentHTML("beforebegin", notice_player);
+        }
+        if(data.question_page){
+          instanceContainer.innerHTML = data.question[0]
+        }
       }
     });
   }
