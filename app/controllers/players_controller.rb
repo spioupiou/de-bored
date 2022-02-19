@@ -15,14 +15,19 @@ class PlayersController < ApplicationController
       if new_player.save
         @players = Player.where(instance: @instance)
         @game = @instance.game
+        user = User.find(new_player.user_id).nickname
   
         InstanceChannel.broadcast_to(
           @instance,
-          render_to_string(
-            partial: "/instances/show_waiting",
-            locals: { players: @players, instance: @instance, game: @game }
-          )
-        )
+          { 
+            waiting_page: true,
+            page: 
+                [ 
+                render_to_string( partial: "/instances/show_waiting",
+                locals: { players: @players, instance: @instance, game: @game })
+                ],
+            user: user
+          })
       end
 
       redirect_to instance_path(@instance)
