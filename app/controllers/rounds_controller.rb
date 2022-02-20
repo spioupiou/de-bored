@@ -21,8 +21,8 @@ class RoundsController < ApplicationController
         @instance,
         {
           question_page: true,
-          question: 
-              [ 
+          question:
+              [
                 render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
               ],
 
@@ -32,6 +32,7 @@ class RoundsController < ApplicationController
   end
 
   def show
-    @player_inputs = PlayerInput.where(round_id: params[:id])
+    @round = Round.find(params[:id])
+    @player_inputs = PlayerInput.where(round_id: @round.id)
   end
 end
