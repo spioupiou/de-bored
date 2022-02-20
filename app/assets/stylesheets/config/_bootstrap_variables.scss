@@ -26,7 +26,11 @@ $border-radius-sm: 2px;
 $body-bg: $bg;
 $body-color: white;
 
-#game-index, #card{
+#game-index, #card {
+    background-color: $mizu;
+}
+
+#inputs .card{
     background-color: $mizu;
 }
 
