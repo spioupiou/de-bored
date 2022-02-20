@@ -8,15 +8,13 @@
       </div>
         <% players.each do |player| %>
           <% user = User.find(player.user_id)%>
-          <div class>
             <div id="card" class="card shadow-sm p-3 my-1 rounded">
               <%= user.nickname%>
             </div>
-          </div>
         <% end %>
     </div>
 
-    <div id="settings" class="col-lg-6 col-md-4 col-sm-6 p-3" style="height: fit-content">
+    <div id="settings" class="col-lg-4 col-md-4 col-sm-6 p-3 my-1" style="height: fit-content">
     <!-- Game Settings, select dropdowns are hardcoded for now -->
       <h5 class="text-center">Game Settings</h5>
       <div class="players d-flex justify-content-between">
