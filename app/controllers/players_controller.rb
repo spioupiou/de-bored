@@ -27,14 +27,14 @@ class PlayersController < ApplicationController
             waiting_page: true,
             page: 
                 [ 
-                render_to_string( partial: "/instances/show_waiting",
-                locals: { players: @players, instance: @instance, game: @game })
+                render_to_string( partial: "/instances/player_list",
+                locals: { players: @players })
                 ],
             user: user
           })
       end
-
-      redirect_to instance_path(@instance)
-    end
+        redirect_to instance_path(@instance)
+      end
+      
   end
 end
