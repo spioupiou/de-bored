@@ -1,10 +1,16 @@
-<div class="container-fluid">
-  <h3 class="py-4 text-center">This Round's Results</h3>
-    <div id="inputs" data-round-id="<%= @round.id %>">
+<% if @round.phase == 1 %>
+  <%= render 'show_question', instance: @instance, round: @round, game_content: @game_content %>
 
-    <% @round.player_inputs.each do |player_input| %>
-      <%= render 'player_inputs/player_input', player_input: player_input %>
-    <% end %>
+<% elsif @round.phase == 2 %>
+  <div class="container-fluid">
+    <h3 class="py-4 text-center">This Round's Results</h3>
+      <div id="inputs" data-round-id="<%= @round.id %>">
 
+      <% @round.player_inputs.each do |player_input| %>
+        <%= render 'player_inputs/player_input', player_input: player_input %>
+      <% end %>
+
+    </div>
   </div>
-</div>
+
+<% end %>
