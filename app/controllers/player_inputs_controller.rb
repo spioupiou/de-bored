@@ -10,6 +10,13 @@ class PlayerInputsController < ApplicationController
       input_value: params[:player_input][:input_value],
       round_id: @round.id
     )
+
+    # send to channel
+    RoundChannel.broadcast_to(
+      @round,
+      render_to_string(partial: "player_input", locals: { player_input: @player_input })
+    )
+
     redirect_to instance_round_path(@instance, @round)
   end
 end
