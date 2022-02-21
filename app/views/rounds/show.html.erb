@@ -12,8 +12,9 @@
 
     </div>
 
-    <% @round = Round.new %>
-    <%= simple_form_for([@instance, @round]) do |f| %>
+     <%@new_round = Round.new %>
+    <%= simple_form_for([@instance, @new_round]) do |f| %>
+      <%= hidden_field_tag 'current_round', @round.id %>
       <%= f.submit "Continue", class:"btn btn-primary" %>
     <% end %>
 
