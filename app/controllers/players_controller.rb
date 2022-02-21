@@ -33,8 +33,8 @@ class PlayersController < ApplicationController
             user: user
           })
       end
-        redirect_to instance_path(@instance)
-      end
-      
+
+      redirect_to instance_path(@instance)
+    end
   end
 end
