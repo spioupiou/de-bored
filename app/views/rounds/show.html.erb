@@ -1,14 +1,9 @@
-<div class="container">
+<div class="container-fluid">
   <h3 class="py-4 text-center">This Round's Results</h3>
-  <div id="result-page" class="row px-2 justify-content-center">
-    <% @player_inputs.each do |player_input| %>
-      <div id="card" class="card shadow-sm p-3 rounded col-lg-6 col-md-6 col-sm-12">
-        <div class="d-flex justify-content-between align-items-center">
-          <p class="m-0"><%= player_input.player.user.nickname %></p>
-          <p class="m-0"><%= player_input.input_value %></p>
-        </div>
-      </div>
+    <div id="inputs" data-round-id="<%= @round.id %>">
 
+    <% @round.player_inputs.each do |player_input| %>
+      <%= render 'player_inputs/player_input', player_input: player_input %>
     <% end %>
 
   </div>
