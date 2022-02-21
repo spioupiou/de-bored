@@ -6,6 +6,10 @@ class PlayersController < ApplicationController
 
     if @instance.blank?
       redirect_to root_path, alert: "Lobby not found"
+    elsif @instance.status == 'ongoing'
+      redirect_to root_path, alert: "Game already started, try not to miss the next one."
+    elsif @instance.status == 'done'
+      redirect_to root_path, alert: "Game already finished, join the next one."
     else
       new_player = Player.new(
         user: current_user,
@@ -23,8 +27,8 @@ class PlayersController < ApplicationController
             waiting_page: true,
             page: 
                 [ 
-                render_to_string( partial: "/instances/show_waiting",
-                locals: { players: @players, instance: @instance, game: @game })
+                render_to_string( partial: "/instances/player_list",
+                locals: { players: @players })
                 ],
             user: user
           })

@@ -17,22 +17,23 @@ class RoundsController < ApplicationController
     )
 
     if @round.save
+      # redirect all subscribers except host to rounds phase1
       InstanceChannel.broadcast_to(
         @instance,
-        {
-          question_page: true,
-          question:
-              [
-                render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
-              ],
-
-        }
+        head: 302, # redirection code
+        path: instance_round_path(@instance, @round)
       )
+
+      # so that host will also be redirected too rounds phase1
+      redirect_to instance_round_path(@instance, @round)
     end
   end
 
   def show
+    @instance = Instance.find(params[:instance_id])
+    @game_id = @instance.game_id
     @round = Round.find(params[:id])
+    @game_content = GameContent.find(@round.game_content_id)
     @player_inputs = PlayerInput.where(round_id: @round.id)
   end
 end

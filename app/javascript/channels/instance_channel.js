@@ -4,6 +4,7 @@ const initInstanceChannel = () => {
   const instanceContainer = document.getElementById("instance")
 
   if (instanceContainer) {
+    const playerList = document.getElementById("player-list")
     const instance_id = instanceContainer.dataset.instanceId;
     const host_id = instanceContainer.dataset.hostId;
     const host_name = instanceContainer.dataset.hostName;
@@ -21,17 +22,18 @@ const initInstanceChannel = () => {
       },
 
       received(data) {
+        // to redirect all subscribers except host after clicking start game, host is redirected via controller
+        if (data.head == 302 && data.path) {
+          window.location.pathname = data.path;
+        }
         console.log("InstanceChannel received", data);
         const notice_player =
           `<div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>${data.user}</strong> has joined the lobby <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span></button></div>`
         if (data.waiting_page){
-          instanceContainer.innerHTML = data.page[0];
+          playerList.innerHTML = data.page[0];
           instanceContainer.insertAdjacentHTML("beforebegin", notice_player);
-        }
-        if(data.question_page){
-          instanceContainer.innerHTML = data.question[0]
         }
       }
     });

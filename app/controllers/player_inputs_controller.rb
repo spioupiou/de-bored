@@ -3,6 +3,11 @@ class PlayerInputsController < ApplicationController
     # When user clicks on True or False button, an input is created
     @instance = Instance.find(params[:instance_id])
     @round = Round.find(params[:round_id])
+
+    # Change to phase 2 (collecting users' results)
+    @round.phase = 2
+    @round.save
+
     @player_input = PlayerInput.create!(
       instance_id: @instance.id,
       player: Player.find_by(user_id: current_user.id),

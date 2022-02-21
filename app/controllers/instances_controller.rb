@@ -29,8 +29,6 @@ class InstancesController < ApplicationController
     @game = Game.find(@instance.game_id)
     @host = User.find(@instance.user_id)
     @players = Player.where(instance_id: @instance.id)
-    # @is_host = check_host(@instance)
-
 
     # To grab the list of players' names in the instance (Also includes the host name...)
     @player_ids = @players.map(&:user_id)
@@ -41,11 +39,3 @@ class InstancesController < ApplicationController
   def update # Update the status, pending -> ongoing -> completed
   end
 end
-
-  # def check_host(instance)
-  #   if current_user.present? && current_user.id == instance.user_id
-  #     current_user.id == instance.user_id
-  #   else
-  #     false
-  #   end
-  # end
