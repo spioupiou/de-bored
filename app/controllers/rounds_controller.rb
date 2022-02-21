@@ -17,24 +17,31 @@ class RoundsController < ApplicationController
     )
 
     if @round.save
-      InstanceChannel.broadcast_to(
-        @instance,
-        {
-          question_page: true,
-          question:
-              [
-                render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
-              ],
-
-        }
-      )
+      # redirect to rounds#show page rather than the partial
+      redirect_to instance_round_path(@instance, @round)
     end
+
+    # if @round.save
+    #   InstanceChannel.broadcast_to(
+    #     @instance,
+    #     {
+    #       question_page: true,
+    #       question:
+    #           [
+    #             render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
+    #           ],
+
+    #     }
+    #   )
+    # end
+
   end
 
   def show
     @instance = Instance.find(params[:instance_id])
     @game_id = @instance.game_id
     @round = Round.find(params[:id])
+    @game_content = GameContent.find(@round.game_content_id)
     @player_inputs = PlayerInput.where(round_id: @round.id)
   end
 end

@@ -1,14 +1,26 @@
-<div class="container-fluid">
-  <h3 class="py-4 text-center">This Round's Results</h3>
+<% if @round.phase == 1 %>
+  <%= render 'show_question', instance: @instance, round: @round, game_content: @game_content %>
+
+<% elsif @round.phase == 2 %>
+  <div class="container-fluid">
+    <h3 class="py-4 text-center">This Round's Results</h3>
     <div id="inputs" data-round-id="<%= @round.id %>">
 
-    <% @round.player_inputs.each do |player_input| %>
-      <%= render 'player_inputs/player_input', player_input: player_input %>
+      <% @round.player_inputs.each do |player_input| %>
+        <%= render 'player_inputs/player_input', player_input: player_input %>
+      <% end %>
+
+    </div>
+
+    <% @round = Round.new %>
+    <%= simple_form_for([@instance, @round]) do |f| %>
+      <%= f.submit "Continue", class:"btn btn-primary" %>
     <% end %>
 
-  <%= link_to instances_path(game_id: @game_id), method: :post do %>
-    <div class="btn btn-warning">End</div>
-  <% end %>
+    <%= link_to instances_path(game_id: @game_id), method: :post do %>
+      <div class="btn btn-warning">End</div>
+    <% end %>
 
   </div>
-</div>
+
+<% end %>
