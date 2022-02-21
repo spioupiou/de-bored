@@ -32,6 +32,8 @@ class RoundsController < ApplicationController
   end
 
   def show
+    @instance = Instance.find(params[:instance_id])
+    @game_id = @instance.game_id
     @round = Round.find(params[:id])
     @player_inputs = PlayerInput.where(round_id: @round.id)
   end

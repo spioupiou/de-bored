@@ -11,5 +11,9 @@
 
     <% end %>
 
+  <%= link_to instances_path(game_id: @game_id), method: :post do %>
+    <div class="btn btn-warning">End</div>
+  <% end %>
+
   </div>
 </div>
