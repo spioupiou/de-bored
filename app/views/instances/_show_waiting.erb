@@ -6,13 +6,9 @@
         <h5>Players:</h5>
         <p> <%= players.count %> / <%= instance.max_players %></p> <!--number of players here -->
       </div>
-
-        <% players.each do |player| %>
-          <% user = User.find(player.user_id)%>
-            <div id="card" class="card shadow-sm p-3 my-1 rounded">
-              <%= user.nickname%>
-            </div>
-        <% end %>
+        <div id="player-list">
+          <%= render  "player_list", players: players %>
+        </div>
     </div>
 
     <div id="settings" class="col-lg-4 col-md-4 col-sm-6 p-3 my-1" style="height: fit-content">
@@ -60,6 +56,7 @@
       <p>Instance pin:</p>
       <p><%= instance.pin %></p>
     </div>
+    <% if current_user.present? && current_user.id == @instance.user_id %>
     <div class="col-12 justify-content-center text-center py-3">
       <% @round = Round.new %>
       <%= simple_form_for([@instance, @round]) do |f| %>
@@ -67,5 +64,6 @@
         <%= f.submit "Start Game", class:"btn btn-primary w-75" %>
       <% end %>
     </div>
+  <% end %>
   </div>
 </div>

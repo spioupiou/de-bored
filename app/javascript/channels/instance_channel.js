@@ -4,6 +4,7 @@ const initInstanceChannel = () => {
   const instanceContainer = document.getElementById("instance")
 
   if (instanceContainer) {
+    const playerList = document.getElementById("player-list")
     const instance_id = instanceContainer.dataset.instanceId;
     const host_id = instanceContainer.dataset.hostId;
     const host_name = instanceContainer.dataset.hostName;
@@ -27,7 +28,7 @@ const initInstanceChannel = () => {
           <strong>${data.user}</strong> has joined the lobby <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span></button></div>`
         if (data.waiting_page){
-          instanceContainer.innerHTML = data.page[0];
+          playerList.innerHTML = data.page[0];
           instanceContainer.insertAdjacentHTML("beforebegin", notice_player);
         }
         if(data.question_page){
