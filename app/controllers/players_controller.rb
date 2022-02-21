@@ -9,7 +9,7 @@ class PlayersController < ApplicationController
     elsif @instance.status == 'ongoing'
       redirect_to root_path, alert: "Game already started, try not to miss the next one."
     elsif @instance.status == 'done'
-      redirect_to root_path, alert: "Game already finihsed, join the next one."
+      redirect_to root_path, alert: "Game already finished, join the next one."
     else
       new_player = Player.new(
         user: current_user,
