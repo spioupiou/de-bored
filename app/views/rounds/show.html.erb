@@ -11,17 +11,19 @@
       <% end %>
 
     </div>
-
+     <% if current_user.present? && current_user.id == @instance.user_id %>
+     <div id="host-buttons">
      <%@new_round = Round.new %>
-    <%= simple_form_for([@instance, @new_round]) do |f| %>
-      <%= hidden_field_tag 'current_round', @round.id %>
-      <%= f.submit "Continue", class:"btn btn-primary" %>
-    <% end %>
+        <%= simple_form_for([@instance, @new_round]) do |f| %>
+          <%= hidden_field_tag 'current_round', @round.id %>
+          <%= f.submit "Continue", class:"btn btn-primary" %>
+        <% end %>
 
-    <%= link_to instances_path(game_id: @game_id), method: :post do %>
-      <div class="btn btn-warning">End</div>
+        <%= link_to instances_path(game_id: @game_id), method: :post do %>
+          <div class="btn btn-warning">End</div>
+        <% end %>
+     </div>
     <% end %>
-
   </div>
 
 <% end %>
