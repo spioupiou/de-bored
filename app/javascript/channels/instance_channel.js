@@ -22,6 +22,10 @@ const initInstanceChannel = () => {
       },
 
       received(data) {
+        // to redirect all subscribers except host after clicking start game, host is redirected via controller
+        if (data.head == 302 && data.path) {
+          window.location.pathname = data.path;
+        }
         console.log("InstanceChannel received", data);
         const notice_player =
           `<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,9 +34,6 @@ const initInstanceChannel = () => {
         if (data.waiting_page){
           playerList.innerHTML = data.page[0];
           instanceContainer.insertAdjacentHTML("beforebegin", notice_player);
-        }
-        if(data.question_page){
-          instanceContainer.innerHTML = data.question[0]
         }
       }
     });
