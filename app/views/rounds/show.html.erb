@@ -4,25 +4,34 @@
 <% elsif @round.phase == 2 %>
   <div class="container-fluid">
     <h3 class="py-4 text-center">This Round's Results</h3>
-    <div id="inputs" data-round-id="<%= @round.id %>">
+    <div class="row justify-content-center" style="height: 50vh">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div id="inputs" data-round-id="<%= @round.id %>">
 
-      <% @round.player_inputs.each do |player_input| %>
-        <%= render 'player_inputs/player_input', player_input: player_input %>
-      <% end %>
+          <% @round.player_inputs.each do |player_input| %>
+            <%= render 'player_inputs/player_input', player_input: player_input %>
+          <% end %>
 
+        </div>
+      </div>
     </div>
-     <% if current_user.present? && current_user.id == @instance.user_id %>
-     <div id="host-buttons">
-     <%@new_round = Round.new %>
+  
+    <% if current_user.present? && current_user.id == @instance.user_id %>
+      <div class="row justify-content-center" id="host-buttons">
+        <%@new_round = Round.new %>
         <%= simple_form_for([@instance, @new_round]) do |f| %>
-          <%= hidden_field_tag 'current_round', @round.id %>
-          <%= f.submit "Continue", class:"btn btn-primary" %>
+          <div class="col-6">
+            <%= hidden_field_tag 'current_round', @round.id %>
+            <%= f.submit "Continue", class:"btn btn-primary" %>
+          </div>
         <% end %>
 
         <%= link_to instances_path(game_id: @game_id), method: :post do %>
-          <div class="btn btn-warning">End</div>
+          <div class="col-12">
+            <p class="btn btn-warning">Exit Game</p>
+          </div>
         <% end %>
-     </div>
+      </div>
     <% end %>
   </div>
 
