@@ -4,27 +4,20 @@
       <h5>Round <%= round.number %></h5>
       <h3>Never Have I ever <%= game_content.content %></h3>
       <div class="p-4">
-        <!-- "Yes" and "No" buttons here will be replaced -->
-        <!--
-        <% @player_input = PlayerInput.new %>
-        <%= simple_form_for([instance, round, @player_input]) do |f| %>
-          <%= f.input :input_value, label: "", as: :radio_buttons,
-          collection: ['Yes ⭕', 'No ❌'] %>
-          <%= f.submit "Submit", class: "btn btn-primary" %>
-        <% end %> -->
-        <!-------------------------------------------------->
+
         <div class="row justify-content-center">
           <div class="col-6">
-            <%= link_to instance_round_player_inputs_path(input_value: "Yes ⭕", round_id: params[:id]), method: :post, data: {confirm: "Are you sure?"} do %>
+            <%= link_to instance_round_player_inputs_path(input_value: "Yes I have ⭕", round_id: params[:id]), method: :post do %>
               <div class="btn btn-primary">Yes</div>
             <% end %>
           </div>
 
           <div class="col-6">
-            <%= link_to instance_round_player_inputs_path(input_value: "No ❌", round_id: params[:id]), method: :post, data: {confirm: "Are you sure?"} do %>
+            <%= link_to instance_round_player_inputs_path(input_value: "No I haven't ❌", round_id: params[:id]), method: :post do %>
               <div class="btn btn-warning">No</div>
             <% end %>
           </div>
+
         </div>
       </div>
     </div>
