@@ -41,7 +41,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
 
   initInstanceChannel();
-  highlighter();
   initRoundCable();
+  highlighter();
 
 });
