@@ -7,14 +7,14 @@
 
         <div class="row justify-content-center">
           <div class="col-6">
-            <%= link_to instance_round_player_inputs_path(input_value: "Yes I have ⭕", round_id: params[:id]), method: :post do %>
-              <div class="btn btn-primary">Yes</div>
+            <%= link_to instance_round_player_inputs_path(input_value: "Yes", round_id: params[:id]), method: :post do %>
+              <div class="btn btn-primary">Yes I have</div>
             <% end %>
           </div>
 
           <div class="col-6">
-            <%= link_to instance_round_player_inputs_path(input_value: "No I haven't ❌", round_id: params[:id]), method: :post do %>
-              <div class="btn btn-warning">No</div>
+            <%= link_to instance_round_player_inputs_path(input_value: "No", round_id: params[:id]), method: :post do %>
+              <div class="btn btn-warning">No I haven't</div>
             <% end %>
           </div>
 
