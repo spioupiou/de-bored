@@ -15,23 +15,24 @@
         </div>
       </div>
     </div>
+  
+    <% if current_user.present? && current_user.id == @instance.user_id %>
+      <div class="row justify-content-center" id="host-buttons">
+        <%@new_round = Round.new %>
+        <%= simple_form_for([@instance, @new_round]) do |f| %>
+          <div class="col-6">
+            <%= hidden_field_tag 'current_round', @round.id %>
+            <%= f.submit "Continue", class:"btn btn-primary" %>
+          </div>
+        <% end %>
 
-
-    <div class="row justify-content-center">
-        <% @round = Round.new %>
-        <%= simple_form_for([@instance, @round]) do |f| %>
-      <div class="col-6">
-          <%= f.submit "Continue", class:"btn btn-primary" %>
+        <%= link_to instances_path(game_id: @game_id), method: :post do %>
+          <div class="col-12">
+            <p class="btn btn-warning">Exit Game</p>
+          </div>
         <% end %>
       </div>
-
-      <%= link_to instances_path(game_id: @game_id), method: :post do %>
-      <div class="col-12">
-          <p class="btn btn-warning">Exit Game</p>
-      </div>
-        <% end %>
-    </div>
-
+    <% end %>
   </div>
 
 <% end %>
