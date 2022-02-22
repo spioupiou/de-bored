@@ -31,7 +31,6 @@ import { initInstanceChannel } from '../channels/instance_channel'
 
 import { highlighter } from "./rough_notation";
 import { initRoundCable } from '../channels/round_channel'
-master
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
 import "@fontsource/play";
