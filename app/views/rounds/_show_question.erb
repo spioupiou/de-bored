@@ -7,8 +7,10 @@
         <!-- "Yes" and "No" buttons here will be replaced -->
         <% @player_input = PlayerInput.new %>
         <%= simple_form_for([instance, round, @player_input]) do |f| %>
-          <%= f.input :input_value, label: "", as: :radio_buttons,
-          collection: ['Yes ⭕', 'No ❌'] %>
+          <%= f.input :input_value,
+                      label: "",
+                      as: :check_boxes,
+                      collection: [ ["Yes, I've never done that", "Yes"], [ "No, I've done that before", "No"] ] %>
           <%= f.submit "Submit", class: "btn btn-primary" %>
         <% end %>
         <!-------------------------------------------------->

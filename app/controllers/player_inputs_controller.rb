@@ -12,7 +12,7 @@ class PlayerInputsController < ApplicationController
       instance_id: @instance.id,
       player: Player.find_by(user_id: current_user.id),
       input_type: "string",
-      input_value: params[:player_input][:input_value],
+      input_value: params[:player_input][:input_value][1],
       round_id: @round.id
     )
 
