@@ -6,9 +6,18 @@ const initRoundCable = () => {
     const id = inputsContainer.dataset.roundId;
 
     consumer.subscriptions.create({ channel: "RoundChannel", id: id }, {
+      connected(){
+        console.log("connected to round channel")
+      },
       received(data) {
         console.log(data); // called when data is broadcast in the cable
-        inputsContainer.insertAdjacentHTML('beforeend', data)
+        if (data.head == 303 && data.path) {
+          window.location.pathname = data.path;
+          console.log("success")
+        }else{
+          inputsContainer.insertAdjacentHTML('beforeend', data)
+
+        }
       },
     });
   }

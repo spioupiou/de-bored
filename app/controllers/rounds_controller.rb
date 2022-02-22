@@ -1,13 +1,18 @@
 class RoundsController < ApplicationController
   # Start creating a round after Start button or Next Question button has been clicked
   def create
-    @instance = Instance.find(params[:instance_id])
+    begin
+      current_round_id =  params[:current_round].to_i
+      current_round = Round.find(current_round_id)
+      rescue ActiveRecord::RecordNotFound
+    end
 
+    @instance = Instance.find(params[:instance_id])
+    
     if @instance.status == "waiting"
       @instance.status = "ongoing"
       @instance.save
     end
-
     @game_content = GameContent.all.sample
     rounds = Round.where(instance_id: @instance.id)
     @round = Round.new(
@@ -23,7 +28,11 @@ class RoundsController < ApplicationController
         head: 302, # redirection code
         path: instance_round_path(@instance, @round)
       )
-
+      RoundChannel.broadcast_to(
+        current_round,
+        head: 303, # redirection code
+        path: instance_round_path(@instance, @round)
+      )
       # so that host will also be redirected too rounds phase1
       redirect_to instance_round_path(@instance, @round)
     end

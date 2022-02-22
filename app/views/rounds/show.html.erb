@@ -16,20 +16,20 @@
       </div>
     </div>
 
-
     <div class="row justify-content-center">
-        <% @round = Round.new %>
-        <%= simple_form_for([@instance, @round]) do |f| %>
-      <div class="col-6">
+      <%@new_round = Round.new %>
+      <%= simple_form_for([@instance, @new_round]) do |f| %>
+        <div class="col-6">
+          <%= hidden_field_tag 'current_round', @round.id %>
           <%= f.submit "Continue", class:"btn btn-primary" %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
       <%= link_to instances_path(game_id: @game_id), method: :post do %>
-      <div class="col-12">
+        <div class="col-12">
           <p class="btn btn-warning">Exit Game</p>
-      </div>
-        <% end %>
+        </div>
+      <% end %>
     </div>
 
   </div>
