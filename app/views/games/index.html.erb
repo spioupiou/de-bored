@@ -1,11 +1,13 @@
 <div class="container-fluid">
-      <%= render  "components/logo" %>
   <div class="row justify-content-center">
     <div class="col-lg-4 col-md-6 col-sm-12 text-center">
       <h1 class="p-5">De.Bored Games</h1>
+      <p>You are logged in as: <%= @current_user.username %></p>
+      <!-- Fake button, will be implemented later -->
+      <button class="btn btn-primary mb-3">Change your nickname</button>
 
-        <% @games.each do |game| %>
-          <!-- Card space for Front End Master Hiro -->
+      <% @games.each do |game| %>
+        <!-- Card space for Front End Master Hiro -->
       <div id="game-index" class="card d-flex flex-column align-items-center justify-content-center p-3 shadow">
         <div>
           <h3><%= game.name%></h3>
@@ -15,7 +17,7 @@
           <div class="d-flex justify-content-around w-75">
             <div>
               <%= link_to instances_path(game_id: game.id), method: :post do %>
-                <div class="btn btn-primary">Create a lobby</div>
+                <div class="btn btn-primary">Create</div>
               <% end %>
             </div>
             <div>
