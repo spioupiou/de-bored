@@ -6,7 +6,7 @@ class RoundsController < ApplicationController
     begin
       current_round_id =  params[:current_round].to_i
       current_round = Round.find(current_round_id)
-      rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound
     end
 
     @instance = Instance.find(params[:instance_id])
