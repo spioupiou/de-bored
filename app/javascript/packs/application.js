@@ -28,6 +28,8 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initInstanceChannel } from '../channels/instance_channel'
+
+import { highlighter } from "./rough_notation";
 import { initRoundCable } from '../channels/round_channel'
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
@@ -37,6 +39,9 @@ import "@fontsource/dosis";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  initInstanceChannel();
+
+  initInstanceChannel()
+  highlighter();
   initRoundCable();
+
 });
