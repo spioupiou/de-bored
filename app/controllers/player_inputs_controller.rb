@@ -1,4 +1,4 @@
-cclass PlayerInputsController < ApplicationController
+class PlayerInputsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
