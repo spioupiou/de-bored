@@ -1,4 +1,6 @@
 class PlayerInputsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def create
     # When user clicks on True or False button, an input is created
     @instance = Instance.find(params[:instance_id])
@@ -7,10 +9,11 @@ class PlayerInputsController < ApplicationController
     # Change to phase 2 (collecting users' results)
     @round.phase = 2
     @round.save
+    @current_user = current_or_guest_user
 
     @player_input = PlayerInput.create!(
       instance_id: @instance.id,
-      player: Player.find_by(user_id: current_user.id),
+      player: Player.find_by(user_id: @current_user.id),
       input_type: "string",
       input_value: params[:player_input][:input_value],
       round_id: @round.id

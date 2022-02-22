@@ -912,6 +912,21 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@fontsource/dosis@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/dosis/-/dosis-4.5.4.tgz#e44d4c42ee39b8478b7415fe5a672953a0d50698"
+  integrity sha512-XagLGAS4sWgATGjRpLVhmdapZEoSg6PQWHw/IN7gElt6eibvO6C4Lc7xwlhMtRtmntnQlnYcvmqr9kQmS8phJQ==
+
+"@fontsource/play@^4.5.2":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/play/-/play-4.5.3.tgz#5eddad61e8da15ad22229dbff769baf386d5e3b8"
+  integrity sha512-CXr1q3cLPdCeVUCftHtXCXGN705cbPr1aFchcwKIIfr7OV6NkfJbxX+wyuSb0D0DQBr7yFOgoeYS7RX/JchGXQ==
+
+"@fontsource/roboto@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.3.tgz#c729ac22c35ae1c224cde10042ce7ab356bc4dda"
+  integrity sha512-NUvBTj332dFRdiVkLlavXbDGoD2zyyeGYmMyrXOnctg/3e4pq95+rJgNfUP+k4v8UBk2L1aomGw9dDjbRdAmTg==
+
 "@gar/promisify@^1.0.1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
