@@ -2,67 +2,51 @@
   <h3 class="py-4 text-center"><%= game.name %></h3>
   <div class="row justify-content-around">
     <div id="players" class="col-lg-6 col-md-4 col-sm-6 p-3 my-1" style="height: 360px; overflow: auto;">
-      <div class="d-flex justify-content-between">
-        <h5>Players:</h5>
-        <p> <%= players.count %> / <%= instance.max_players %></p> <!--number of players here -->
+
+      <div id="player-count" class="d-flex justify-content-between">
+      <!-- Player Count @ app/views/instances/_player_count.erb -->
+       <h5>Players:</h5>
+         <div class="d-flex">
+           <p>
+             <div class="px-1"><%= players.count %></div>/
+             <div class="px-1" id="max-player-count">
+                <%= render "player_count", instance: instance %>
+              </div>
+           </p>
+         </div>
       </div>
+
         <div id="player-list">
+        <!-- Player Count @ app/views/instances/_player_list.erb -->
           <%= render  "player_list", players: players %>
         </div>
+
     </div>
 
     <div id="settings" class="col-lg-4 col-md-4 col-sm-6 p-3 my-1" style="height: fit-content">
-    <!-- Game Settings, select dropdowns are hardcoded for now -->
-      <h5 class="text-center">Game Settings</h5>
-      <div class="players d-flex justify-content-between">
-        <div>
-          <p>Max Players:</p>
-        </div>
-      <div>
-        <select class="form-select" aria-label="Default select example">
-          <option selected><%= instance.max_players %></option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-      </div>
+
+    <!-- Game Settings @ views/instances/_show_game_settings.html.erb-->
+    <div id="game-config">
+      <%= render "show_game_settings",instance: instance %>
     </div>
-      <div class="rounds d-flex justify-content-between">
-        <div>
-          <p>Rounds:</p>
-        </div>
-        <div>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>1</option>
-          <option value="1">2</option>
-          <option value="2">3</option>
-          <option value="3">4</option>
-        </select>
-      </div>
-    </div>
-      <div class="imposter d-flex justify-content-between">
-        <div>
-          <p>Imposter:</p>
-        </div>
-        <div>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-    </div>
-    <div class="d-flex justify-content-between">
-      <p>Instance pin:</p>
-      <p><%= instance.pin %></p>
-    </div>
+    
+    <!-- From this line, only Host can see/use this -->
     <% if current_user.present? && current_user.id == @instance.user_id %>
     <div class="col-12 justify-content-center text-center py-3">
-      <% @round = Round.new %>
-      <%= simple_form_for([@instance, @round]) do |f| %>
-        <!-- Implement logic/condition so than only Host should see/use this -->
-        <%= f.submit "Start Game", class:"btn btn-primary w-75" %>
-      <% end %>
+      <div class="row">
+        <div class="col-6">
+          <% @round = Round.new %>
+          <%= simple_form_for([@instance, @round]) do |f| %>
+            <%= f.submit "Start Game", class:"btn btn-primary" %>
+          <% end %>
+        </div>
+
+        <!-- Game Update @ app/views/instances/_update_modal.html.erb -->
+        <div class="col-6">
+          <%= render  "update_modal", instance:instance %>
+        </div>
+
+      </div>
     </div>
   <% end %>
   </div>

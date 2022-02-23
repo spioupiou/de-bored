@@ -7,8 +7,8 @@ class InstancesController < ApplicationController
     @instance = Instance.create!(
       game_id: params[:game_id],
       user_id: current_user.id,
+      max_rounds: 5
     )
-
     # Simplistic pin number
     @instance.pin = 100_000 + @instance.id
     @instance.save
@@ -37,5 +37,27 @@ class InstancesController < ApplicationController
   end
 
   def update # Update the status, pending -> ongoing -> completed
+    @instance = Instance.find(params[:id])
+
+    if @instance.update(instance_params)
+      InstanceChannel.broadcast_to(
+        @instance,
+        { 
+          game_settings: true,
+          page: 
+              render_to_string( partial: "/instances/show_game_settings",
+              locals: { instance: @instance }),
+          count: 
+              render_to_string( partial: "/instances/player_count", locals: { instance: @instance })
+        })
+      redirect_to instance_path(@instance), notice: "Game Settings Updated"
+    end
   end
+
+  private
+
+  def instance_params
+    params.require(:instance).permit(:max_players, :max_rounds, :pin)
+  end
+
 end
