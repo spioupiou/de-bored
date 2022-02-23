@@ -1,4 +1,6 @@
 class RoundsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   # Start creating a round after Start button or Next Question button has been clicked
   def create
     begin
@@ -8,7 +10,7 @@ class RoundsController < ApplicationController
     end
 
     @instance = Instance.find(params[:instance_id])
-    
+
     if @instance.status == "waiting"
       @instance.status = "ongoing"
       @instance.save
@@ -39,6 +41,7 @@ class RoundsController < ApplicationController
   end
 
   def show
+    @current_user = current_or_guest_user
     @instance = Instance.find(params[:instance_id])
     @game_id = @instance.game_id
     @round = Round.find(params[:id])

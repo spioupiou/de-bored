@@ -56,7 +56,7 @@
       <p>Instance pin:</p>
       <p><%= instance.pin %></p>
     </div>
-    <% if current_user.present? && current_user.id == @instance.user_id %>
+    <% if @current_user.id == @instance.user_id %>
     <div class="col-12 justify-content-center text-center py-3">
       <% @round = Round.new %>
       <%= simple_form_for([@instance, @round]) do |f| %>
