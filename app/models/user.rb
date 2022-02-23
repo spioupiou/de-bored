@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :username, uniqueness: true
+  validates :username, :nickname, presence: true
   before_create :set_nickname
 
   def email_required?

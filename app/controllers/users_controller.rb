@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def update
     @current_user = User.find(params[:id])
     @current_user.nickname = params[:user][:nickname]
-    @current_user.save!
+    flash[:alert] = "Nickname cannot be empty" unless @current_user.save
     redirect_to root_path
   end
 end
