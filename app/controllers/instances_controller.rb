@@ -48,7 +48,7 @@ class InstancesController < ApplicationController
               render_to_string( partial: "/instances/show_game_settings",
               locals: { instance: @instance }),
           count: 
-              render_to_string( partial: "/instances/player_count", locals: { instance: @instance })
+              render_to_string( partial: "/instances/max_player_count", locals: { instance: @instance })
         })
       redirect_to instance_path(@instance), notice: "Game Settings Updated"
     end

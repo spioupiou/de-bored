@@ -4,13 +4,17 @@
     <div id="players" class="col-lg-6 col-md-4 col-sm-6 p-3 my-1" style="height: 360px; overflow: auto;">
 
       <div id="player-count" class="d-flex justify-content-between">
-      <!-- Player Count @ app/views/instances/_player_count.erb -->
        <h5>Players:</h5>
          <div class="d-flex">
            <p>
-             <div class="px-1"><%= players.count %></div>/
+           <!-- Player Count @ app/views/instances/_min_player_count.erb -->
+             <div class="px-1" id="min-player-count" >
+                <%= render "min_player_count", players: players %>             
+             </div>
+             / <!-- Please do not remove this =) -->
+            <!-- Player Count @ app/views/instances/_max_player_count.erb -->
              <div class="px-1" id="max-player-count">
-                <%= render "player_count", instance: instance %>
+                <%= render "max_player_count", instance: instance %>
               </div>
            </p>
          </div>

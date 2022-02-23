@@ -7,6 +7,7 @@ const initInstanceChannel = () => {
     const playerList = document.getElementById("player-list")
     const gameSettings = document.getElementById("game-config")
     const playerCount = document.getElementById("max-player-count")
+    const currentPlayerCount = document.getElementById("min-player-count")
     const instance_id = instanceContainer.dataset.instanceId;
     const host_id = instanceContainer.dataset.hostId;
     const host_name = instanceContainer.dataset.hostName;
@@ -36,7 +37,8 @@ const initInstanceChannel = () => {
               <strong>${data.user}</strong> has joined the lobby <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span></button></div>`
 
-          playerList.innerHTML = data.page[0];
+          playerList.innerHTML = data.page;
+          currentPlayerCount.innerHTML = data.count;
           instanceContainer.insertAdjacentHTML("beforebegin", notice_player);
         }
         if (data.game_settings){
