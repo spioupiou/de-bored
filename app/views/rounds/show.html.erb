@@ -3,8 +3,9 @@
 
 <% elsif @round.phase == 2 %>
   <div class="container-fluid">
-    <h3 class="py-4 text-center">This Round's Results</h3>
+    <h3 class="py-4 text-center">Round <%= @round.number %> Results</h3>
     <div class="row justify-content-center" style="height: 50vh">
+    <p>Never have I ever <%= @game_content.content %></p>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div id="inputs" data-round-id="<%= @round.id %>">
 
