@@ -2,6 +2,7 @@ class InstancesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
+    # raise
     # Create an instance with current_user as host, instance default status is "waiting"
     @instance = Instance.create!(
       game_id: params[:game_id],
@@ -17,6 +18,25 @@ class InstancesController < ApplicationController
       user_id: current_or_guest_user.id,
       instance_id: @instance.id
     )
+
+    # skip the if block when concatenated_user_ids is nil or empty string
+    if params[:concatenated_user_ids]
+      user_ids = params[:concatenated_user_ids].split.map(&:to_i)
+
+      # create each user as a player in the new instance
+      user_ids.each do |user_id|
+        Player.create!(
+          user_id: user_id,
+          instance_id: @instance.id
+        )
+      end
+
+      RoundChannel.broadcast_to(
+        Round.find(params[:round_id]),
+        head: 303, # redirection code
+        path: instance_path(@instance)
+      )
+    end
 
     # Redirect to instance show page
     redirect_to instance_path(@instance)
