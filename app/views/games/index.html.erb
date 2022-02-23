@@ -1,28 +1,32 @@
 <div class="container-fluid">
-      <%= render  "components/logo" %>
-  <div class="row justify-content-center">
-    <div class="col-lg-4 col-md-6 col-sm-12 text-center">
-      <h1 class="p-5">De.Bored Games</h1>
+  <%= render  "components/logo" %>
+  <div id="de-bored-games" style="height: 100vh;">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+        <h1 class="p-5" style="font-weight:bolder;">De.Bored Games</h1>
 
-        <% @games.each do |game| %>
-          <!-- Card space for Front End Master Hiro -->
-      <div id="game-index" class="card d-flex flex-column align-items-center justify-content-center p-3 shadow">
-        <div>
-          <h3><%= game.name%></h3>
-        </div>
-
-          <!-- Buttons "Join" and "Create" -->
-          <div class="d-flex justify-content-around w-75">
-            <div>
-              <%= link_to instances_path(game_id: game.id), method: :post do %>
-                <div class="btn btn-primary">Create a lobby</div>
-              <% end %>
-            </div>
-            <div>
-              <%= render "components/modal" %>
-            </div>
+          <% @games.each do |game| %>
+            <!-- Card space for Front End Master Hiro -->
+        <div id="game-index" class="card d-flex flex-column align-items-center justify-content-center p-2 shadow">
+          <div>
+            <h3 id="game-name"><%= game.name%></h3>
           </div>
-        <% end %>
+
+            <!-- Buttons "Join" and "Create" -->
+        
+              <div class="d-flex justify-content-around w-100 p-2">
+                <div>
+                  <%= link_to instances_path(game_id: game.id), method: :post do %>
+                    <div class="btn btn-primary">Create a lobby</div>
+                  <% end %>
+                </div>
+                <div>
+                  <%= render "components/modal" %>
+                </div>
+              </div>
+          
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
