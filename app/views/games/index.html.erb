@@ -3,9 +3,15 @@
   <div class="row justify-content-center">
     <div class="col-lg-4 col-md-6 col-sm-12 text-center">
       <h1 class="p-5">De.Bored Games</h1>
-      <p>You are logged in as: <%= @current_user.username %></p>
+      <p>You are logged in as: <%= @current_user.nickname %></p>
       <!-- Fake button, will be implemented later -->
-      <button class="btn btn-primary mb-3">Change your nickname</button>
+      <div class="nickname-edit">
+        <button class="btn btn-primary mb-3" id="nickname-btn">Change your nickname</button>
+        <%= simple_form_for @current_user, html: { class: 'd-none', id: 'nickname-form' }  do |f| %>
+          <%= f.input :nickname %>
+          <%= f.submit %>
+        <% end %>
+      </div>
 
       <% @games.each do |game| %>
         <!-- Card space for Front End Master Hiro -->
