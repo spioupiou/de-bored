@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  before_validation :set_nickname, unless: :nickname
+
   validates :username, uniqueness: true
   validates :username, :nickname, presence: true
-  before_create :set_nickname
 
   def email_required?
     false
