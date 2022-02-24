@@ -26,7 +26,7 @@ class PlayerInputsController < ApplicationController
         render_to_string(partial: "player_input", locals: { player_input: @player_input })
       )
     else
-      flash[:alert] = "You already replied" unless @player_input.save
+      flash[:alert] = "You already replied"
     end
 
     redirect_to instance_round_path(@instance, @round)
