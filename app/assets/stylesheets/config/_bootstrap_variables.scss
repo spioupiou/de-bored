@@ -30,12 +30,21 @@ $modal-fade-transform: scale(.5);
 $body-bg: $bg;
 $body-color: white;
 
-#game-index, #card {
-    background-color: $mizu;
-}
 
-#inputs .card{
-    background-color: $mizu;
+#inputs {
+    
+    .yes-card{
+        background-color: $mizu;
+        border: 2px solid #151f52;
+        border-radius: 8px;
+        border-style: groove;
+    }
+    .no-card{
+        background-color: $pink;
+        border: 2px solid #68132c;
+        border-radius: 8px;
+        border-style: groove;
+    }
 }
 
 #game-index{
@@ -46,10 +55,6 @@ $body-color: white;
 
 #game-list{
     border: 2px solid black
-}
-
-#players, #settings{
-    background-color: $bg;
 }
 
 #modal{

@@ -1,6 +1,14 @@
-<div id="input-<%= player_input.id %>" class="card shadow-sm p-3 rounded">
-  <div class="d-flex justify-content-between align-items-center">
-    <p class="m-0"><%= player_input.player.user.nickname %></p>
-    <p class="m-0"><%= player_input.input_value %></p>
+<div class="row">
+  <div class="col-12">
+    <% @round.player_inputs.each do |player_input| %>
+      <div id="input-<%= player_input.id %>">
+        <div class="<%=player_input.input_value == "Yes" ? "yes" : "no" %>-card shadow-sm p-3 rounded my-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="m-0"><%= player_input.player.user.nickname %></p>
+            <p class="m-0"><%= player_input.input_value %></p>
+          </div>
+        </div> 
+      </div>
+    <% end %>
   </div>
 </div>

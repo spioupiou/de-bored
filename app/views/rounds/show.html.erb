@@ -10,23 +10,20 @@
       <p>Never have I ever <%= @game_content.content %></p>
     </div>
     <div class="row justify-content-center" style="height: 50vh">
-      <div class="col-lg-4 col-md-6 col-sm-12">
+      <div  id="results" class="col-lg-4 col-md-6 col-sm-12">
         <div id="inputs" data-round-id="<%= @round.id %>">
-
-          <% @round.player_inputs.each do |player_input| %>
-            <%= render 'player_inputs/player_input', player_input: player_input %>
-          <% end %>
-
+          <!-- Player inputs @ app/views/player_inputs/_player_input.html.erb-->
+          <%= render 'player_inputs/player_input', round: @round %>        
         </div>
       </div>
     </div>
 
     <% if @current_user.id == @instance.user_id %>
-      <div class="row justify-content-center" id="host-buttons">
+      <div class="py-4 row justify-content-center" id="host-buttons">
         <%= simple_form_for([@instance, Round.new]) do |f| %>
           <div class="col-6">
             <%= hidden_field_tag 'current_round', @round.id %>
-            <%= f.submit "Continue", class:"btn btn-primary" %>
+            <%= f.submit "Next Round", class:"btn btn-primary" %>
           </div>
         <% end %>
 
@@ -41,6 +38,4 @@
         <% end %>
       </div>
     <% end %>
-  </div>
-
 <% end %>
