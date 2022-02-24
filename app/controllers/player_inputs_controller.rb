@@ -1,16 +1,22 @@
 class PlayerInputsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def create
-    # When user clicks on True or False button, an input is created
+    # player_inputs are created after players clicks on their answers from rounds show page phase1
+
     @instance = Instance.find(params[:instance_id])
+    @current_user = current_or_guest_user
     @round = Round.find(params[:round_id])
+    # for end game redirection to new instance: find player ids except host
+    @non_host_player_user_ids = @instance.non_host_player_user_ids
 
     # Change to phase 2 (collecting users' results)
-    @round.phase = 2
-    @round.save
+    # line only gets executed after any player submits the first input
+    @round.update(phase: 2) if @round.phase == 1
 
     @player_input = PlayerInput.create!(
       instance_id: @instance.id,
-      player: Player.find_by(user_id: current_user.id),
+      player: Player.find_by(user_id: @current_user.id),
       input_type: "string",
       input_value: params[:input_value],
       round_id: @round.id

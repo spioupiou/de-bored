@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
-  def create
-    redirect_to new_user_session_path unless user_signed_in?
+  skip_before_action :authenticate_user!
 
+  def create
     @instance = Instance.find_by_pin(params[:pin])
 
     if @instance.blank?
@@ -12,7 +12,7 @@ class PlayersController < ApplicationController
       redirect_to root_path, alert: "Game already finished, join the next one."
     else
       new_player = Player.new(
-        user: current_user,
+        user: current_or_guest_user,
         instance: @instance
       )
 
@@ -20,10 +20,10 @@ class PlayersController < ApplicationController
         @players = Player.where(instance: @instance)
         @game = @instance.game
         user = User.find(new_player.user_id).nickname
-  
+
         InstanceChannel.broadcast_to(
           @instance,
-          { 
+          {
             waiting_page: true,
             page: 
                 render_to_string( partial: "/instances/player_list",
