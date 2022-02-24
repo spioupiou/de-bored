@@ -29,7 +29,6 @@ import "bootstrap";
 import { initInstanceChannel } from '../channels/instance_channel';
 import { highlighter } from "../plugins/rough_notation";
 import { initRoundCable } from '../channels/round_channel';
-import { displayForm } from "../components/nickname_form";
 
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
@@ -40,7 +39,6 @@ document.addEventListener('turbolinks:load', () => {
 
   initInstanceChannel();
   initRoundCable();
-  displayForm();
   highlighter();
 
 
