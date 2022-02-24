@@ -6,9 +6,9 @@ class InstancesController < ApplicationController
     # Create an instance with current_user as host, instance default status is "waiting"
     @instance = Instance.create!(
       game_id: params[:game_id],
-      user_id: current_or_guest_user.id
+      user_id: current_or_guest_user.id,
+      max_rounds: 5
     )
-
     # Simplistic pin number
     @instance.pin = 100_000 + @instance.id
     @instance.save
@@ -56,5 +56,27 @@ class InstancesController < ApplicationController
   end
 
   def update # Update the status, pending -> ongoing -> completed
+    @instance = Instance.find(params[:id])
+
+    if @instance.update(instance_params)
+      InstanceChannel.broadcast_to(
+        @instance,
+        { 
+          game_settings: true,
+          page: 
+              render_to_string( partial: "/instances/show_game_settings",
+              locals: { instance: @instance }),
+          count: 
+              render_to_string( partial: "/instances/max_player_count", locals: { instance: @instance })
+        })
+      redirect_to instance_path(@instance), notice: "Game Settings Updated"
+    end
   end
+
+  private
+
+  def instance_params
+    params.require(:instance).permit(:max_players, :max_rounds, :pin)
+  end
+
 end

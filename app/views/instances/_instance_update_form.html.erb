@@ -1,0 +1,22 @@
+<%= simple_form_for instance, remote: true do |f| %>
+  <div>
+    <div class="mb-4" style="border-bottom: 1px solid #033b4d">
+      <h5>Game Settings</h5>
+    </div>
+    <div class="d-flex justify-content-between">
+      <%= f.label :max_players, "Max Players" %>
+      <%= f.input :max_players, label: false, input_html: { min: '2', max: "10"}%>
+    </div>
+    <div class="d-flex justify-content-between">
+      <%= f.label :max_rounds, "Rounds" %>
+      <%= f.input :max_rounds,  label: false, input_html: { min: '2'} %>
+    </div>
+    <div class="d-flex justify-content-between">
+      <%= f.label :pin, "Pin Number" %>
+      <%= f.text_field :pin, label: false, class:"form-control" %>
+    </div>
+    <div class="pt-3">
+        <%= f.submit "Update Settings", class:"btn btn-warning" %>
+    </div>
+  </div>
+<% end %>

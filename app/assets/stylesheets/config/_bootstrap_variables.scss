@@ -12,6 +12,7 @@ $font-size-base: 1rem;
 // Colors
 $body-color: $gray;
 $primary:    $mizu;
+$secondary:  $murasaki;
 $success:    $midori;
 $info:       $kiroi;
 $danger:     $aoi;
@@ -21,6 +22,9 @@ $warning:    $pink;
 $border-radius:    2px;
 $border-radius-lg: 2px;
 $border-radius-sm: 2px;
+
+// Modal
+$modal-fade-transform: scale(.5);
 
 // Override other variables below!
 $body-bg: $bg;
