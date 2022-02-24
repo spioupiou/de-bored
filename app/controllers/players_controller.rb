@@ -38,14 +38,4 @@ class PlayersController < ApplicationController
       redirect_to instance_path(@instance)
     end
   end
-
-  private
-
-  def alert_message(instance)
-    alert = "Lobby not found" # default value since this method gets called from true block of `if @instance.blank?`
-    return alert = "Game already started, try not to miss the next one."      if instance.status == 'ongoing'
-    return alert = "Game already finished, join the next one."                if instance.status == 'done'
-    return alert = "Game is full, tell your buddy to increase more players."  if instance.max_players == Player.where(instance: instance).count
-    alert
-  end
 end
