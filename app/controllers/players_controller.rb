@@ -6,11 +6,12 @@ class PlayersController < ApplicationController
 
     if @instance.blank?
       redirect_to root_path, alert: "Lobby not found"
-    elsif @instance.status == 'ongoing'
-      redirect_to root_path, alert: "Game already started, try not to miss the next one."
-    elsif @instance.status == 'done'
-      redirect_to root_path, alert: "Game already finished, join the next one."
     else
+      # don't allow any more players to join if any condition is true
+      redirect_to root_path, alert: "Game already started, try not to miss the next one."     and return if @instance.status == 'ongoing'
+      redirect_to root_path, alert: "Game already finished, join the next one."               and return if @instance.status == 'done'
+      redirect_to root_path, alert: "Game is full, tell your buddy to increase max players."  and return if @instance.max_players == Player.where(instance: @instance).count
+
       new_player = Player.new(
         user: current_or_guest_user,
         instance: @instance
@@ -36,5 +37,15 @@ class PlayersController < ApplicationController
 
       redirect_to instance_path(@instance)
     end
+  end
+
+  private
+
+  def alert_message(instance)
+    alert = "Lobby not found" # default value since this method gets called from true block of `if @instance.blank?`
+    return alert = "Game already started, try not to miss the next one."      if instance.status == 'ongoing'
+    return alert = "Game already finished, join the next one."                if instance.status == 'done'
+    return alert = "Game is full, tell your buddy to increase more players."  if instance.max_players == Player.where(instance: instance).count
+    alert
   end
 end
