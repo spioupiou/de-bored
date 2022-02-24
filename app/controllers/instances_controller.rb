@@ -6,7 +6,7 @@ class InstancesController < ApplicationController
     # Create an instance with current_user as host, instance default status is "waiting"
     @instance = Instance.create!(
       game_id: params[:game_id],
-      user_id: current_or_guest_user.id
+      user_id: current_or_guest_user.id,
       max_rounds: 5
     )
     # Simplistic pin number
