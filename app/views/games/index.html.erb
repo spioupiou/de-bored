@@ -1,13 +1,12 @@
 <div class="container-fluid">
   <%= render "components/logo" %>
-  <div id="de-bored-games" style="height: 100vh;">         
+  <div id="de-bored-games" style="height: 100vh;">
   <div class="row justify-content-center">
     <div class="col-lg-4 col-md-6 col-sm-12 text-center">
       <h1 class="p-5">De.Bored Games</h1>
 
-      <!-- Fom to change nickname -->
-
-      <%= render partial: "components/nickname_form", locals: {current_user: @current_user} %>
+      <p>You are logged in as: <%= current_user.nickname %></p>
+        <%= render "components/nickname_modal", locals: { current_user: current_user } %>
 
           <% @games.each do |game| %>
             <!-- Card space for Front End Master Hiro -->
@@ -15,7 +14,7 @@
           <div>
             <h3><%= game.name%></h3>
           </div>
-          
+
             <!-- Buttons "Join" and "Create" -->
             <div class="d-flex justify-content-around w-100">
               <div>
@@ -31,6 +30,6 @@
         </div>
       </div>
     </div>
-  
+
   </div>
 </div>
