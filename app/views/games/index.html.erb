@@ -6,7 +6,7 @@
 
       <!-- Fom to change nickname -->
 
-      <%= render partial: "components/nickname_form", locals: {user: @current_user} %>
+      <%= render partial: "components/nickname_form", locals: {current_user: @current_user} %>
 
       <% @games.each do |game| %>
         <!-- Card space for Front End Master Hiro -->
