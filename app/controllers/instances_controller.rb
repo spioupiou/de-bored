@@ -2,12 +2,13 @@ class InstancesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
+    # raise
     # Create an instance with current_user as host, instance default status is "waiting"
     @instance = Instance.create!(
       game_id: params[:game_id],
-      user_id: current_or_guest_user.id
+      user_id: current_or_guest_user.id,
+      max_rounds: 5
     )
-
     # Simplistic pin number
     @instance.pin = 100_000 + @instance.id
     @instance.save
@@ -17,6 +18,25 @@ class InstancesController < ApplicationController
       user_id: current_or_guest_user.id,
       instance_id: @instance.id
     )
+
+    # skip the if block when concatenated_user_ids is nil or empty string
+    if params[:concatenated_user_ids]
+      user_ids = params[:concatenated_user_ids].split.map(&:to_i)
+
+      # create each user as a player in the new instance
+      user_ids.each do |user_id|
+        Player.create!(
+          user_id: user_id,
+          instance_id: @instance.id
+        )
+      end
+
+      RoundChannel.broadcast_to(
+        Round.find(params[:round_id]),
+        head: 303, # redirection code
+        path: instance_path(@instance)
+      )
+    end
 
     # Redirect to instance show page
     redirect_to instance_path(@instance)
@@ -36,5 +56,27 @@ class InstancesController < ApplicationController
   end
 
   def update # Update the status, pending -> ongoing -> completed
+    @instance = Instance.find(params[:id])
+
+    if @instance.update(instance_params)
+      InstanceChannel.broadcast_to(
+        @instance,
+        { 
+          game_settings: true,
+          page: 
+              render_to_string( partial: "/instances/show_game_settings",
+              locals: { instance: @instance }),
+          count: 
+              render_to_string( partial: "/instances/max_player_count", locals: { instance: @instance })
+        })
+      redirect_to instance_path(@instance), notice: "Game Settings Updated"
+    end
   end
+
+  private
+
+  def instance_params
+    params.require(:instance).permit(:max_players, :max_rounds, :pin)
+  end
+
 end

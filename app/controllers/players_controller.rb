@@ -25,11 +25,11 @@ class PlayersController < ApplicationController
           @instance,
           {
             waiting_page: true,
-            page:
-                [
+            page: 
                 render_to_string( partial: "/instances/player_list",
-                locals: { players: @players })
-                ],
+                locals: { players: @players }),
+            count: 
+                render_to_string( partial: "/instances/min_player_count", locals: { players: @players }),
             user: user
           })
       end

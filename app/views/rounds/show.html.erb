@@ -23,18 +23,21 @@
 
     <% if @current_user.id == @instance.user_id %>
       <div class="row justify-content-center" id="host-buttons">
-        <%@new_round = Round.new %>
-        <%= simple_form_for([@instance, @new_round]) do |f| %>
+        <%= simple_form_for([@instance, Round.new]) do |f| %>
           <div class="col-6">
             <%= hidden_field_tag 'current_round', @round.id %>
             <%= f.submit "Continue", class:"btn btn-primary" %>
           </div>
         <% end %>
 
-        <%= link_to instances_path(game_id: @game_id), method: :post do %>
-          <div class="col-12">
-            <p class="btn btn-warning">Exit Game</p>
-          </div>
+        <%= simple_form_for Instance.new do |f| %>
+          <%# needed for creating a new instance %>
+          <%= hidden_field_tag 'game_id', @game_id %>
+          <%# needed to broadcast the redirect %>
+          <%= hidden_field_tag 'round_id', @round.id %>
+          <%# needed for creating players in the new instance, gives us a string of user ids like so "8 9 10 22" %>
+          <%= hidden_field_tag :concatenated_user_ids, @non_host_player_user_ids %>
+          <%= f.submit "Exit Game", class: "btn btn-warning" %>
         <% end %>
       </div>
     <% end %>
