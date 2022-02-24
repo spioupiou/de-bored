@@ -1,0 +1,9 @@
+<p>You are logged in as: <%= current_user.nickname %></p>
+
+<div class="nickname-edit">
+  <button class="btn btn-primary mb-3" id="nickname-btn">Change your nickname</button>
+  <%= simple_form_for current_user, html: { class: 'd-none', id: 'nickname-form' }  do |f| %>
+    <%= f.input :nickname %>
+    <%= f.submit "Edit", class: "btn btn-primary" %>
+  <% end %>
+</div>
