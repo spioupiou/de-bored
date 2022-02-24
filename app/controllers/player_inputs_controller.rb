@@ -14,7 +14,7 @@ class PlayerInputsController < ApplicationController
     # line only gets executed after any player submits the first input
     @round.update(phase: 2) if @round.phase == 1
 
-    @player_input = PlayerInput.create!(
+    @player_input = PlayerInput.new(
       instance_id: @instance.id,
       player: Player.find_by(user_id: @current_user.id),
       input_type: "string",
@@ -22,11 +22,15 @@ class PlayerInputsController < ApplicationController
       round_id: @round.id
     )
 
-    # send to channel
-    RoundChannel.broadcast_to(
-      @round,
-      render_to_string(partial: "player_input", locals: { player_input: @player_input })
-    )
+    if @player_input.save
+      # send to channel
+      RoundChannel.broadcast_to(
+        @round,
+        render_to_string(partial: "player_input", locals: { player_input: @player_input })
+      )
+    else
+      flash[:alert] = "You already replied"
+    end
 
     redirect_to instance_round_path(@instance, @round)
   end
