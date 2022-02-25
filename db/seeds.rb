@@ -29,7 +29,16 @@ puts "Creating the game 'Never Have I Ever'..."
 
 game = Game.create!(name: "Never Have I Ever")
 
-puts "Game created!"
+puts "Creating the other games..."
+
+games = ["Picture Me", "Oukami", "Cards Against Humanity", "Spank the Bank"]
+
+games.each do |game_name|
+  Game.create!( name: game_name )
+  puts "#{game_name} created!"
+end
+
+puts "Game creation Complete!"
 
 
 # Create Contents for Never Have I ever
