@@ -3,9 +3,15 @@
 
 <% elsif @round.phase == 2 %>
   <div class="container-fluid">
-    <div>
-      <h3 class="py-4 text-center">Round <%= @round.number %> Results</h3>
-    </div>
+    <% if @instance.max_rounds == @round.number %>
+      <div>
+        <h3 class="py-4 text-center">Last Round's</h3>
+      </div>
+    <% else %>
+      <div>
+        <h3 class="py-4 text-center">Round <%= @round.number %> Results</h3>
+      </div>
+    <% end %>
     <div class="py-2 text-center">
       <p>Have you ever <%= @game_content.content %>?</p>
     </div>
