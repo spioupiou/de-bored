@@ -7,13 +7,13 @@
       <h3 class="py-4 text-center">Round <%= @round.number %> Results</h3>
     </div>
     <div class="py-2 text-center">
-      <p>Never have I ever <%= @game_content.content %></p>
+      <p>Have you ever <%= @game_content.content %>?</p>
     </div>
     <div class="row justify-content-center" style="height: 50vh">
       <div  id="results" class="col-lg-4 col-md-6 col-sm-12">
         <div id="inputs" data-round-id="<%= @round.id %>">
           <!-- Player inputs @ app/views/player_inputs/_player_input.html.erb-->
-          <%= render 'player_inputs/player_input', round: @round %>        
+          <%= render 'player_inputs/player_input', round: @round %>
         </div>
       </div>
     </div>
