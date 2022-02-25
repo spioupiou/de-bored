@@ -10,32 +10,40 @@
       <p>Never have I ever <%= @game_content.content %></p>
     </div>
     <div class="row justify-content-center" style="height: 50vh">
-      <div  id="results" class="col-lg-4 col-md-6 col-sm-12">
+      <div id="results" class="col-lg-4 col-md-6 col-sm-12">
         <div id="inputs" data-round-id="<%= @round.id %>">
           <!-- Player inputs @ app/views/player_inputs/_player_input.html.erb-->
-          <%= render 'player_inputs/player_input', round: @round %>        
+          <%= render 'player_inputs/player_input', round: @round %>
         </div>
       </div>
     </div>
 
     <% if @current_user.id == @instance.user_id %>
-      <div class="py-4 row justify-content-center" id="host-buttons">
-        <%= simple_form_for([@instance, Round.new]) do |f| %>
-          <div class="col-6">
-            <%= hidden_field_tag 'current_round', @round.id %>
-            <%= f.submit "Next Round", class:"btn btn-primary" %>
-          </div>
-        <% end %>
+      <% if @round.number < @instance.max_rounds %>
+        <div class="py-4 row justify-content-center" id="host-buttons">
+          <%= simple_form_for([@instance, Round.new]) do |f| %>
+            <div class="col-6">
+              <%= hidden_field_tag 'current_round', @round.id %>
+              <%= f.submit "Next Round", class:"btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
 
-        <%= simple_form_for Instance.new do |f| %>
-          <%# needed for creating a new instance %>
-          <%= hidden_field_tag 'game_id', @game_id %>
-          <%# needed to broadcast the redirect %>
-          <%= hidden_field_tag 'round_id', @round.id %>
-          <%# needed for creating players in the new instance, gives us a string of user ids like so "8 9 10 22" %>
-          <%= hidden_field_tag :concatenated_user_ids, @non_host_player_user_ids %>
-          <%= f.submit "Exit Game", class: "btn btn-warning" %>
-        <% end %>
-      </div>
+      <% else %>
+        <div class="py-4 row justify-content-center" id="host-buttons">
+          <%= simple_form_for Instance.new do |f| %>
+            <%# needed for creating a new instance %>
+            <div class="col-6">
+            <%= hidden_field_tag 'game_id', @game_id %>
+            <%# needed to broadcast the redirect %>
+            <%= hidden_field_tag 'round_id', @round.id %>
+            <%# needed for creating players in the new instance, gives us a string of user ids like so "8 9 10 22" %>
+            <%= hidden_field_tag :concatenated_user_ids, @non_host_player_user_ids %>
+            <%= f.submit "Exit Game", class: "btn btn-warning" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     <% end %>
 <% end %>
