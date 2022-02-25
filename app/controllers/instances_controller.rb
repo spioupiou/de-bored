@@ -1,18 +1,22 @@
 class InstancesController < ApplicationController
+  require 'custom_classes/passcode' # this is from lib/custom_classes
+
   skip_before_action :authenticate_user!
 
   def create
-    # raise
     # Create an instance with current_user as host, instance default status is "waiting"
-    @instance = Instance.create!(
+    @instance = Instance.new(
       game_id: params[:game_id],
       user_id: current_or_guest_user.id,
       max_rounds: 5
     )
-    # Simplistic pin number
-    @instance.pin = 100_000 + @instance.id
-    @instance.save
 
+    # loop until a unique passcode (scope -> instanes with 'waiting' status) is generated for the instance
+    loop do
+      @instance.passcode = Passcode.generate_passcode
+      break if @instance.save
+    end
+    
     # Make the host a player
     Player.create!(
       user_id: current_or_guest_user.id,
@@ -78,5 +82,4 @@ class InstancesController < ApplicationController
   def instance_params
     params.require(:instance).permit(:max_players, :max_rounds, :pin)
   end
-
 end

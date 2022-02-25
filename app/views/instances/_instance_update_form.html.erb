@@ -12,8 +12,8 @@
       <%= f.input :max_rounds,  label: false, input_html: { min: '2'} %>
     </div>
     <div class="d-flex justify-content-between">
-      <%= f.label :pin, "Pin Number" %> <!-- Will be replace by imposter when implemented -->
-      <%= f.text_field :pin, label: false, class:"form-control" %>
+      <%= f.label :passcode, "Passcode" %> <!-- Will be replace by imposter when implemented -->
+      <%= f.text_field :passcode, label: false, class:"form-control" %>
     </div>
     <div class="pt-3">
         <%= f.submit "Update Settings", class:"btn btn-warning" %>

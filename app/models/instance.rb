@@ -7,7 +7,7 @@ class Instance < ApplicationRecord
 
   validates :status, presence: true, inclusion: { in: ['waiting', 'ongoing', 'done'] }
   validates :max_rounds, :max_players, presence:true, numericality: { greater_than_or_equal_to: 2 }
-  validates_uniqueness_of :pass_code, conditions: -> { where(status: 'waiting') }
+  validates_uniqueness_of :passcode, conditions: -> { where(status: 'waiting') }
 
   enum status: { waiting: 'waiting', ongoing: 'ongoing', done: 'done' }
 
