@@ -80,6 +80,6 @@ class InstancesController < ApplicationController
   private
 
   def instance_params
-    params.require(:instance).permit(:max_players, :max_rounds, :pin)
+    params.require(:instance).permit(:max_players, :max_rounds, :passcode)
   end
 end
