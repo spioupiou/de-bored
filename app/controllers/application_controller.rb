@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   private
 
   def create_guest_user
-    u = User.new(username: "guest_#{Time.now.to_i}", guest: true)
+    u = User.new(username: "Player_#{Time.now.to_i}", guest: true)
     u.nickname = u.username
     u.save!(validate: false)
     session[:guest_user_id] = u.id
