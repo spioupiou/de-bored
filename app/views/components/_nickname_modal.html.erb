@@ -1,8 +1,7 @@
-
 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#nickname-modal" id="nickname-btn">Edit your nickname</button>
 <div class="modal fade" id="nickname-modal" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div id="modal" class="modal-content w-50 m-auto">
+    <div id="modal" class="modal-content w-75 m-auto">
       <div class="modal-body">
         <h5>Edit your nickname</h5>
         <%= simple_form_for current_user, remote: true do |f| %>

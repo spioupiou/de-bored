@@ -15,7 +15,7 @@ const initRoundCable = () => {
           window.location.pathname = data.path;
           console.log("success")
         }else{
-          inputsContainer.insertAdjacentHTML('beforeend', data)
+          inputsContainer.innerHTML = data;
 
         }
       },
