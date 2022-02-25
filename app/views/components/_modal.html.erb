@@ -3,9 +3,9 @@
   <div class="modal-dialog modal-dialog-centered">
     <div id="modal" class="modal-content m-auto" style="width: 250px;">
       <div class="modal-body">
-        <h5>Enter Pin</h5>
+        <h5>Enter Passcode</h5>
         <%= form_with url: players_path, local: true, method: :post do |f| %>
-          <%= f.text_field :pin, value: params[:pin]%>
+          <%= f.text_field :passcode, value: params[:passcode]%>
           <div class="pt-3">
             <%= f.submit "Join lobby", class: "btn btn-warning" %>
           </div>

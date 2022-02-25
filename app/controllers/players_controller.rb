@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
-    @instance = Instance.find_by_pin(params[:pin])
+    @instance = Instance.find_by_passcode(params[:passcode])
 
     if @instance.blank?
       redirect_to root_path, alert: "Lobby not found"
