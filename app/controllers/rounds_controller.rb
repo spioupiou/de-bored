@@ -4,7 +4,7 @@ class RoundsController < ApplicationController
   # Start creating a round after Start button or Next Question button has been clicked
   def create
     begin
-      current_round_id =  params[:current_round].to_i
+      current_round_id = params[:current_round].to_i
       current_round = Round.find(current_round_id)
     rescue ActiveRecord::RecordNotFound
     end
@@ -15,6 +15,7 @@ class RoundsController < ApplicationController
       @instance.status = "ongoing"
       @instance.save
     end
+
     @game_content = GameContent.all.sample
     rounds = Round.where(instance_id: @instance.id)
     @round = Round.new(
