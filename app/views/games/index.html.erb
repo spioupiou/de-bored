@@ -18,7 +18,7 @@
               <h3 id="game-name" ><%= game.name%></h3>
             </div>
                 <!-- Buttons "Join" and "Create" -->
-            <% if game.name == "Never Have I Ever" %>
+            <% if game.name == "Have You Ever?" %>
               <div class="d-flex justify-content-around w-100">
                 <div>
                   <%= link_to instances_path(game_id: game.id), method: :post do %>
