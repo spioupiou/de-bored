@@ -16,13 +16,17 @@ class RoundsController < ApplicationController
       @instance.save
     end
 
-    @game_content = GameContent.all.sample
     rounds = Round.where(instance_id: @instance.id)
     @round = Round.new(
       number: rounds.count + 1,
-      game_content_id: @game_content.id,
       instance_id: @instance.id
     )
+
+    loop do
+      game_content = GameContent.all.sample
+      @round.game_content_id = game_content.id
+      break if @round.valid?
+    end
 
     if @round.save
       # redirect all subscribers except host to rounds phase1
