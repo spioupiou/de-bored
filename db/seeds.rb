@@ -27,16 +27,14 @@ puts "Users have been created!"
 # Create Game Never Have I ever
 puts "Creating the game 'Never Have I Ever'..."
 
-game = Game.create!(name: "Never Have I Ever")
+game = Game.create!(name: "Never Have I Ever", image: "assets/party.jpg")
 
 puts "Creating the other games..."
 
-games = ["Picture Me", "Oukami", "Cards Against Humanity", "Spank the Bank"]
-
-games.each do |game_name|
-  Game.create!( name: game_name )
-  puts "#{game_name} created!"
-end
+Game.create!(name: "Picture Me", image: "assets/splash.png")
+Game.create!(name: "Oukami", image: "assets/wolf.jpg")
+Game.create!(name: "Fill the Blank!", image: "assets/human.jpg")
+Game.create!(name: "Spank the Bank!", image: "assets/bank.jpg")
 
 puts "Game creation Complete!"
 
