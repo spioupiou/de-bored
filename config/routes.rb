@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'games#index' # our landing page with selection of games
+  root to: 'pages#home' # our landing page with the animation
+  resources :games, only: [:index]
   resources :users, only: [:update]
   resources :instances, only: [:create, :show, :update] do
     resources :rounds, only: [:create, :show] do
