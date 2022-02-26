@@ -27,7 +27,7 @@ puts "Users have been created!"
 # Create Game Never Have I ever
 puts "Creating the game 'Never Have I Ever'..."
 
-game = Game.create!(name: "Never Have I Ever", image: "party.jpg")
+game = Game.create!(name: "Have You Ever?", image: "party.jpg")
 
 puts "Creating the other games..."
 
