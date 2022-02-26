@@ -7,9 +7,10 @@ export const highlighter = () => {
   
     if (!!logo) {
       const targetLogo = document.querySelector('#svg-logo');
-      const svgLogo = document.querySelector(".path")
-      const deBoredQuote = document.querySelector(".de-bored-quote")
-      const silence = document.getElementById("silence")
+      const svgLogo = document.querySelector(".path");
+      const deBoredQuote = document.querySelector(".de-bored-quote");
+      const silence = document.getElementById("silence");
+      const playNow = document.getElementById("play-now")
 
       const roughNotation = () => {
           const annotation = annotate(targetLogo, 
@@ -39,8 +40,12 @@ export const highlighter = () => {
           svgLogo.addEventListener("animationend", (e) => {
               e.currentTarget.style.fill = "#364ec9";
               roughNotation();
-              deBoredQuote.classList.add("active")
+              deBoredQuote.classList.add("active");
               roughNotation2();
+              deBoredQuote.classList.add("active");
+              setTimeout(() => {
+                playNow.classList.remove("d-none");
+              }, 3000)
     
       });
     }
