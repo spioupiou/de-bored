@@ -1,5 +1,12 @@
+#homepage{
+  background-color: rgb(0, 17, 114);
+  height: 100vh;
+}
+
 
 #de-bored-logo{
+    margin: 0 auto;
+    width: 200px;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -35,3 +42,5 @@
         fill: rgba($color: #364ec9, $alpha: 0.7)
     }
   }
+
+  
