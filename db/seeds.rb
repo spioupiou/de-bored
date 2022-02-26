@@ -27,14 +27,14 @@ puts "Users have been created!"
 # Create Game Never Have I ever
 puts "Creating the game 'Never Have I Ever'..."
 
-game = Game.create!(name: "Never Have I Ever", image: "assets/party.jpg")
+game = Game.create!(name: "Never Have I Ever", image: "party.jpg")
 
 puts "Creating the other games..."
 
-Game.create!(name: "Picture Me", image: "assets/splash.png")
-Game.create!(name: "Oukami", image: "assets/wolf.jpg")
-Game.create!(name: "Fill the Blank!", image: "assets/human.jpg")
-Game.create!(name: "Spank the Bank!", image: "assets/bank.jpg")
+Game.create!(name: "Picture Me", image: "splash.png")
+Game.create!(name: "Oukami", image: "wolf.jpg")
+Game.create!(name: "Fill the Blank!", image: "human.jpg")
+Game.create!(name: "Spank the Bank!", image: "bank.jpg")
 
 puts "Game creation Complete!"
 
