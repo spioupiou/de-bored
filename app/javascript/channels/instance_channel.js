@@ -40,7 +40,10 @@ const initInstanceChannel = () => {
           playerList.innerHTML = data.page;
           currentPlayerCount.innerHTML = data.count;
           instanceContainer.insertAdjacentHTML("beforebegin", notice_player);
+          const playersSelector = document.getElementById("instance_max_players");
+          playersSelector.setAttribute("min", currentPlayerCount.innerHTML);
         }
+
         if (data.game_settings){
           const update_game =
               `<div class="alert alert-success alert-dismissible fade show" role="alert">Game Settings Updated<button type="button" class="close" data-dismiss="alert" aria-label="Close">
