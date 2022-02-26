@@ -10,9 +10,9 @@
         <h1 class="p-2">Games</h1>
           <% @games.each do |game| %>
             <!-- Card space for Front End Master Hiro -->
-            <div id="game-index" class="card d-flex flex-column align-items-center justify-content-center p-3 m-3 shadow">
+            <div id="game-index" class="card d-flex flex-column align-items-center justify-content-center p-3 m-3 shadow" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url(<%=game.image%>)">
               <div>
-                <h3><%= game.name%></h3>
+                <h3 id="game-name" ><%= game.name%></h3>
               </div>
                   <!-- Buttons "Join" and "Create" -->
               <% if game.name == "Never Have I Ever" %>
