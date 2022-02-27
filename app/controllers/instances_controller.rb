@@ -126,8 +126,9 @@ class InstancesController < ApplicationController
   end
 
   def assign_qrcode(instance)
-    instance.qr_code = qr_code_url(passcode: @instance.passcode)
+    instance.qr_code = qr_code_url(passcode: instance.passcode)
     instance.save
+    return instance
   end
 
   def create_players_from_previous_instance(last_instance, new_instance)
