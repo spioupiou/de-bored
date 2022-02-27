@@ -19,6 +19,8 @@ class InstancesController < ApplicationController
 
       # check if last_instance_id is there from views/rounds/show.html.erb
       last_instance = Instance.find(params[:last_instance_id])
+      # cause round last round has been completed
+      last_instance.update(status: "done") if last_instance.status == "ongoing"
 
       @instance = generate_new_instance_from_last(last_instance)
       # also includes creation of host as a player
