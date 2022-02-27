@@ -7,8 +7,6 @@ class PlayerInputsController < ApplicationController
     @instance = Instance.find(params[:instance_id])
     @current_user = current_or_guest_user
     @round = Round.find(params[:round_id])
-    # for end game redirection to new instance: find player ids except host
-    @non_host_player_user_ids = @instance.non_host_player_user_ids
 
     # Change to phase 2 (collecting users' results)
     # line only gets executed after any player submits the first input
