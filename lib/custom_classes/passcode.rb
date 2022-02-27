@@ -1,7 +1,7 @@
 class Passcode
-  def self.generate_passcode
+  def self.passcodes
     # `new` is needed to call instance methods inside a class method
-    [new.foods, new.super_heroes].sample
+    [new.foods, new.super_heroes].flatten
   end
 
   def foods
@@ -43,7 +43,7 @@ class Passcode
       "starfruit",
       "strawberry",
       "watermelon"
-    ].sample
+    ]
   end
 
   def super_heroes
@@ -86,6 +86,6 @@ class Passcode
       "vision",
       "wolverine",
       "wonderwoman"
-    ].sample
+    ]
   end
 end
