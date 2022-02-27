@@ -22,11 +22,7 @@ class RoundsController < ApplicationController
       instance_id: @instance.id
     )
 
-    loop do
-      game_content = GameContent.all.sample
-      @round.game_content_id = game_content.id
-      break if @round.valid?
-    end
+    @round = generate_unique_question(@instance, @round)
 
     if @round.save
       # redirect all subscribers except host to rounds phase1
@@ -52,7 +48,22 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @game_content = GameContent.find(@round.game_content_id)
     @player_inputs = PlayerInput.where(round_id: @round.id)
-    # non_host_player_user_ids is an instace model method retrieving user_id of non-host players
+    # non_host_player_user_ids is an instance model method retrieving user_id of non-host players
     @non_host_player_user_ids = @instance.non_host_player_user_ids
+  end
+
+  private
+
+  def generate_unique_question(instance, round)
+    game = Game.find(instance.game_id)
+    game_contents_array = game.game_contents
+
+    loop do
+      game_contents_array = Game.game_contents if game_contents_array.empty?
+      round.game_content_id = game_contents_array.sample.id
+      break if round.valid?
+    end
+
+    return round
   end
 end
