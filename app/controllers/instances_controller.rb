@@ -16,7 +16,11 @@ class InstancesController < ApplicationController
       @instance.passcode = Passcode.generate_passcode
       break if @instance.save
     end
-    
+
+    # QR Code will redirect to Instance#Show page with the passcode passed as a param
+    @instance.qr_code = qr_code_url(passcode: @instance.passcode)
+    @instance.save
+
     # Make the host a player
     Player.create!(
       user_id: current_or_guest_user.id,
@@ -53,6 +57,16 @@ class InstancesController < ApplicationController
     @players = Player.where(instance_id: @instance.id)
     @current_user = current_or_guest_user
 
+    # QR Code rendering
+    @qr_code = RQRCode::QRCode.new(@instance.qr_code)
+    @svg = @qr_code.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      standalone: true,
+      module_size: 5
+    )
+
     # To grab the list of players' names in the instance (Also includes the host name...)
     @player_ids = @players.map(&:user_id)
     @each_player_id = @player_ids.join(', ')
@@ -65,12 +79,12 @@ class InstancesController < ApplicationController
     if @instance.update(instance_params)
       InstanceChannel.broadcast_to(
         @instance,
-        { 
+        {
           game_settings: true,
-          page: 
+          page:
               render_to_string( partial: "/instances/show_game_settings",
               locals: { instance: @instance }),
-          count: 
+          count:
               render_to_string( partial: "/instances/max_player_count", locals: { instance: @instance })
         })
       redirect_to instance_path(@instance), notice: "Game Settings Updated"
