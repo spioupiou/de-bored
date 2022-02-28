@@ -6,7 +6,7 @@ class InstancesController < ApplicationController
   def create
     # check last_instance_id from views/rounds/show.html.erb is there
     if params[:last_instance_id].nil?
-    # this block means the host is creating an instance from games list
+      # this block means the host is creating an instance from games list
 
       # QR Code will redirect to Instance#Show page with the passcode passed as a param
       @instance = generate_new_instance_from_scratch
@@ -60,7 +60,7 @@ class InstancesController < ApplicationController
     @each_player_name = player_ids.map { |id| User.find(id).nickname }.join(', ')
   end
 
-  def update # Update the status, pending -> ongoing -> completed
+  def update # Update the settings of the instance
     @instance = Instance.find(params[:id])
 
     if @instance.update(instance_params)
@@ -126,9 +126,9 @@ class InstancesController < ApplicationController
   end
 
   def assign_qrcode(instance)
-    instance.qr_code = qr_code_url(passcode: instance.passcode)
+    instance.qr_code = create_players_url(passcode: instance.passcode)
     instance.save
-    return instance
+    instance
   end
 
   def create_players_from_previous_instance(last_instance, new_instance)
