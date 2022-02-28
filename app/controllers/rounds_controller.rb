@@ -59,11 +59,10 @@ class RoundsController < ApplicationController
     game_contents_array = game.game_contents
 
     loop do
-      game_contents_array = Game.game_contents if game_contents_array.empty?
       round.game_content_id = game_contents_array.sample.id
       break if round.valid?
     end
 
-    return round
+    round
   end
 end
