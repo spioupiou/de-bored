@@ -9,5 +9,4 @@ Rails.application.routes.draw do
       resources :player_inputs, only: [:create]
     end
   end
-  resources :players, only: [:create]
 end
