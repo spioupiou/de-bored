@@ -8,7 +8,6 @@ class InstancesController < ApplicationController
     if params[:last_instance_id].nil?
       # this block means the host is creating an instance from games list
 
-      # QR Code will redirect to Instance#Show page with the passcode passed as a param
       @instance = generate_new_instance_from_scratch
       # host must also be created as a player
       Player.create!(
@@ -126,6 +125,7 @@ class InstancesController < ApplicationController
   end
 
   def assign_qrcode(instance)
+    # QR Code will redirect to Instance#Show page with the passcode passed as a param
     instance.qr_code = create_players_url(passcode: instance.passcode)
     instance.save
     instance
