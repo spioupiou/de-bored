@@ -48,8 +48,6 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @game_content = GameContent.find(@round.game_content_id)
     @player_inputs = PlayerInput.where(round_id: @round.id)
-    # non_host_player_user_ids is an instance model method retrieving user_id of non-host players
-    @non_host_player_user_ids = @instance.non_host_player_user_ids
   end
 
   private
