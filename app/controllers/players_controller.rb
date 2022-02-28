@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   skip_before_action :authenticate_user!
 
-  def create
+  def create_players
     @instance = Instance.find_by_passcode(params[:passcode])
 
     if @instance.blank?
@@ -38,4 +38,5 @@ class PlayersController < ApplicationController
       redirect_to instance_path(@instance)
     end
   end
+
 end

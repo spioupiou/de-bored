@@ -24,7 +24,7 @@ class InstancesController < ApplicationController
 
       @instance = generate_new_instance_from_last(last_instance)
       # also includes creation of host as a player
-      create_players_from_previous_instance(last_instance, @instance)      
+      create_players_from_previous_instance(last_instance, @instance)
 
       # redirect players to instance show page, this does not include host
       RoundChannel.broadcast_to(
@@ -34,7 +34,7 @@ class InstancesController < ApplicationController
       )
     end
 
-    # redirect host to instnace show page
+    # redirect host to instance show page
     redirect_to instance_path(@instance)
   end
 
@@ -45,24 +45,34 @@ class InstancesController < ApplicationController
     @players = Player.where(instance_id: @instance.id)
     @current_user = current_or_guest_user
 
+    # QR Code rendering
+    @qr_code = RQRCode::QRCode.new(@instance.qr_code)
+    @svg = @qr_code.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      standalone: true,
+      module_size: 5
+    )
+
     # To grab the list of players' names in the instance (Also includes the host name...)
     player_ids = @players.map(&:user_id)
     @each_player_id = player_ids.join(', ')
     @each_player_name = player_ids.map { |id| User.find(id).nickname }.join(', ')
   end
 
-  def update # Update the status, pending -> ongoing -> completed
+  def update # Update the settings of the instance
     @instance = Instance.find(params[:id])
 
     if @instance.update(instance_params)
       InstanceChannel.broadcast_to(
         @instance,
-        { 
+        {
           game_settings: true,
-          page: 
+          page:
               render_to_string( partial: "/instances/show_game_settings",
               locals: { instance: @instance }),
-          count: 
+          count:
               render_to_string( partial: "/instances/max_player_count", locals: { instance: @instance })
         })
       redirect_to instance_path(@instance), notice: "Game Settings Updated"
@@ -78,13 +88,14 @@ class InstancesController < ApplicationController
   def generate_new_instance_from_scratch
     # Create an instance with current_user as host
     # defaults - status: "waiting", max_rounds: 5
-     instance = Instance.new(
+    instance = Instance.new(
       game_id: params[:game_id],
       user_id: current_or_guest_user.id
     )
-    
-    # returns the instance after it got saved with a uinuqe passcode
+
+    # returns the instance after it got saved with a unique passcode
     assign_passcode(instance)
+    assign_qrcode(instance)
   end
 
   def generate_new_instance_from_last(last_instance)
@@ -98,6 +109,7 @@ class InstancesController < ApplicationController
     )
     # returns the instance after it got saved with a uinuqe passcode
     assign_passcode(instance)
+    assign_qrcode(instance)
   end
 
   def assign_passcode(instance)
@@ -111,6 +123,13 @@ class InstancesController < ApplicationController
       break if instance.save
     end
 
+    instance
+  end
+
+  def assign_qrcode(instance)
+    # QR Code will redirect to Instance#Show page with the passcode passed as a param
+    instance.qr_code = create_players_url(passcode: instance.passcode)
+    instance.save
     instance
   end
 
