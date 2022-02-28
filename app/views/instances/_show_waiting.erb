@@ -1,5 +1,10 @@
 <div class="container-fluid">
   <h3 class="py-4 text-center"><%= game.name %></h3>
+
+  <div class="row mb-3 justify-content-center">
+    <%= render "components/nickname_modal", locals: { current_user: current_user } %>
+  </div>
+
   <div class="row justify-content-around">
     <div id="players" class="col-lg-6 col-md-4 col-sm-6 p-3 my-1" style="height: 360px; overflow: auto;">
 
@@ -9,7 +14,7 @@
            <p>
            <!-- Player Count @ app/views/instances/_min_player_count.erb -->
              <div class="px-1" id="min-player-count" >
-                <%= render "min_player_count", players: players %>             
+                <%= render "min_player_count", players: players %>
              </div>
              / <!-- Please do not remove this =) -->
             <!-- Player Count @ app/views/instances/_max_player_count.erb -->
@@ -33,7 +38,7 @@
     <div id="game-config">
       <%= render "show_game_settings",instance: instance %>
     </div>
-    
+
     <!-- From this line, only Host can see/use this -->
     <% if current_user.present? && current_user.id == instance.user_id %>
     <div class="col-12 justify-content-center text-center py-3">

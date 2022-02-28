@@ -5,7 +5,7 @@
       <div class="modal-body">
         <h5>Edit your nickname</h5>
         <%= simple_form_for current_user, remote: true do |f| %>
-          <%= f.input :nickname, label: "" %>
+          <%= f.input :nickname, label: false %>
           <div class="pt-3">
             <%= f.submit "Edit", class: "btn btn-warning" %>
           </div>
