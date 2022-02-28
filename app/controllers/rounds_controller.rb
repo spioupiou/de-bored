@@ -16,13 +16,13 @@ class RoundsController < ApplicationController
       @instance.save
     end
 
-    @game_content = GameContent.all.sample
     rounds = Round.where(instance_id: @instance.id)
     @round = Round.new(
       number: rounds.count + 1,
-      game_content_id: @game_content.id,
       instance_id: @instance.id
     )
+
+    @round = generate_unique_question(@instance, @round)
 
     if @round.save
       # redirect all subscribers except host to rounds phase1
@@ -48,5 +48,25 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @game_content = GameContent.find(@round.game_content_id)
     @player_inputs = PlayerInput.where(round_id: @round.id)
+  end
+
+  private
+
+  def generate_unique_question(instance, round)
+    game = Game.find(instance.game_id)
+    game_contents_array = game.game_contents
+    game_contents_ids = game_contents_array.map(&:id)
+
+    loop do
+      if game_contents_array.empty?
+        game_contents_array = game.game_contents
+        game_contents_ids = game_contents_array.map(&:id)
+      end
+
+      round.game_content_id = game_contents_ids.shuffle!.pop
+      break if round.valid?
+    end
+
+    round
   end
 end

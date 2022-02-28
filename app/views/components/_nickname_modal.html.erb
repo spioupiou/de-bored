@@ -1,14 +1,12 @@
 <a href="#nickname-modal" data-toggle="modal" data-target="#nickname-modal">Edit your nickname</a>
 <div class="modal fade" id="nickname-modal" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div id="modal" class="modal-content w-75 m-auto">
-      <div class="modal-body">
+    <div id="modal" class="modal-content m-auto" style="width: 250px;">
+      <div class="modal-body text-center">
         <h5>Edit your nickname</h5>
         <%= simple_form_for current_user, remote: true do |f| %>
           <%= f.input :nickname, label: false %>
-          <div class="pt-3">
-            <%= f.submit "Edit", class: "btn btn-warning" %>
-          </div>
+          <%= f.submit "Edit", class: "btn btn-warning" %>
         <% end %>
       </div>
     </div>

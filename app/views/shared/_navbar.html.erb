@@ -12,14 +12,14 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <% if current_user.guest? %>
-          <%= link_to "Login", new_user_session_path %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         <% else %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
         <% end %>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Edit your nickname</a>
+        <%= render "components/nickname_modal", locals: { current_user: current_user }, class: "nav-link" %>
       </li>
 
       <li class="nav-item">

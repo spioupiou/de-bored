@@ -9,14 +9,7 @@
     data-player-id="<%=@each_player_id%>">
 
   <!-- Waiting page -->
-  <%= render "show_waiting", players: @players, instance: @instance, game: @game %>
+  <%= render "show_waiting", players: @players, instance: @instance, game: @game, qr_code: @svg %>
   <!-- Start button, will also change in the future -->
   </div>
-  <!-- to test/view, comment waiting page partial above and uncomment partial below -->
-
-  <!-- Question page-->
-  <%#= render  "show_question" %>
-
-  <!-- Result page -->
-  <%#= render "show_result" %>
 </div>
