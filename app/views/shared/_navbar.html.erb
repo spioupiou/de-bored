@@ -1,22 +1,21 @@
 <div class="navbar navbar-expand-sm navbar-transparent navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-   <h2 style="font-family:'Pacifico', cursive; color:#c4ceff">de.bored</h2>
+
+  <%= link_to root_path, class: "navbar-brand" do %>
+   <div class="btn btn-danger">Home</div>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
     <ul class="navbar-nav">
-      <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link btn btn-primary p-2" %>
-        </li>
-        </div>
-      <% else %>
+      <% if current_user.guest? %>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-primary p-2" %>
         </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link btn btn-primary p-2" %>
+        </li>
       <% end %>
     </ul>
-  </div>
 </div>

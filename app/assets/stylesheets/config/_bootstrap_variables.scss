@@ -12,6 +12,7 @@ $font-size-base: 1rem;
 // Colors
 $body-color: $gray;
 $primary:    $mizu;
+$secondary:  $murasaki;
 $success:    $midori;
 $info:       $kiroi;
 $danger:     $aoi;
@@ -22,20 +23,31 @@ $border-radius:    2px;
 $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
+// Modal
+$modal-fade-transform: scale(.5);
+
 // Override other variables below!
 $body-bg: $bg;
 $body-color: white;
 
-#game-index, #card {
-    background-color: $mizu;
-}
 
-#inputs .card{
-    background-color: $mizu;
+#inputs {
+    
+    .yes-card{
+        background-color: $mizu;
+        border: 2px solid #151f52;
+        border-radius: 8px;
+        border-style: groove;
+    }
+    .no-card{
+        background-color: $pink;
+        border: 2px solid #68132c;
+        border-radius: 8px;
+        border-style: groove;
+    }
 }
 
 #game-index{
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(117, 19, 93, 0.73)), url("assets/party.jpg");
     background-size: cover;
     background-position-y: center;
 }
@@ -44,8 +56,9 @@ $body-color: white;
     border: 2px solid black
 }
 
-#players, #settings{
-    background-color: $bg;
+#game-name{
+    text-shadow: 2px 2px 2px black;
+    font-weight: bolder;
 }
 
 #modal{

@@ -1,14 +1,19 @@
 class PlayersController < ApplicationController
-  def create
-    redirect_to new_user_session_path unless user_signed_in?
+  skip_before_action :authenticate_user!
 
-    @instance = Instance.find_by_pin(params[:pin])
+  def create
+    @instance = Instance.find_by_passcode(params[:passcode])
 
     if @instance.blank?
-      redirect_to root_path, alert: "Lobby not found"
+      redirect_to games_path, alert: "Lobby not found"
     else
+      # don't allow any more players to join if any condition is true
+      redirect_to games_path, alert: "Game already started, try not to miss the next one."     and return if @instance.status == 'ongoing'
+      redirect_to games_path, alert: "Game already finished, join the next one."               and return if @instance.status == 'done'
+      redirect_to games_path, alert: "Game is full, tell your buddy to increase max players."  and return if @instance.max_players == Player.where(instance: @instance).count
+
       new_player = Player.new(
-        user: current_user,
+        user: current_or_guest_user,
         instance: @instance
       )
 
@@ -16,16 +21,16 @@ class PlayersController < ApplicationController
         @players = Player.where(instance: @instance)
         @game = @instance.game
         user = User.find(new_player.user_id).nickname
-  
+
         InstanceChannel.broadcast_to(
           @instance,
-          { 
+          {
             waiting_page: true,
-            page: 
-                [ 
-                render_to_string( partial: "/instances/show_waiting",
-                locals: { players: @players, instance: @instance, game: @game })
-                ],
+            page:
+                render_to_string( partial: "/instances/player_list",
+                locals: { players: @players }),
+            count:
+                render_to_string( partial: "/instances/min_player_count", locals: { players: @players }),
             user: user
           })
       end

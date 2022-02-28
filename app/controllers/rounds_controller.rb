@@ -1,6 +1,14 @@
 class RoundsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   # Start creating a round after Start button or Next Question button has been clicked
   def create
+    begin
+      current_round_id = params[:current_round].to_i
+      current_round = Round.find(current_round_id)
+    rescue ActiveRecord::RecordNotFound
+    end
+
     @instance = Instance.find(params[:instance_id])
 
     if @instance.status == "waiting"
@@ -17,22 +25,28 @@ class RoundsController < ApplicationController
     )
 
     if @round.save
+      # redirect all subscribers except host to rounds phase1
       InstanceChannel.broadcast_to(
         @instance,
-        {
-          question_page: true,
-          question:
-              [
-                render_to_string(partial: "instances/show_question", locals: { game_content: @game_content, round: @round })
-              ],
-
-        }
+        head: 302, # redirection code
+        path: instance_round_path(@instance, @round)
       )
+      RoundChannel.broadcast_to(
+        current_round,
+        head: 303, # redirection code
+        path: instance_round_path(@instance, @round)
+      )
+      # so that host will also be redirected too rounds phase1
+      redirect_to instance_round_path(@instance, @round)
     end
   end
 
   def show
+    @current_user = current_or_guest_user
+    @instance = Instance.find(params[:instance_id])
+    @game_id = @instance.game_id
     @round = Round.find(params[:id])
+    @game_content = GameContent.find(@round.game_content_id)
     @player_inputs = PlayerInput.where(round_id: @round.id)
   end
 end
