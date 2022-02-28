@@ -55,9 +55,15 @@ class RoundsController < ApplicationController
   def generate_unique_question(instance, round)
     game = Game.find(instance.game_id)
     game_contents_array = game.game_contents
+    game_contents_ids = game_contents_array.map(&:id)
 
     loop do
-      round.game_content_id = game_contents_array.sample.id
+      if game_contents_array.empty?
+        game_contents_array = game.game_contents
+        game_contents_ids = game_contents_array.map(&:id)
+      end
+
+      round.game_content_id = game_contents_ids.shuffle!.pop
       break if round.valid?
     end
 
