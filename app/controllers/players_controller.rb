@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   skip_before_action :authenticate_user!
 
-  def create_players
+  def join_instance
     @instance = Instance.find_by_passcode(params[:passcode])
 
     if @instance.blank?
@@ -12,31 +12,49 @@ class PlayersController < ApplicationController
       redirect_to games_path, alert: "Game already finished, join the next one."               and return if @instance.status == 'done'
       redirect_to games_path, alert: "Game is full, tell your buddy to increase max players."  and return if @instance.max_players == Player.where(instance: @instance).count
 
-      new_player = Player.new(
-        user: current_or_guest_user,
-        instance: @instance
-      )
-
-      if new_player.save
-        @players = Player.where(instance: @instance)
-        @game = @instance.game
-        user = User.find(new_player.user_id).nickname
-
-        InstanceChannel.broadcast_to(
-          @instance,
-          {
-            waiting_page: true,
-            page:
-                render_to_string( partial: "/instances/player_list",
-                locals: { players: @players }),
-            count:
-                render_to_string( partial: "/instances/min_player_count", locals: { players: @players }),
-            user: user
-          })
-      end
-
-      redirect_to instance_path(@instance)
+      redirect_to edit_nickname_instance_path(@instance)
     end
   end
 
+  def edit_nickname
+    @instance = Instance.find(params[:id])
+  end
+
+  def create_players
+    @instance = Instance.find(params[:id])
+
+    if params[:nickname].blank?
+      flash[:alert] = "Nickname cannot be empty"
+      redirect_to edit_nickname_instance_path(@instance) and return
+    end
+
+    @current_user = current_or_guest_user
+    @current_user.nickname = params[:nickname]
+    @current_user.save
+
+    new_player = Player.new(
+      user: @current_user,
+      instance: @instance
+    )
+
+    if new_player.save
+      @players = Player.where(instance: @instance)
+      @game = @instance.game
+      user = User.find(new_player.user_id).nickname
+
+      InstanceChannel.broadcast_to(
+        @instance,
+        {
+          waiting_page: true,
+          page:
+              render_to_string( partial: "/instances/player_list",
+              locals: { players: @players }),
+          count:
+              render_to_string( partial: "/instances/min_player_count", locals: { players: @players }),
+          user: user
+        })
+    end
+
+    redirect_to instance_path(@instance)
+  end
 end
