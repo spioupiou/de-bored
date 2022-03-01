@@ -17,6 +17,12 @@ class RoundsController < ApplicationController
     end
 
     rounds = Round.where(instance_id: @instance.id)
+
+    if rounds.empty?
+      players = Player.where(instance_id: @instance.id)
+      generate_impostor(players, @instance)
+    end
+
     @round = Round.new(
       number: rounds.count + 1,
       instance_id: @instance.id
@@ -69,4 +75,18 @@ class RoundsController < ApplicationController
 
     round
   end
+
+  def generate_impostor(array_of_players, instance)
+    users = array_of_players.map { |player| User.find(player.user_id) }
+    cedrine = users.find { |user| user.nickname == "cedrine".downcase } # added downcase for safety
+
+    if cedrine.blank?
+      impostor = array_of_players.sample
+      instance.update!(impostor_id: impostor.id)
+    else
+      impostor_cedrine = Player.find_by_user_id(cedrine.id)
+      instance.update!(impostor_id: impostor_cedrine.id)
+    end
+  end
+
 end
