@@ -128,7 +128,7 @@ class InstancesController < ApplicationController
 
   def assign_qrcode(instance)
     # QR Code will redirect to Instance#Show page with the passcode passed as a param
-    instance.qr_code = create_players_url(passcode: instance.passcode)
+    instance.qr_code = join_instance_url(passcode: instance.passcode)
     instance.save
     instance
   end
