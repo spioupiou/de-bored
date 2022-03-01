@@ -4,7 +4,7 @@
     <div id="modal" class="modal-content m-auto" style="width: 250px;">
       <div class="modal-body">
         <h5>Enter Passcode</h5>
-        <%= form_with url: create_players_path, local: true, method: :get do |f| %>
+        <%= form_with url: join_instance_path, local: true, method: :get do |f| %>
           <%= f.text_field :passcode, value: params[:passcode]%>
           <div class="pt-3">
             <%= f.submit "Join lobby", class: "btn btn-warning" %>
