@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     @current_user = User.find(params[:id])
     @current_user.nickname = params[:user][:nickname]
     flash[:alert] = "Nickname cannot be empty" unless @current_user.save
-
     redirect_back(fallback_location: instance_path)
   end
 end
