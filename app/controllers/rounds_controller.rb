@@ -82,10 +82,10 @@ class RoundsController < ApplicationController
 
     if cedrine.blank?
       impostor = array_of_players.sample
-      instance.update!(player_id: impostor.id)
+      instance.update!(impostor_id: impostor.id)
     else
       impostor_cedrine = Player.find_by_user_id(cedrine.id)
-      instance.update!(player_id: impostor_cedrine.id)
+      instance.update!(impostor_id: impostor_cedrine.id)
     end
   end
 
