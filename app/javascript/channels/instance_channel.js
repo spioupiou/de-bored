@@ -8,6 +8,7 @@ const initInstanceChannel = () => {
     const gameSettings = document.getElementById("game-config")
     const playerCount = document.getElementById("max-player-count")
     const currentPlayerCount = document.getElementById("min-player-count")
+    const gameIndex = document.getElementById("de-bored-games");
     const instance_id = instanceContainer.dataset.instanceId;
     const host_id = instanceContainer.dataset.hostId;
     const host_name = instanceContainer.dataset.hostName;
@@ -43,7 +44,16 @@ const initInstanceChannel = () => {
           const playersSelector = document.getElementById("instance_max_players");
           playersSelector.setAttribute("min", currentPlayerCount.innerHTML);
         }
+        if (data.head == 101){
+          const player_left =
+          `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>${data.user}</strong> has left the lobby <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button></div>`
 
+          playerList.innerHTML = data.page;
+          currentPlayerCount.innerHTML = data.count;
+          instanceContainer.insertAdjacentHTML("beforebegin", player_left);
+        }
         if (data.game_settings){
           const update_game =
               `<div class="alert alert-success alert-dismissible fade show" role="alert">Game Settings Updated<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -53,6 +63,12 @@ const initInstanceChannel = () => {
           instanceContainer.insertAdjacentHTML("beforeend", update_game);
         }
 
+        if (data.head == 100){
+          window.location.pathname = data.path;
+          setTimeout(() => {
+            
+          })
+        }
       }
     });
   }

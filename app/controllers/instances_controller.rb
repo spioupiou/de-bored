@@ -79,6 +79,20 @@ class InstancesController < ApplicationController
     end
   end
 
+  
+  def destroy
+    @instance = Instance.find(params[:id])
+    if @instance.destroy
+      InstanceChannel.broadcast_to(
+        @instance,
+        head: 100,
+        path: games_path
+      )
+    end  
+    redirect_to  games_path, notice: "You deleted the lobby"
+  end
+
+
   private
 
   def instance_params
@@ -143,4 +157,5 @@ class InstancesController < ApplicationController
       )
     end
   end
+
 end
