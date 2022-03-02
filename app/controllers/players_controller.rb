@@ -57,4 +57,21 @@ class PlayersController < ApplicationController
 
     redirect_to instance_path(@instance)
   end
+
+  def destroy
+    @instance = Instance.find(params[:instance_id])
+    @user = User.find(current_or_guest_user.id)
+    @players = Player.where(instance_id: @instance.id)
+    @player = Player.find_by(instance_id: @instance.id, user_id: @user.id)
+    if @player.destroy
+      InstanceChannel.broadcast_to(
+        @instance,
+        head: 101,
+        page: render_to_string( partial: "/instances/player_list", locals: { players: @players }),
+        count: render_to_string( partial: "/instances/min_player_count", locals: { players: @players }),
+        user: @user.nickname
+      )
+    end  
+    redirect_to games_path
+  end
 end

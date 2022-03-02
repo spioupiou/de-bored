@@ -34,7 +34,7 @@
       <div id="game-config">
         <%= render "show_game_settings",instance: instance %>
       </div>
-
+  
       <!-- From this line, only Host can see/use this -->
       <% if current_user.present? && current_user.id == @instance.user_id %>
         <div class="col-12 justify-content-center text-center py-3">
@@ -49,18 +49,26 @@
             </div>
           </div>
         </div>
-
+            <!-- Start Button -->
         <div class="col-12 justify-content-center text-center py-3">
           <div class="row">
-            <div class="col-12">
+            <div class="col-6">
               <% @round = Round.new %>
               <%= simple_form_for([@instance, @round]) do |f| %>
                 <%= f.submit "Start Game", class:"btn btn-primary" %>
               <% end %>
             </div>
+            <div class="col-6">
+              <!-- Delete Instance button -->
+              <%= link_to "Back", instance_path(@instance), method: :delete, class: "my-2 btn btn-warning" %>
+            </div>
           </div>
         </div>
+      <% else %>
+        <!-- Leave Instance button -->
+        <%= link_to "Leave lobby", instance_player_path(@instance, @players), method: :delete, class: "my-2 btn btn-warning" %>
       <% end %>
+
     </div>
   </div>
 </div>
