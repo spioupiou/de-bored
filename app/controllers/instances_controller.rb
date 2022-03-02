@@ -26,9 +26,12 @@ class InstancesController < ApplicationController
       # also includes creation of host as a player
       create_players_from_previous_instance(last_instance, @instance)
 
+      # get the final round of the last_instance, users from that action cable needs to be redirected
+      # `first` is needed to take the object out of the array caused by using `where`
+      prev_instance_final_round = Round.where(instance: last_instance).order(id: :desc).limit(1).first
       # redirect players to instance show page, this does not include host
       RoundChannel.broadcast_to(
-        Round.find(params[:round_id]),
+        prev_instance_final_round,
         head: 303, # redirection code
         path: instance_path(@instance)
       )
