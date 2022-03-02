@@ -4,6 +4,10 @@
       <h5>Game Settings</h5>
     </div>
     <div class="d-flex justify-content-between">
+      <%= f.label :game, "Game" %>
+      <%= f.select :game, Game.first(3).map { |g| [g.name, g.id] } %>
+    </div>
+    <div class="d-flex justify-content-between">
       <%= f.label :max_players, "Max Players" %>
       <%= f.input :max_players, label: false, input_html: { min: @players.count, max: "10"}%>
     </div>
