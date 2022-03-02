@@ -1,0 +1,27 @@
+<div class="container-fluid" style="height: 75vh;">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="text-center">
+      <h5>Who do you think was the impostor?</h5>
+
+      <ul>
+        <% @players_hash.each do |k, v| %>
+          <li><%= k %>: <%= v %> </li>
+        <% end %>
+      </ul>
+
+      <div class="p-4">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <%= simple_form_for([@instance, @vote]) do |f| %>
+              <%= f.input :voted_player, as: :select, collection: @players_hash %>
+              <%= f.submit "Vote", class:"btn btn-primary" %>
+            <% end %>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

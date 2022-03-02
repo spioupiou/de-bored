@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     resources :rounds, only: [:create, :show] do
       resources :player_inputs, only: [:create]
     end
+    resources :votes, only: [:create, :new]
+    member do
+      get 'redirect', to: 'votes#redirect'
+    end
   end
 end
