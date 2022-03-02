@@ -3,11 +3,11 @@ class VotesController < ApplicationController
 
   def new
     @instance = Instance.find(params[:instance_id])
-    players = Player.where(instance_id: @instance.id)
+    @players = Player.where(instance_id: @instance.id)
 
     # Get players_id AND nicknames in one single object
     @players_hash = {}
-    players.each do |player|
+    @players.each do |player|
       user = User.find(player.user_id)
       @players_hash["#{player.id}"] = user.nickname
     end
@@ -32,8 +32,12 @@ class VotesController < ApplicationController
   end
 
   def create
-    # Redirect to results page which has websocket
-    @instance = Instance.find(params[:instance_id])
+    @vote = Vote.new(
+      instance_id: params[:instance_id],
+      voted_player: Player.find(params[:vote][:voted_player].to_i),
+      voter: current_user
+    )
+    @vote.save
     # redirect to results page
   end
 end

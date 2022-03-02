@@ -13,7 +13,7 @@
         <div class="row justify-content-center">
           <div class="col-6">
             <%= simple_form_for([@instance, @vote]) do |f| %>
-              <%= f.input :voted_player, as: :select, collection: @players_hash %>
+              <%= f.input :voted_player, as: :select, collection: @players %>
               <%= f.submit "Vote", class:"btn btn-primary" %>
             <% end %>
           </div>
