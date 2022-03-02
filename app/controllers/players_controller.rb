@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
     @instance = Instance.find_by(passcode: params[:passcode], status: "waiting")
 
     if @instance.blank?
-      redirect_to games_path, alert: "Lobby not found, game may have already started or finished"
+      redirect_to games_path, alert: "Lobby not found, the game you tried to join may have already started."
     else
       # don't allow any more players to join if any condition is true
       redirect_to games_path, alert: "Game is full, tell your buddy to increase max players."  and return if @instance.max_players == Player.where(instance: @instance).count
