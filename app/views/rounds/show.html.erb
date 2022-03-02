@@ -1,4 +1,6 @@
-<% if @round.phase == 1 %>
+<% if @round.number.zero? %>
+    <%= render 'show_impostor', current_player_is_impostor: @current_player_is_impostor %>
+<% elsif @round.phase == 1 %>
   <%= render 'show_question', instance: @instance, round: @round, game_content: @game_content %>
 
 <% elsif @round.phase == 2 %>
