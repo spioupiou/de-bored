@@ -35,9 +35,12 @@ class VotesController < ApplicationController
     @vote = Vote.new(
       instance_id: params[:instance_id],
       voted_player: Player.find(params[:vote][:voted_player].to_i),
-      voter: current_user
+      voter: Player.find_by_user_id(current_or_guest_user.id)
     )
-    @vote.save
-    # redirect to results page
+    # if @vote.save
+      # redirect_to instance_results_path
+    # else
+      # render :new
+    end
   end
 end
