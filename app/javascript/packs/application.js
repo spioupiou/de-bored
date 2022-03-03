@@ -30,6 +30,7 @@ import { initInstanceChannel } from '../channels/instance_channel';
 import { highlighter } from "../plugins/rough_notation";
 import { initRoundCable } from '../channels/round_channel';
 import { autoClick } from "../components/popup";
+import { countdownTimer } from "../components/countdown_timer";
 
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
@@ -42,5 +43,6 @@ document.addEventListener('turbolinks:load', () => {
   initRoundCable();
   autoClick();
   highlighter();
+  countdownTimer();
 
 });
