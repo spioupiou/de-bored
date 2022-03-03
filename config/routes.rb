@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     member do
       get 'redirect_to_vote', to: 'votes#redirect_to_vote'
     end
-    resources :results, only: [:index]
+    resources :results, only: [:show]
   end
 end

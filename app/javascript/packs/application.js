@@ -30,20 +30,16 @@ import { initInstanceChannel } from '../channels/instance_channel';
 import { highlighter } from "../plugins/rough_notation";
 import { initRoundCable } from '../channels/round_channel';
 import { autoClick } from "../components/popup";
+import { countdownTimer } from "../components/countdown_timer";
 import { autoFocus } from "../components/auto_focus";
-import "chartkick/chart.js"
-
-
-// next 3 lines is from https://fontsource.org/fonts
-import "@fontsource/roboto";
 import "@fontsource/play";
-import "@fontsource/dosis";
-
 document.addEventListener('turbolinks:load', () => {
-
   initInstanceChannel();
   initRoundCable();
   autoClick();
   highlighter();
+  countdownTimer();
   autoFocus();
+  updateDiv();
+
 });

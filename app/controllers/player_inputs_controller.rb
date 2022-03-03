@@ -24,7 +24,8 @@ class PlayerInputsController < ApplicationController
       # send to channel
       RoundChannel.broadcast_to(
         @round,
-        render_to_string(partial: "player_input", locals: { round: @round })
+        player_input: render_to_string(partial: "player_input", locals: { round: @round }),
+        player_input_count: render_to_string(partial: "rounds/show_player_inputs_count", locals: { round: @round })
       )
     else
       flash[:alert] = "You already replied"

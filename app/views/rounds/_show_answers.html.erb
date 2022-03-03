@@ -21,7 +21,15 @@
       </div>
     </div>
   </div>
-
+  <div class="d-flex">
+    <p>Player answered:</p> 
+    <div class="px-1" id="player-input-count">
+      <%= render "show_player_inputs_count", round: round %>
+    </div>/ 
+    <div class="px-1">
+      <%= render "instances/min_player_count", players: instance.players %>
+    </div>
+  </div>
   <% if current_user.id == instance.user_id %>
     <% if round.number == instance.max_rounds - 1 %>
       <div class="py-4 row justify-content-center" id="host-buttons">
