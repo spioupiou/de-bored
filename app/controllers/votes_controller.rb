@@ -6,22 +6,17 @@ class VotesController < ApplicationController
     @players = Player.where(instance_id: @instance.id)
 
     # Get players_id AND nicknames in one single object
-    @players_hash = {}
-    @players.each do |player|
-      user = User.find(player.user_id)
-      @players_hash["#{player.id}"] = user.nickname
-    end
-
     @vote = Vote.new
   end
 
-  def redirect
+  def redirect_to_vote # RENAME
     @instance = Instance.find(params[:instance_id])
-    @round = Round.find(params[:round_id])
+    # Fetch the last round
+    @last_round = Round.where(instance_id: @instance).order(id: :desc).limit(1).first
 
     # Redirect all players from round channel to votes page
     RoundChannel.broadcast_to(
-      @round,
+      @last_round,
       voting_page: true,
       head: 303, # redirection code
       path: new_instance_vote_path(@instance)
@@ -34,7 +29,7 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(
       instance_id: params[:instance_id],
-      voted_player: Player.find(params[:vote][:voted_player].to_i),
+      voted_player: Player.find_by_nickname(params[:vote][:voted_player]),
       voter: Player.find_by_user_id(current_or_guest_user.id)
     )
     if @vote.save

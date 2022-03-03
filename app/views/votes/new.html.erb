@@ -4,8 +4,8 @@
       <h5>Who do you think was the impostor?</h5>
 
       <ul>
-        <% @players_hash.each do |k, v| %>
-          <li><%= k %>: <%= v %> </li>
+        <% @players.each do |player| %>
+          <li><%= player.id %>: <%= player.nickname %> </li>
         <% end %>
       </ul>
 
@@ -13,7 +13,7 @@
         <div class="row justify-content-center">
           <div class="col-6">
             <%= simple_form_for([@instance, @vote]) do |f| %>
-              <%= f.input :voted_player, as: :select, collection: @players %>
+              <%= f.input :voted_player, as: :select, collection: @players.map(&:nickname) %>
               <%= f.submit "Vote", class:"btn btn-primary" %>
             <% end %>
           </div>

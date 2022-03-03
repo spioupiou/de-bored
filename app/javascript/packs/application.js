@@ -31,6 +31,8 @@ import { highlighter } from "../plugins/rough_notation";
 import { initRoundCable } from '../channels/round_channel';
 import { autoClick } from "../components/popup";
 import { countdownTimer } from "../components/countdown_timer";
+import { autoFocus } from "../components/auto_focus";
+
 
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
@@ -44,5 +46,6 @@ document.addEventListener('turbolinks:load', () => {
   autoClick();
   highlighter();
   countdownTimer();
+  autoFocus();
 
 });
