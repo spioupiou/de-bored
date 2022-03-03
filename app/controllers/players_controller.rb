@@ -34,7 +34,8 @@ class PlayersController < ApplicationController
 
     new_player = Player.new(
       user: @current_user,
-      instance: @instance
+      instance: @instance,
+      nickname: @current_user.nickname
     )
 
     if new_player.save
@@ -71,7 +72,7 @@ class PlayersController < ApplicationController
         count: render_to_string( partial: "/instances/min_player_count", locals: { players: @players }),
         user: @user.nickname
       )
-    end  
+    end
     redirect_to games_path
   end
 end
