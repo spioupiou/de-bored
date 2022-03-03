@@ -12,7 +12,8 @@ class InstancesController < ApplicationController
       # host must also be created as a player
       Player.create!(
         user_id: current_or_guest_user.id,
-        instance_id: @instance.id
+        instance_id: @instance.id,
+        nickname: current_or_guest_user.nickname
       )
     else
       # this block means the host is creating an instance based from previous instance
@@ -82,7 +83,7 @@ class InstancesController < ApplicationController
     end
   end
 
-  
+
   def destroy
     @instance = Instance.find(params[:id])
     if @instance.destroy
@@ -91,7 +92,7 @@ class InstancesController < ApplicationController
         head: 100,
         path: games_path
       )
-    end  
+    end
     redirect_to  games_path, notice: "You deleted the lobby"
   end
 

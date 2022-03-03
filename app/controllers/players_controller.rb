@@ -32,7 +32,8 @@ class PlayersController < ApplicationController
 
     new_player = Player.new(
       user: @current_user,
-      instance: @instance
+      instance: @instance,
+      nickname: @current_user.nickname
     )
 
     if new_player.save
