@@ -157,7 +157,8 @@ class InstancesController < ApplicationController
     user_ids.each do |user_id|
       Player.create!(
         user_id: user_id,
-        instance: new_instance
+        instance: new_instance,
+        nickname: User.find(user_id).nickname
       )
     end
   end

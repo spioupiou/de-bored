@@ -54,8 +54,7 @@
       </div>
 
       <div class="py-4 row justify-content-center" id="host-buttons">
-        <%= form_with url: redirect_instance_path(@instance), local: true, method: :get do |f| %>
-          <%= hidden_field_tag 'round_id', @round.id %>
+        <%= form_with url: redirect_to_vote_instance_path(@instance), local: true, method: :get do |f| %>
           <%= hidden_field_tag 'instance_id', @instance.id %>
           <%= f.submit "Vote", class: "btn btn-warning" %>
         <% end %>
