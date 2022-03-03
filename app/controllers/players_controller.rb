@@ -2,14 +2,12 @@ class PlayersController < ApplicationController
   skip_before_action :authenticate_user!
 
   def join_instance
-    @instance = Instance.find_by_passcode(params[:passcode])
+    @instance = Instance.find_by(passcode: params[:passcode], status: "waiting")
 
     if @instance.blank?
-      redirect_to games_path, alert: "Lobby not found"
+      redirect_to games_path, alert: "Lobby not found, the game you tried to join may have already started."
     else
       # don't allow any more players to join if any condition is true
-      redirect_to games_path, alert: "Game already started, try not to miss the next one."     and return if @instance.status == 'ongoing'
-      redirect_to games_path, alert: "Game already finished, join the next one."               and return if @instance.status == 'done'
       redirect_to games_path, alert: "Game is full, tell your buddy to increase max players."  and return if @instance.max_players == Player.where(instance: @instance).count
 
       redirect_to edit_nickname_instance_path(@instance)
@@ -34,7 +32,8 @@ class PlayersController < ApplicationController
 
     new_player = Player.new(
       user: @current_user,
-      instance: @instance
+      instance: @instance,
+      nickname: @current_user.nickname
     )
 
     if new_player.save
@@ -71,7 +70,7 @@ class PlayersController < ApplicationController
         count: render_to_string( partial: "/instances/min_player_count", locals: { players: @players }),
         user: @user.nickname
       )
-    end  
+    end
     redirect_to games_path
   end
 end
