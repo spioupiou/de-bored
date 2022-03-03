@@ -3,12 +3,24 @@
     <div class="text-center">
       <h5>Are you the impostor?</h5>
       <h5> <%= current_player_is_impostor ? "Yes you are the impostor!" : "No you are not the impostor." %> </h5>
-      <% if current_user.id == @instance.user_id %>
-        <%= simple_form_for([@instance, Round.new]) do |f| %>
-          <%= hidden_field_tag 'current_round', @round.id %>
-          <%= f.submit "To the first question", class:"btn btn-primary" %>
+      <div class="d-none">
+        <% if current_user.id == @instance.user_id %>
+          <%= simple_form_for([@instance, Round.new]) do |f| %>
+            <%= hidden_field_tag 'current_round', @round.id %>
+            <%= f.submit "To the first question", class:"btn btn-primary" %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div class="py-5" style="height: 200px">
+        <div id="ready" class="d-none">
+          <h3>Are you Ready?</h3>
+        </div>
+        <div id="timer" class="d-none">
+          <h3>Game will start in:</h3>
+          <h3 id="time">5</h3>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
 </div>
