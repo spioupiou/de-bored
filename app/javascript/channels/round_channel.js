@@ -2,6 +2,7 @@ import consumer from "./consumer";
 
 const initRoundCable = () => {
   const inputsContainer = document.getElementById('inputs');
+  const playerInputCount = document.getElementById("player-input-count")
   if (inputsContainer) {
     const id = inputsContainer.dataset.roundId;
 
@@ -18,7 +19,8 @@ const initRoundCable = () => {
           window.location.pathname = data.path;
           console.log("success")
         } else {
-          inputsContainer.innerHTML = data;
+          inputsContainer.innerHTML = data.player_input;
+          playerInputCount.innerHTML = data.player_input_count;
         }
       },
     });
