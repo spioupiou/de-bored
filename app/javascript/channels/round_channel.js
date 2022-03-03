@@ -14,9 +14,11 @@ const initRoundCable = () => {
         if (data.head == 303 && data.path) {
           window.location.pathname = data.path;
           console.log("success")
-        }else{
+        } else if (data.voting_page) {
+          window.location.pathname = data.path;
+          console.log("success")
+        } else {
           inputsContainer.innerHTML = data;
-
         }
       },
     });
