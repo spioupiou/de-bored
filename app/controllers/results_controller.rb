@@ -26,9 +26,9 @@ class ResultsController < ApplicationController
     @vote_tally.each do |voted, count|
       voted_player = Player.find(voted).nickname
       if (voted_player == @impostor.nickname) && (highest_vote() == count)
-        return "Imposter #{voted_player} lose!"
+        return "Imposter #{@impostor.nickname} lose!"
       else
-        return "Imposter #{voted_player} won!"
+        return "Imposter #{@impostor.nickname} won!"
       end
     end
   end
