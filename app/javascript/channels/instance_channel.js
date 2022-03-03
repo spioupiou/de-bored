@@ -28,7 +28,7 @@ const initInstanceChannel = () => {
       received(data) {
         console.log(data)
         // to redirect all subscribers except host after clicking start game, host is redirected via controller
-        if (data.head == 302 && data.path) {
+        if (data.head == 303 && data.path) {
           window.location.pathname = data.path;
         }
         // console.log("InstanceChannel received", data);
