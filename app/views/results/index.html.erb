@@ -1,0 +1,12 @@
+<div class="container-fluid" style="height: 75vh;">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="text-center">
+      <% @votes.each do |vote| %>
+        <p><%= vote.voter %></p>
+      <% end %>
+
+
+      <button class="btn btn-primary">Future End Game button</button>
+    </div>
+  </div>
+</div>

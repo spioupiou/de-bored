@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <% if instance.max_rounds == round.number %>
+    <div>
+      <h3 class="py-4 text-center">Last Round's Results</h3>
+    </div>
+  <% else %>
+    <div>
+      <h3 class="py-4 text-center">Round <%= round.number %> Results</h3>
+    </div>
+  <% end %>
+
+  <div class="py-2 text-center">
+    <p>Have you ever <%= game_content.content %>?</p>
+  </div>
+
+  <div class="row justify-content-center" style="height: 50vh">
+    <div id="results" class="col-lg-4 col-md-6 col-sm-12">
+      <div id="inputs" data-round-id="<%= round.id %>">
+        <!-- Player inputs @ app/views/player_inputs/_player_input.html.erb-->
+        <%= render 'player_inputs/player_input', round: round %>
+      </div>
+    </div>
+  </div>
+
+  <% if current_user.id == instance.user_id %>
+    <% if round.number == instance.max_rounds - 1 %>
+      <div class="py-4 row justify-content-center" id="host-buttons">
+        <%= simple_form_for([instance, Round.new]) do |f| %>
+          <div class="col-6">
+            <%= f.submit "Final Round", class:"btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+
+    <% elsif round.number < instance.max_rounds %>
+      <div class="py-4 row justify-content-center" id="host-buttons">
+        <%= simple_form_for([instance, Round.new]) do |f| %>
+          <div class="col-6">
+            <%= f.submit "Next Round", class:"btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+
+    <% else %>
+      <div class="py-4 row justify-content-center" id="host-buttons">
+        <%= simple_form_for Instance.new do |f| %>
+          <%# needed for creating a new instance %>
+          <div class="col-6">
+            <%# needed to get last_instance_id for creation of new instance %>
+            <%= hidden_field_tag 'last_instance_id', instance.id %>
+            <%= f.submit "Exit Game", class: "btn btn-warning" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="py-4 row justify-content-center" id="host-buttons">
+        <%= form_with url: redirect_instance_path(@instance), local: true, method: :get do |f| %>
+          <%= hidden_field_tag 'round_id', @round.id %>
+          <%= hidden_field_tag 'instance_id', @instance.id %>
+          <%= f.submit "Vote", class: "btn btn-warning" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
