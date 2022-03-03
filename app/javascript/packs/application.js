@@ -32,6 +32,7 @@ import { initRoundCable } from '../channels/round_channel';
 import { autoClick } from "../components/popup";
 import { countdownTimer } from "../components/countdown_timer";
 import { autoFocus } from "../components/auto_focus";
+import { updateDiv } from "../components/auto_refresh";
 
 
 // next 3 lines is from https://fontsource.org/fonts
@@ -47,5 +48,6 @@ document.addEventListener('turbolinks:load', () => {
   highlighter();
   countdownTimer();
   autoFocus();
+  updateDiv();
 
 });
