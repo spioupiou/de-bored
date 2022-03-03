@@ -15,8 +15,7 @@ export const countdownTimer = () => {
         setInterval(() => {
             (time.innerText -= 1)
 
-        if ((parseInt(time.innerText)) === 0){
-            console.log("done")
+        if ((parseInt(time.innerText)) === 1){
             clearInterval();
             newRoundBtn.submit();
         }
