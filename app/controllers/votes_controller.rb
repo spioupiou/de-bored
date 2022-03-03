@@ -6,12 +6,6 @@ class VotesController < ApplicationController
     @players = Player.where(instance_id: @instance.id)
 
     # Get players_id AND nicknames in one single object
-    @players_hash = {}
-    @players.each do |player|
-      user = User.find(player.user_id)
-      @players_hash["#{player.id}"] = user.nickname
-    end
-
     @vote = Vote.new
   end
 

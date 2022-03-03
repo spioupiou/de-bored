@@ -4,8 +4,8 @@
       <h5>Who do you think was the impostor?</h5>
 
       <ul>
-        <% @players_hash.each do |k, v| %>
-          <li><%= k %>: <%= v %> </li>
+        <% @players.each do |player| %>
+          <li><%= player.id %>: <%= player.nickname %> </li>
         <% end %>
       </ul>
 
