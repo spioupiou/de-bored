@@ -31,6 +31,8 @@ import { highlighter } from "../plugins/rough_notation";
 import { initRoundCable } from '../channels/round_channel';
 import { autoClick } from "../components/popup";
 import { autoFocus } from "../components/auto_focus";
+import "chartkick/chart.js"
+
 
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";

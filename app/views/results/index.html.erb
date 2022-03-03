@@ -5,6 +5,13 @@
         <p><%= vote.voter.nickname %> voted for <%= vote.voted_player.nickname %></p>
       <% end %>
 
+      <!--Static Chart for practice -->
+      <%= pie_chart Vote.group(:voted_player_id).count %>
+
+      <!-- Results -->
+      <p> The imposter is <%= @imposter %> </p>
+
+      <!-- End Game Button -->
       <button class="btn btn-primary">Future End Game button</button>
     </div>
   </div>
