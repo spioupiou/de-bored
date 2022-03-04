@@ -1,49 +1,49 @@
-<div class="container-fluid" style="margin-top: 24px; height: 75vh;">
+<div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
-    <div class="d-flex justify-content-center align-items-center">
-      <div class="text-center">
-        <div class="row">
-          <div class="col-12">
-            <div class="card bg-primary justify-content-center" style="height: 50vh; overflow:auto">
-              <h1>Vote Result</h1>
-                <% @votes.each do |vote| %>
-                <div class="card bg-secondary p-2">
-                  <p><%= vote.voter.user.nickname %> voted for <%= vote.voted_player.nickname %></p>
-                </div>
-                <% end %>
-            </div>
-          </div>
-          <div class="col-12 py-4">
-            <div class="row">
-              <div class="col-6">
-              <h4>Tally:</h4>
-                <% @vote_tally.each do |voted, count| %>
-                  <p><%= Player.find(voted).nickname %>: <%= count %> votes</p>
-                <% end %>
-                <h4>total votes: <%= @total_votes %></h4>
-              </div>
-              <div class="col-6">
-                <h4>Imposter: <%=  @impostor.nickname %></h4>
 
-                <% @vote_tally.each do |voted, count| %>
-                  <% voted_player = Player.find(voted).nickname %>
-                  <!-- Compare if player is an imposter and have the highest votes received -->
-                  <% if (voted_player == @impostor.nickname) %>
-                    <% if (@highest_vote == count) %>
-                      <p><%= "Imposter #{@impostor.nickname} lose!"%></p>
-                    <% else %>
-                      <p><%= "Imposter #{@impostor.nickname} won!"%></p>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="my-4 text-center">Vote Result</h1>
+       
+        <!-- Partial for Imposter reveal -->
+        <div id="imposter-reveal" class="my-2 text-center" style="height:10vh; border: 1px solid black">
+          <%= render  "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally %>
+        </div>
+
+        <!-- Partial for chart -->
+        <div id="chart" class="my-2" style="height:40vh; border: 1px solid black">
+          <%= render  "result_chart" %>
+        </div>
+
+      </div>  
+    </div>
+    <div class="row">
+      <div class="col-6">
+
+      <!-- Partial for Vote Tally -->
+        <div id="vote-tally" style="height:25vh; border: 1px solid black">
+          <%= render  "result_vote_tally" %>
+        </div>
+      
+      </div>
+      
+      <div class="col-6">
+        <div style="height:25vh; border: 1px solid black">
+          SOMETHING ELSE HERE
+        </div>
+
+      </div>
+    </div>
+  </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <div id="result-footer" class="d-flex justify-content-around my-3" style="height:5vh;">
+           <button class="btn btn-primary" data-html2canvas-ignore>Back to Lobby</button>
+           <%= render "share_modal" %>
         </div>
       </div>
     </div>
-
-    <button class="btn btn-primary" data-html2canvas-ignore>Future End Game button</button>
-    <%= render "share_modal" %>
+  
   </div>
 </div>

@@ -1,0 +1,5 @@
+<h4>Tally:</h4>
+<% @vote_tally.each do |voted, count| %>
+    <p><%= Player.find(voted).nickname %>: <%= count %> votes</p>
+<% end %>
+<h4>total votes: <%= @total_votes %></h4>

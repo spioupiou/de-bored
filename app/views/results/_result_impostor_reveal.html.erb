@@ -1,0 +1,12 @@
+<h4>Imposter: <%=  impostor.nickname %></h4>
+<% vote_tally.each do |voted, count| %>
+  <% voted_player = Player.find(voted).nickname %>
+<!-- Compare if player is an imposter and have the highest votes received -->
+  <% if (voted_player == impostor.nickname) %>
+    <% if (@highest_vote == count) %>
+      <p><%= "Imposter #{impostor.nickname} lose!"%></p>
+    <% else %>
+      <p><%= "Imposter #{impostor.nickname} won!"%></p>
+    <% end %>
+  <% end %>
+<% end %>
