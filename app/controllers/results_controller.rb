@@ -5,33 +5,18 @@ class ResultsController < ApplicationController
     @instance = Instance.find(params[:instance_id])
     @votes = Vote.where(instance: @instance)
     @result = Result.find(params[:id])
+
+    # Total number of votes
     @total_votes = Vote.where(instance: @instance).count
+    
     @impostor = Player.find(@instance.impostor_player_id)
     @players = Player.where(instance_id: @instance.id)
-    @vote_tally = vote_tally()
-    @win_or_lose = impostor_won?() 
+
+    # Tally votes in a hash, { voter_id => number of votes received }
+    @vote_tally = Vote.select(:voted_player_id).where(instance_id: @instance.id).group(:voted_player_id).count(:voted_player_id)
+
+    # Get the Highest votes in the hash
+    @highest_vote = @vote_tally.values.max
   end
 
-  def vote_tally
-    voted_tally =  Vote.select(:voted_player_id).where(instance_id: @instance.id).group(:voted_player_id).count(:voted_player_id)
-    #{ voted_player_id: votes_received }
-  end
-
-  def highest_vote
-    vote_tally.values.max
-  end
-
-  def impostor_won?
-    # check each player's received votes
-    @vote_tally.each do |voted, count|
-      voted_player = Player.find(voted).nickname
-      if (voted_player == @impostor.nickname) && (highest_vote() == count)
-        return "Imposter #{@impostor.nickname} lose!"
-      else
-        return "Imposter #{@impostor.nickname} won!"
-      end
-    end
-  end
-
-    # if that player is an imposter, check his/her votes and compare it to the half of total votes
 end
