@@ -29,7 +29,7 @@ class InstancesController < ApplicationController
 
       # get the result of the last_instance, users from that action cable needs to be redirected
       # `first` is needed to take the object out of the array caused by using `where`
-      prev_instance_result = Result.where(instance: last_instance).order(id: :desc).limit(1).first
+      prev_instance_result = Result.find_by(instance: last_instance)
       # redirect players to instance show page, this does not include host
 
       ResultChannel.broadcast_to(
