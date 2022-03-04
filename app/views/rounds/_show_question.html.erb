@@ -2,9 +2,9 @@
   <div class="d-flex justify-content-center align-items-center h-100">
     <div class="text-center">
       <% if instance.max_rounds == round.number %>
-        <h5>Last Round</h5>
+        <h3>Last Round</h3>
       <% else %>
-        <h5>Round <%= round.number %></h5>
+        <h3 class="py-4 text-center">Round <%= round.number %> Question</h3>
       <% end %>
         <h3>Have you ever <%= game_content.content %>?</h3>
 

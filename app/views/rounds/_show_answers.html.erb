@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <% if instance.max_rounds == round.number %>
     <div>
-      <h3 class="py-4 text-center">Last Round's Results</h3>
+      <h3 class="py-4 text-center">Last Round's Answers</h3>
     </div>
   <% else %>
     <div>
-      <h3 class="py-4 text-center">Round <%= round.number %> Results</h3>
+      <h3 class="py-4 text-center">Round <%= round.number %> Answers</h3>
     </div>
   <% end %>
 
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="d-flex">
-    <p>Player answered:</p>
+    <p>Players answered:</p>
     <div class="px-1" id="player-input-count">
       <%= render "show_player_inputs_count", round: round %>
     </div>/
