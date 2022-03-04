@@ -33,7 +33,7 @@ puts "Creating the other games..."
 
 Game.create!(name: "Picture Me", image: "splash.png")
 Game.create!(name: "Oukami", image: "wolf.jpg")
-Game.create!(name: "Fill the Blank!", image: "human.jpg")
+Game.create!(name: "Mad Libs", image: "human.jpg")
 Game.create!(name: "Spank the Bank!", image: "bank.jpg")
 
 puts "Game creation Complete!"
