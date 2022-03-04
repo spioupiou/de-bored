@@ -9,7 +9,7 @@ class VotesController < ApplicationController
     @vote = Vote.new
   end
 
-  def redirect_to_vote # RENAME
+  def redirect_to_vote
     @instance = Instance.find(params[:instance_id])
     # Fetch the last round
     @last_round = Round.where(instance_id: @instance).order(id: :desc).limit(1).first
@@ -27,13 +27,19 @@ class VotesController < ApplicationController
   end
 
   def create
+    @instance = Instance.find(params[:instance_id])
+ 
     @vote = Vote.new(
-      instance_id: params[:instance_id],
+      instance_id: @instance.id,
       voted_player: Player.find_by_nickname(params[:vote][:voted_player]),
-      voter: Player.find_by_user_id(current_or_guest_user.id)
+      voter: Player.find_by(user_id: current_or_guest_user.id)
     )
+
+    # Need to add most_voted_player/most yes_player etc.
+    @result = Result.create!(instance_id: @instance.id)
+
     if @vote.save
-      redirect_to instance_results_path
+      redirect_to instance_result_path(@instance, @result)
     else
       render :new
     end
