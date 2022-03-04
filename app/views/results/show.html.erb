@@ -1,11 +1,12 @@
-<div class="container-fluid" style="height: 75vh;">
+<div class="container-fluid" style="height: 75vh;" id="results">
   <div class="d-flex justify-content-center align-items-center h-100">
     <div class="text-center">
       <% @votes.each do |vote| %>
         <p><%= vote.voter.nickname %> voted for <%= vote.voted_player.nickname %></p>
       <% end %>
 
-      <button class="btn btn-primary">Future End Game button</button>
+      <button class="btn btn-primary" data-html2canvas-ignore>Future End Game button</button>
+      <%= render "share_modal" %>
     </div>
   </div>
 </div>

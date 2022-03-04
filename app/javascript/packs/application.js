@@ -39,6 +39,7 @@ import { updateDiv } from "../components/auto_refresh";
 import "@fontsource/roboto";
 import "@fontsource/play";
 import "@fontsource/dosis";
+import { captureResults } from "../components/screenshot";
 
 document.addEventListener('turbolinks:load', () => {
 
@@ -49,5 +50,5 @@ document.addEventListener('turbolinks:load', () => {
   countdownTimer();
   autoFocus();
   updateDiv();
-
+  captureResults();
 });

@@ -10,6 +10,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "bootstrap": "4.6",
+    "html2canvas": "^1.4.1",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "rough-notation": "^0.5.1",
