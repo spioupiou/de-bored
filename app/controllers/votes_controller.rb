@@ -5,6 +5,7 @@ class VotesController < ApplicationController
     @instance = Instance.find(params[:instance_id])
     @players = Player.where(instance_id: @instance.id)
 
+    result = Result.create!(instance_id: @instance.id)
     # Get players_id AND nicknames in one single object
     @vote = Vote.new
   end
@@ -36,7 +37,7 @@ class VotesController < ApplicationController
     )
 
     # Need to add most_voted_player/most yes_player etc.
-    @result = Result.create!(instance_id: @instance.id)
+    @result = Result.find_by_instance_id(@instance.id)
 
     if @vote.save
       redirect_to instance_result_path(@instance, @result)
