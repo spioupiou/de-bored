@@ -4,7 +4,7 @@ class InstancesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
-    # check last_instance_id from views/rounds/show.html.erb is there
+    # check last_instance_id from views/results/show.html.erb is there
     if params[:last_instance_id].nil?
       # this block means the host is creating an instance from games list
 
@@ -18,7 +18,7 @@ class InstancesController < ApplicationController
     else
       # this block means the host is creating an instance based from previous instance
 
-      # check if last_instance_id is there from views/rounds/show.html.erb
+      # check if last_instance_id is there from views/results/show.html.erb
       last_instance = Instance.find(params[:last_instance_id])
       # cause last round has been completed
       last_instance.update(status: "done") if last_instance.status == "ongoing"
@@ -27,12 +27,13 @@ class InstancesController < ApplicationController
       # also includes creation of host as a player
       create_players_from_previous_instance(last_instance, @instance)
 
-      # get the final round of the last_instance, users from that action cable needs to be redirected
+      # get the result of the last_instance, users from that action cable needs to be redirected
       # `first` is needed to take the object out of the array caused by using `where`
-      prev_instance_final_round = Round.where(instance: last_instance).order(id: :desc).limit(1).first
+      prev_instance_result = Result.find_by(instance: last_instance)
       # redirect players to instance show page, this does not include host
-      RoundChannel.broadcast_to(
-        prev_instance_final_round,
+
+      ResultChannel.broadcast_to(
+        prev_instance_result,
         head: 303, # redirection code
         path: instance_path(@instance)
       )

@@ -5,6 +5,7 @@ class VotesController < ApplicationController
     @instance = Instance.find(params[:instance_id])
     @players = Player.where(instance_id: @instance.id)
 
+    result = Result.create!(instance_id: @instance.id)
     # Get players_id AND nicknames in one single object
     @vote = Vote.new
   end
@@ -28,21 +29,21 @@ class VotesController < ApplicationController
 
   def create
     @instance = Instance.find(params[:instance_id])
- 
+
     @vote = Vote.new(
       instance_id: @instance.id,
-      voted_player: Player.find_by_nickname(params[:vote][:voted_player]),
+      voted_player: Player.find(params[:voted_player]),
       voter: Player.find_by(user_id: current_or_guest_user.id)
     )
 
     # Need to add most_voted_player/most yes_player etc.
-    @result = Result.create!(instance_id: @instance.id)
+    @result = Result.find_by_instance_id(@instance.id)
 
     if @vote.save
       ResultChannel.broadcast_to(
         @result,
         result_page: true,
-        page: #page here
+        #page: page here
       )
       redirect_to instance_result_path(@instance, @result)
     else

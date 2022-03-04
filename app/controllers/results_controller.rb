@@ -5,10 +5,11 @@ class ResultsController < ApplicationController
     @instance = Instance.find(params[:instance_id])
     @votes = Vote.where(instance: @instance)
     @result = Result.find(params[:id])
+    @current_user = current_or_guest_user
 
     # Total number of votes
     @total_votes = Vote.where(instance: @instance).count
-    
+
     @impostor = Player.find(@instance.impostor_player_id)
     @players = Player.where(instance_id: @instance.id)
 
