@@ -32,14 +32,26 @@
                     <% if (@highest_vote == count) %>
                       <p><%= "Imposter #{@impostor.nickname} lose!"%></p>
                     <% else %>
-                      <p><%= "Imposter #{@impostor.nickname} won!"%></p>  
-                    <% end %> 
+                      <p><%= "Imposter #{@impostor.nickname} won!"%></p>
+                    <% end %>
                   <% end %>
                 <% end %>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <% if @current_user.id == @instance.user_id %>
+        <div class="py-4 row justify-content-center" id="host-buttons">
+          <%= simple_form_for Instance.new do |f| %>
+            <%# needed for creating a new instance %>
+            <div class="col-6">
+              <%# needed to get last_instance_id for creation of new instance %>
+              <%= hidden_field_tag 'last_instance_id', @instance.id %>
+              <%= f.submit "Exit Game", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
