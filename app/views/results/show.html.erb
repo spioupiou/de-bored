@@ -16,6 +16,10 @@
           <div class="col-12 py-4">
             <div class="row">
               <div class="col-6">
+                <h3> Results </h3>
+                <%= pie_chart @vote_tally.each do |voted, count|%>
+                  <%= Player.find(voted).nickname.group(total_votes).count  %>
+                <% end %>
               <h4>Tally:</h4>
                 <% @vote_tally.each do |voted, count| %>
                   <p><%= Player.find(voted).nickname %>: <%= count %> votes</p>
