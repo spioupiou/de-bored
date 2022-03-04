@@ -1,26 +1,14 @@
 <div class="container-fluid" style="height: 75vh;">
   <div class="d-flex justify-content-center align-items-center h-100">
     <div class="text-center">
-      <h5>Who do you think was the impostor?</h5>
+      <h3 class="mb-4">Who do you think was the impostor?</h3>
 
-      <ul>
-        <% @players.each do |player| %>
-          <li><%= player.id %>: <%= player.nickname %> </li>
+      <% @players.each do |player| %>
+        <%= simple_form_for([@instance, @vote]) do |f| %>
+          <%= hidden_field_tag :voted_player, player.id %>
+          <%= f.submit player.nickname, class:"btn btn-info my-2" %>
         <% end %>
-      </ul>
-
-      <div class="p-4">
-        <div class="row justify-content-center">
-          <div class="col-6">
-            <%= simple_form_for([@instance, @vote]) do |f| %>
-              <%= f.input :voted_player, as: :select, collection: @players.map(&:nickname) %>
-              <%= f.submit "Vote", class:"btn btn-primary" %>
-            <% end %>
-          </div>
-
-        </div>
-
-      </div>
+      <% end %>
 
     </div>
   </div>
