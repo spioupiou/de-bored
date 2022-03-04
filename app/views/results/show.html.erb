@@ -1,12 +1,49 @@
-<div class="container-fluid" style="height: 75vh;" id="results">
-  <div class="d-flex justify-content-center align-items-center h-100">
-    <div class="text-center">
-      <% @votes.each do |vote| %>
-        <p><%= vote.voter.nickname %> voted for <%= vote.voted_player.nickname %></p>
-      <% end %>
+<div class="container-fluid" style="margin-top: 24px; height: 75vh;">
+  <div id="result" data-result-id="<%=@result.id%>">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="text-center">
+        <div class="row">
+          <div class="col-12">
+            <div class="card bg-primary justify-content-center" style="height: 50vh; overflow:auto">
+              <h1>Vote Result</h1>
+                <% @votes.each do |vote| %>
+                <div class="card bg-secondary p-2">
+                  <p><%= vote.voter.user.nickname %> voted for <%= vote.voted_player.nickname %></p>
+                </div>
+                <% end %>
+            </div>
+          </div>
+          <div class="col-12 py-4">
+            <div class="row">
+              <div class="col-6">
+              <h4>Tally:</h4>
+                <% @vote_tally.each do |voted, count| %>
+                  <p><%= Player.find(voted).nickname %>: <%= count %> votes</p>
+                <% end %>
+                <h4>total votes: <%= @total_votes %></h4>
+              </div>
+              <div class="col-6">
+                <h4>Imposter: <%=  @impostor.nickname %></h4>
 
-      <button class="btn btn-primary" data-html2canvas-ignore>Future End Game button</button>
-      <%= render "share_modal" %>
+                <% @vote_tally.each do |voted, count| %>
+                  <% voted_player = Player.find(voted).nickname %>
+                  <!-- Compare if player is an imposter and have the highest votes received -->
+                  <% if (voted_player == @impostor.nickname) %>
+                    <% if (@highest_vote == count) %>
+                      <p><%= "Imposter #{@impostor.nickname} lose!"%></p>
+                    <% else %>
+                      <p><%= "Imposter #{@impostor.nickname} won!"%></p>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <button class="btn btn-primary" data-html2canvas-ignore>Future End Game button</button>
+    <%= render "share_modal" %>
   </div>
 </div>

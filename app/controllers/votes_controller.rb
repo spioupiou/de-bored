@@ -28,11 +28,11 @@ class VotesController < ApplicationController
 
   def create
     @instance = Instance.find(params[:instance_id])
-
+ 
     @vote = Vote.new(
       instance_id: @instance.id,
       voted_player: Player.find_by_nickname(params[:vote][:voted_player]),
-      voter: Player.find_by_user_id(current_or_guest_user.id)
+      voter: Player.find_by(user_id: current_or_guest_user.id)
     )
 
     # Need to add most_voted_player/most yes_player etc.

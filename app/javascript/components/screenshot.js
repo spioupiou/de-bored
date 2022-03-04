@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas';
 
 const captureResults = () => {
-  const results = document.querySelector("#results");
+  const results = document.querySelector("#result");
   const shareBtn = document.querySelector("#share-btn");
   const saveBtn = document.querySelector("#save-logo");
 
