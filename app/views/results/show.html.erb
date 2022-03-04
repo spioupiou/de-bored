@@ -45,21 +45,21 @@
           </div>
         </div>
       </div>
-      <% if @current_user.id == @instance.user_id %>
-        <div class="py-4 row justify-content-center" id="host-buttons">
-          <%= simple_form_for Instance.new do |f| %>
-            <%# needed for creating a new instance %>
-            <div class="col-6">
-              <%# needed to get last_instance_id for creation of new instance %>
-              <%= hidden_field_tag 'last_instance_id', @instance.id %>
-              <%= f.submit "Exit Game", class: "btn btn-primary" %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
     </div>
 
-    <button class="btn btn-primary" data-html2canvas-ignore>Future End Game button</button>
-    <%= render "share_modal" %>
+    <div class="py-4 row justify-content-center" id="host-buttons" data-html2canvas-ignore>
+      <% if @current_user.id == @instance.user_id %>
+        <%= simple_form_for Instance.new do |f| %>
+          <%# needed for creating a new instance %>
+          <div class="col-6">
+            <%# needed to get last_instance_id for creation of new instance %>
+            <%= hidden_field_tag 'last_instance_id', @instance.id %>
+            <%= f.submit "Exit Game", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%= render "share_modal" %>
+    </div>
   </div>
 </div>
