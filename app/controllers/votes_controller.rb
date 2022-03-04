@@ -4,6 +4,7 @@ class VotesController < ApplicationController
   def new
     @instance = Instance.find(params[:instance_id])
     @players = Player.where(instance_id: @instance.id)
+    @current_user = current_or_guest_user
 
     result = Result.create!(instance_id: @instance.id)
     # Get players_id AND nicknames in one single object
