@@ -41,6 +41,11 @@ class VotesController < ApplicationController
     @result = Result.find_by_instance_id(@instance.id)
 
     if @vote.save
+      ResultChannel.broadcast_to(
+        @result,
+        result_page: true,
+        #page: page here
+      )
       redirect_to instance_result_path(@instance, @result)
     else
       render :new
