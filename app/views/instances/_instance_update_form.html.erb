@@ -13,7 +13,7 @@
     </div>
     <div class="d-flex justify-content-between">
       <%= f.label :game, "Game" %>
-      <%= f.input :game, label: false, input_html: { value: 'Have you ever?' } %>
+      <%= f.input :game, as: :select, collection: ["Have You ever", "Picture Me", "Oukami"] ,label: false, default: "Have you ever" %>
     </div>
     <div class="pt-3">
         <%= f.submit "Update Settings", class:"btn btn-warning" %>
