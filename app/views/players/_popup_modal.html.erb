@@ -7,7 +7,7 @@
         <%= form_with url: create_players_instance_path(instance), local: true, method: :get do |f| %>
           <%= f.text_field :nickname, value: params[:nickname]%>
           <div class="pt-3">
-            <%= f.submit "Edit", class: "btn btn-warning" %>
+            <%= f.submit "Use Nickname", class: "btn btn-warning" %>
           </div>
         <% end %>
       </div>
