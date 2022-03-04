@@ -32,8 +32,8 @@
                     <% if (@highest_vote == count) %>
                       <p><%= "Imposter #{@impostor.nickname} lose!"%></p>
                     <% else %>
-                      <p><%= "Imposter #{@impostor.nickname} won!"%></p>  
-                    <% end %> 
+                      <p><%= "Imposter #{@impostor.nickname} won!"%></p>
+                    <% end %>
                   <% end %>
                 <% end %>
               </div>
@@ -42,5 +42,8 @@
         </div>
       </div>
     </div>
+
+    <button class="btn btn-primary" data-html2canvas-ignore>Future End Game button</button>
+    <%= render "share_modal" %>
   </div>
 </div>
