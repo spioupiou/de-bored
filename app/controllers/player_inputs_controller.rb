@@ -12,9 +12,12 @@ class PlayerInputsController < ApplicationController
     # line only gets executed after any player submits the first input
     @round.update(phase: 2) if @round.phase == 1
 
+    # Find the latest player that was created from the current user
+    player = Player.where(user_id: @current_user.id).order(id: :desc).limit(1)
+
     @player_input = PlayerInput.new(
       instance_id: @instance.id,
-      player: Player.find_by(user_id: @current_user.id),
+      player: player[0],
       input_type: "string",
       input_value: params[:input_value],
       round_id: @round.id
