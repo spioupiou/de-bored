@@ -1,7 +1,14 @@
-<div class="row justify-content-center align-items-center pt-3">
-  <div class="col-8">
-    <%= pie_chart @vote_tally.each do |voted, count|%>
-      <%= Player.find(voted).nickname.group(total_votes).count  %>
-    <% end %>
-  </div>
-</div>
+<% players.each do |player| %>
+    <div id="result-card" class="card m-2 p-2" style="height: 80px">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <div id="result-avatar"><%# Avatar here %></div>
+            <div class="px-3"><p><%= player.nickname %></p></div>
+        </div>
+        <div id="who-voted-who" class="d-flex">
+          <%= render  "result_who_voted", instance: @instance, player: player %>
+        </div>
+      </div>
+    </div>     
+<% end %>
+

@@ -6,30 +6,23 @@
         <h1 class="my-4 text-center">Game Results</h1>
 
         <!-- Partial for Imposter reveal -->
-        <div id="imposter-reveal" class="my-2 text-center" style="height:10vh; border: 1px solid black">
-          <%= render  "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally %>
+        <div id="imposter-reveal" class="result-page my-2 text-center" style="height:10vh;">
+          <%= render  "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_vote: @highest_vote %>
         </div>
 
         <!-- Partial for chart -->
-        <div id="chart" class="my-2" style="height:40vh; border: 1px solid black">
-          <%= render  "result_chart" %>
+        <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
+          <%= render  "result_chart", players: @players %>
         </div>
 
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-12">
 
       <!-- Partial for Vote Tally -->
-        <div id="vote-tally" style="height:25vh; border: 1px solid black">
+        <div id="vote-tally" class="result-page" style="height:20vh;">
           <%= render  "result_vote_tally" %>
-        </div>
-
-      </div>
-
-      <div class="col-6">
-        <div style="height:25vh; border: 1px solid black">
-          SOMETHING ELSE HERE
         </div>
 
       </div>
