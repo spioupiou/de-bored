@@ -1,52 +1,53 @@
 <div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="my-4 text-center">Game Results</h1>
 
-    <div class="row">
-      <div class="col-12">
-        <h1 class="my-4 text-center">Game Results</h1>
-
-        <!-- Partial for Imposter reveal -->
-        <div id="imposter-reveal" class="result-page my-2 text-center" style="height:10vh;">
-          <%= render  "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_vote: @highest_vote %>
-        </div>
-
-        <!-- Partial for chart -->
-        <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
-          <%= render  "result_chart", players: @players %>
-        </div>
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-
-      <!-- Partial for Vote Tally -->
-        <div id="vote-tally" class="result-page" style="height:20vh;">
-          <%= render  "result_vote_tally" %>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div id="result-footer" class="d-flex justify-content-around my-3" style="height:5vh;" data-html2canvas-ignore>
-          <% if @current_user.id == @instance.user_id %>
-            <%= simple_form_for Instance.new do |f| %>
-              <%# needed for creating a new instance %>
-              <div>
-                <%# needed to get last_instance_id for creation of new instance %>
-                <%= hidden_field_tag 'last_instance_id', @instance.id %>
-                <%= f.submit "Exit Game", class: "btn btn-primary" %>
-              </div>
+          <!-- Partial for Imposter reveal -->
+          <div id="imposter-reveal" class="result-page my-2 text-center" style="height:10vh;">
+            <% if @total_votes == @total_voters%>
+              <%= render  "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_vote: @highest_vote %>
             <% end %>
-          <% end %>
+          </div>
 
-          <%= render "share_modal" %>
+          <!-- Partial for chart -->
+          <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
+            <%= render  "result_chart", players: @players %>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+
+        <!-- Partial for Vote Tally -->
+          <div id="vote-tally" class="result-page" style="height:20vh;">
+            <%= render  "result_vote_tally" %>
+          </div>
+
         </div>
       </div>
     </div>
 
+      <div class="row">
+        <div class="col-12">
+          <div id="result-footer" class="d-flex justify-content-around my-3" style="height:5vh;" data-html2canvas-ignore>
+            <% if @current_user.id == @instance.user_id %>
+              <%= simple_form_for Instance.new do |f| %>
+                <%# needed for creating a new instance %>
+                <div>
+                  <%# needed to get last_instance_id for creation of new instance %>
+                  <%= hidden_field_tag 'last_instance_id', @instance.id %>
+                  <%= f.submit "Exit Game", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            <% end %>
+
+            <%= render "share_modal" %>
+          </div>
+        </div>
+      </div>
+      
   </div>
 </div>
