@@ -1,14 +1,15 @@
 <% players.each do |player| %>
-    <div id="result-card" class="card m-2 p-2" style="height: 80px">
-      <div class="d-flex justify-content-between">
-        <div class="d-flex">
-            <div id="result-avatar"><%# Avatar here %></div>
-            <div class="px-3"><p><%= player.nickname %></p></div>
-        </div>
-        <div id="who-voted-who" class="d-flex">
-          <%= render  "result_who_voted", instance: @instance, player: player %>
-        </div>
+  <div id="result-card" class="card m-2 p-2" style="height: 80px">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <div id="result-avatar"><%# Avatar here %></div>
+        <div class="px-3"><p><%= player.nickname %></p></div>
       </div>
-    </div>     
-<% end %>
+      <div id="who-voted-who" class="d-flex">
+        <%= render  "result_who_voted", instance: @instance, player: player %>
+      </div>
+    </div>
+  </div>     
+    <% end %>
+</div>
 

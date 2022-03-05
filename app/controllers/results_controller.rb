@@ -9,6 +9,9 @@ class ResultsController < ApplicationController
 
     # Total number of votes
     @total_votes = Vote.where(instance: @instance).count
+    
+    # Total number of voters
+    @total_voters = Player.where(instance: @instance).count
 
     @impostor = Player.find(@instance.impostor_player_id)
     @players = Player.where(instance_id: @instance.id)
