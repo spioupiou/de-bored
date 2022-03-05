@@ -18,7 +18,7 @@
             <% unless game.name == "Fill the Blank!" || game.name == "Spank the Bank!" %>
               <div class="d-flex justify-content-around w-100">
                 <div>
-                  <%= link_to edit_nickname_host_path, method: :get do %>
+                  <%= link_to edit_nickname_host_path(game_id: game.id), method: :get do %>
                     <div class="btn btn-primary">Create a lobby</div>
                   <% end %>
                 </div>

@@ -15,7 +15,7 @@ class PlayersController < ApplicationController
   end
 
   def edit_nickname_host
-    @instance = Instance.new
+    @game_id = params[:game_id]
   end
 
   def edit_nickname_player
