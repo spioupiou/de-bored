@@ -12,11 +12,13 @@ class InstancesController < ApplicationController
       current_user = update_nickname
 
       # host must also be created as a player
-      Player.create!(
+      host_player = Player.create!(
         user_id: current_user.id,
         instance_id: @instance.id,
         nickname: current_user.nickname
       )
+
+      reference_user_avatar_to_player(host_player.id, current_user.id)
     else
       # this block means the host is creating an instance based from previous instance
 
@@ -158,11 +160,13 @@ class InstancesController < ApplicationController
     user_ids = Player.where(instance: last_instance).map(&:user_id)
 
     user_ids.each do |user_id|
-      Player.create!(
+      player_on_new_instance = Player.create!(
         user_id: user_id,
         instance: new_instance,
         nickname: User.find(user_id).nickname
       )
+
+      reference_user_avatar_to_player(player_on_new_instance.id, user_id)
     end
   end
 
