@@ -20,4 +20,5 @@ Rails.application.routes.draw do
     end
     resources :results, only: [:show]
   end
+  post 'screenshot', to: 'screenshots#save'
 end
