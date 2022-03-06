@@ -10,11 +10,15 @@ class PlayersController < ApplicationController
       # don't allow any more players to join if any condition is true
       redirect_to games_path, alert: "Game is full, tell your buddy to increase max players."  and return if @instance.max_players == Player.where(instance: @instance).count
 
-      redirect_to edit_nickname_instance_path(@instance)
+      redirect_to edit_nickname_player_instance_path(@instance)
     end
   end
 
-  def edit_nickname
+  def edit_nickname_host
+    @game_id = params[:game_id]
+  end
+
+  def edit_nickname_player
     @instance = Instance.find(params[:id])
   end
 

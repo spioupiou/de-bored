@@ -7,13 +7,15 @@ class InstancesController < ApplicationController
     # check last_instance_id from views/results/show.html.erb is there
     if params[:last_instance_id].nil?
       # this block means the host is creating an instance from games list
-
       @instance = generate_new_instance_from_scratch
+      # Update host nickname
+      current_user = update_nickname
+
       # host must also be created as a player
       Player.create!(
-        user_id: current_or_guest_user.id,
+        user_id: current_user.id,
         instance_id: @instance.id,
-        nickname: current_or_guest_user.nickname
+        nickname: current_user.nickname
       )
     else
       # this block means the host is creating an instance based from previous instance
@@ -164,4 +166,10 @@ class InstancesController < ApplicationController
     end
   end
 
+  def update_nickname
+    user = current_or_guest_user
+    user.nickname = params[:nickname]
+    user.save!
+    user
+  end
 end
