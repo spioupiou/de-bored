@@ -28,16 +28,23 @@ gem 'redis', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'devise'
-gem 'rqrcode'
-
-gem "chartkick"
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
-group :development, :test do  gem 'pry-byebug'
+gem 'devise'
+
+# local and prod gem's that the team has added
+gem 'rqrcode'
+gem "chartkick"
+gem "avatarly"
+gem 'cloudinary', '~> 1.16.0'
+
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
+  gem 'open-uri'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
