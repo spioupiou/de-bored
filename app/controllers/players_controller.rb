@@ -80,17 +80,4 @@ class PlayersController < ApplicationController
     end
     redirect_to games_path
   end
-
-  private
-
-  def reference_user_avatar_to_player(player_id, user_id)
-    user_avatar = ActiveStorage::Attachment.find_by(record_type: "User", record_id: user_id)
-
-    player_avatar = ActiveStorage::Attachment.new
-    player_avatar.name = user_avatar.name
-    player_avatar.record_type = "Player"
-    player_avatar.record_id = player_id
-    player_avatar.blob_id = user_avatar.blob_id
-    player_avatar.save!
-  end
 end
