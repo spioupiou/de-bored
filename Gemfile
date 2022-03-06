@@ -36,7 +36,6 @@ gem 'devise'
 # local and prod gem's that the team has added
 gem 'rqrcode'
 gem "chartkick"
-gem "avatarly"
 gem 'cloudinary', '~> 1.16.0'
 
 group :development, :test do

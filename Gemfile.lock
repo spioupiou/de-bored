@@ -60,10 +60,6 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.2.5.0)
       execjs (< 2.8.0)
-    avatarly (1.6.1)
-      rfc822
-      rmagick
-      unicode_utils
     aws_cf_signer (0.1.3)
     bcrypt (3.1.16)
     bindex (0.8.1)
@@ -204,8 +200,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    rfc822 (0.1.5)
-    rmagick (4.2.4)
     rqrcode (2.1.1)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
@@ -253,7 +247,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
-    unicode_utils (1.4.0)
     uri (0.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -283,7 +276,6 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails (= 10.2.5)
-  avatarly
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
