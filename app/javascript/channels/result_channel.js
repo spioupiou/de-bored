@@ -1,5 +1,5 @@
 import consumer from "./consumer";
-import { countdownTimer } from "../components/countdown_timer";
+import { showImposter } from "../components/show_imposter";
 
 const initResultCable = () => {
   const resultContainer = document.getElementById("result")
@@ -24,7 +24,7 @@ const initResultCable = () => {
             }
             if(data.result_page){
               $( "#result" ).load(window.location.href + " #result", function(){
-                countdownTimer();
+                showImposter();
               });
             }
           }

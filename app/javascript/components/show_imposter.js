@@ -1,13 +1,20 @@
 export const showImposter = () => {
     const countdown = document.getElementById("countdown");
-    const overlay = document.getElementById("overlay")
-    const revealImposter = document.getElementById("impostor-reveal")
+    const overlay = document.getElementById("overlay");
+    const revealImposter = document.getElementById("impostor-reveal");
+    const returnScreen = document.getElementById("return-screen");
+
+    const returnToScreen = () => {
+        returnScreen.addEventListener("click", (e) => {
+            overlay.classList.toggle("active")
+            revealImposter.classList.toggle("d-none")
+        })
+    }
 
     const revealingImposter = () => {
         const timer = setInterval(() => {
             countdown.innerText -= 1
             if((parseInt(countdown.innerText)) === 0){
-                console.log("hello")
                 clearInterval(timer);
                 overlay.classList.toggle("active")
                 setTimeout(() => {
@@ -17,5 +24,8 @@ export const showImposter = () => {
         }, 1000)
     }
 
-    if(!!overlay){ revealingImposter(); }
+    if(!!overlay){ 
+        revealingImposter();
+        returnToScreen();
+    }
 }

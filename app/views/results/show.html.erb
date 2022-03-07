@@ -10,6 +10,7 @@
     <div id="overlay" class="d-flex justify-content-center align-items-center">
       <div id="impostor-reveal" class="d-none">
         <%= render "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_voted_player: @highest_voted_player %>
+        <div class="text-center"><button id="return-screen" class="btn btn-warning">Back to Results</button></div>
       </div>
     </div>
       
@@ -21,7 +22,7 @@
           <div class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
            <% if @total_voters == @total_votes %>
              <div>
-                <h4 class="px-2">Revealing imposter in:</h4><h4 id="countdown">3</h4>
+                <h4 class="px-2">Revealing imposter in:</h4><h4 id="countdown">4</h4>
              </div>
           <% else %>
             <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
@@ -32,11 +33,6 @@
           <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
             <%= render  "result_chart", players: @players %>
           </div>
-
-        <!-- Partial for chart -->
-        <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
-          <%= render  "result_chart", players: @players %>
-        </div>
 
         <!-- Partial for Vote Tally -->
         <div id="vote-tally" class="result-page" style="height:20vh;">
