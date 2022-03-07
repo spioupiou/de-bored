@@ -1,6 +1,7 @@
 import Rails from "@rails/ujs";
 import html2canvas from 'html2canvas';
 
+
 const captureResults = () => {
   const results = document.querySelector("#result");
   const saveBtn = document.querySelector("#download");
@@ -20,6 +21,9 @@ const captureResults = () => {
   const takeScreenshot = () => {
     html2canvas(results, {
       backgroundColor: '#035d79cc',
+      allowTaint: true,
+      useCORS: true,
+      proxy: 'server.js',
     }).then(canvas => {
       console.log("Screenshot!")
       const image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
@@ -36,8 +40,9 @@ const captureResults = () => {
       fd.append("image", file);
 
       // Append the result number to the form data
-      let url = window.location.href
-      const resultId = url.slice(url.length - 1)
+      let url = window.location.href;
+      const resultId = url.split("/").pop();
+      console.log(resultId);
       fd.append("result", resultId)
 
       // And send it
