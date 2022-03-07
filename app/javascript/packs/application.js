@@ -52,6 +52,7 @@ document.addEventListener('turbolinks:load', () => {
   highlighter();
   countdownTimer();
   autoFocus();
-  captureResults();
   updateDiv();
+  captureResults();
+
 });
