@@ -54,5 +54,4 @@ document.addEventListener('turbolinks:load', () => {
   autoFocus();
   updateDiv();
   captureResults();
-
 });
