@@ -2,7 +2,7 @@
   <div id="result-card" class="card m-2 p-2" style="height: 80px">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
-        <div id="result-avatar"><%= cl_image_tag player.user.avatar.key%></div>
+        <div id="result-avatar"><%= cl_image_tag player.user.avatar.key, class: "avatar" %></div>
         <div class="px-3"><p><%= player.nickname %></p></div>
       </div>
       <div id="who-voted-who" class="d-flex">
