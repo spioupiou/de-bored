@@ -6,13 +6,26 @@
 
 <div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
+  
+    <div id="overlay" class="d-flex justify-content-center align-items-center">
+      <div id="impostor-reveal" class="d-none">
+        <%= render "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_voted_player: @highest_voted_player %>
+      </div>
+    </div>
+      
       <div class="row">
         <div class="col-12">
           <h1 class="my-4 text-center">Game Results</h1>
 
           <!-- Partial for Imposter reveal -->
-          <div id="imposter-reveal" class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
+          <div class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
+           <% if @total_voters == @total_votes %>
+             <div>
+                <h4 class="px-2">Revealing imposter in:</h4><h4 id="countdown">3</h4>
+             </div>
+          <% else %>
             <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
+          <% end %>
           </div>
 
           <!-- Partial for chart -->

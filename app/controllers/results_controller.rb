@@ -20,7 +20,9 @@ class ResultsController < ApplicationController
     @vote_tally = Vote.select(:voted_player_id).where(instance_id: @instance.id).group(:voted_player_id).count(:voted_player_id)
 
     # Get the Highest votes in the hash
-    @highest_vote = @vote_tally.values.max
+    highest_vote = @vote_tally.values.max
+    highest_voted_player_id = @vote_tally.key(highest_vote)
+    @highest_voted_player = Player.find(highest_voted_player_id)
   end
 
 end
