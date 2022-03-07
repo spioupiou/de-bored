@@ -58,6 +58,7 @@ const captureResults = () => {
   }
 
   if (!!saveBtn) {
+    console.log(saveBtn)
     saveBtn.addEventListener('click', takeScreenshot)
   }
 }
