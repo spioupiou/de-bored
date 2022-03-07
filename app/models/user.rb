@@ -27,7 +27,7 @@ class User < ApplicationRecord
     dicebear_avatar_type = "bottts"                     # robots for genderbias and also kinda matches with our theme
     seed = rand(0..999).to_s << self.nickname.last(4)   # just a random seed so each user will have a unique robot avatar
     bg_color = "E3CAA5"
-    border_radius = "50"                                # 50px
+    border_radius = "50"                                # 50% to make it a circle
     scale = "85"                                        # 85% so it could fit in the circular radius
     pixel_size = 60
     flip = rand(0..1)                                   # robots may face left or right
