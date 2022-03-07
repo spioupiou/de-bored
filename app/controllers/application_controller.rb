@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   skip_forgery_protection
 
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
@@ -35,6 +39,17 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
     session[:guest_user_id] = nil
     guest_user if with_retry
+  end
+
+  def reference_user_avatar_to_player(player_id, user_id)
+    user_avatar = ActiveStorage::Attachment.find_by(record_type: "User", record_id: user_id)
+
+    player_avatar = ActiveStorage::Attachment.new
+    player_avatar.name = user_avatar.name
+    player_avatar.record_type = "Player"
+    player_avatar.record_id = player_id
+    player_avatar.blob_id = user_avatar.blob_id
+    player_avatar.save!
   end
 
   private
