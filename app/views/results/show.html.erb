@@ -33,38 +33,47 @@
             <%= render  "result_chart", players: @players %>
           </div>
 
+        <!-- Partial for chart -->
+        <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
+          <%= render  "result_chart", players: @players %>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
 
         <!-- Partial for Vote Tally -->
-          <div id="vote-tally" class="result-page" style="height:20vh;">
-            <%= render  "result_vote_tally" %>
-          </div>
-
+        <div id="vote-tally" class="result-page" style="height:20vh;">
+          <%= render  "result_vote_tally" %>
         </div>
       </div>
     </div>
-
-      <div class="row">
-        <div class="col-12">
-          <div id="result-footer" class="d-flex justify-content-around my-3" style="height:5vh;" data-html2canvas-ignore>
-            <% if @current_user.id == @instance.user_id %>
-              <%= simple_form_for Instance.new do |f| %>
-                <%# needed for creating a new instance %>
-                <div>
-                  <%# needed to get last_instance_id for creation of new instance %>
-                  <%= hidden_field_tag 'last_instance_id', @instance.id %>
-                  <%= f.submit "Exit Game", class: "btn btn-primary" %>
-                </div>
-              <% end %>
-            <% end %>
-
-            <%= render "share_modal" %>
-          </div>
-        </div>
-      </div>
-
   </div>
+
+
+  <!-- This shouldn't get refreshed -->
+  <div id="result-footer" class="d-flex justify-content-center" style="height:5vh;" data-html2canvas-ignore>
+    <div class="row">
+      <div class="col-12">
+
+        <!-- Partial for SNS -->
+        <div class="sns-icons d-flex justify-content-center my-2">
+          <i class="fb_with_bg fab fa-facebook-square" id="facebook"></i>
+          <i class="fa_with_bg fab fa-twitter-square" id="twitter"></i>
+          <i class="fa_with_bg fab fa-instagram-square" id="instagram"></i>
+          <i class="fa_with_bg fas fa-caret-square-down" id="download"></i>
+        </div>
+
+        <!-- Continue button only for hos -->
+        <div class="d-flex justify-content-center" id="continue-btn">
+          <% if @current_user.id == @instance.user_id %>
+            <%# needed for creating a new instance %>
+            <%= simple_form_for Instance.new do |f| %>
+              <%# needed to get last_instance_id for creation of new instance %>
+              <%= hidden_field_tag 'last_instance_id', @instance.id %>
+              <%= f.submit "Play again?", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
