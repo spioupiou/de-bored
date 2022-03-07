@@ -20,6 +20,9 @@ const initResultCable = () => {
               window.location.pathname = data.path;
               console.log("success")
             }
+            if(data.result_page){
+              $( "#result" ).load(window.location.href + " #result" );
+            }
           }
         });
     }
