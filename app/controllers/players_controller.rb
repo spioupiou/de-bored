@@ -58,6 +58,9 @@ class PlayersController < ApplicationController
         })
     end
 
+    # use the same user avatar for player
+    reference_user_avatar_to_player(new_player.id, @current_user.id)
+
     redirect_to instance_path(@instance)
   end
 
