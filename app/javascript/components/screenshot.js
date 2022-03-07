@@ -1,3 +1,4 @@
+import Rails from "@rails/ujs";
 import html2canvas from 'html2canvas';
 
 const captureResults = () => {
@@ -6,10 +7,10 @@ const captureResults = () => {
 
   function dataURLtoBlob(dataURL) {
     // Decode the dataURL
-    var binary = atob(dataURL.split(',')[1]);
+    let binary = atob(dataURL.split(',')[1]);
     // Create 8-bit unsigned array
-    var array = [];
-    for (var i = 0; i < binary.length; i++) {
+    let array = [];
+    for (let i = 0; i < binary.length; i++) {
       array.push(binary.charCodeAt(i));
     }
     // Return our Blob object
@@ -28,13 +29,13 @@ const captureResults = () => {
       // }
 
       // Find a way to save in base64 image
-      var file = dataURLtoBlob(image)
+      let file = dataURLtoBlob(image)
 
-      var fd = new FormData();
+      let fd = new FormData();
       // Append our Canvas image file to the form data
       fd.append("image", file);
       // And send it
-      $.ajax({
+      Rails.ajax({
         url: "/screenshot",
         type: "POST",
         data: fd,
