@@ -11,10 +11,9 @@
           <h1 class="my-4 text-center">Game Results</h1>
 
           <!-- Partial for Imposter reveal -->
-          <div id="imposter-reveal" class="result-page my-2 text-center" style="height:10vh;">
-            <% if @total_votes == @total_voters%>
-              <%= render  "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_vote: @highest_vote %>
-            <% end %>
+          <div id="imposter-reveal" class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
+            <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
+              </div>
           </div>
 
           <!-- Partial for chart -->
