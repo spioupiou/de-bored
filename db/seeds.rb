@@ -15,6 +15,10 @@ User.destroy_all
 
 puts "Previous seeds have been deleted!"
 
+puts "Deleting previous 1000 cloudinary avatars..."
+Cloudinary::Api.delete_all_resources
+puts "Previous 1000 cloudinary avatars deleted!"
+
 
 # Create Users seeds
 puts "Creating users..."

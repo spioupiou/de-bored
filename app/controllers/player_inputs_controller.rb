@@ -14,7 +14,7 @@ class PlayerInputsController < ApplicationController
 
     @player_input = PlayerInput.new(
       instance_id: @instance.id,
-      player: Player.find_by(user_id: @current_user.id),
+      player: Player.find_by(instance: @instance, user: current_user), # Find the latest player that was created from the current user
       input_type: "string",
       input_value: params[:input_value],
       round_id: @round.id

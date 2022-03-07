@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   resources :games, only: [:index]
   resources :users, only: [:update]
   get '/join_instance', to: 'players#join_instance'
+  get '/edit_nickname_host', to: 'players#edit_nickname_host'
   resources :instances, only: [:create, :show, :update, :destroy] do
     resources :players, only: [:destroy]
     member do
-      get '/edit_nickname', to: 'players#edit_nickname'
+      get '/edit_nickname_player', to: 'players#edit_nickname_player'
       get '/create_players', to: 'players#create_players'
     end
     resources :rounds, only: [:create, :show] do
