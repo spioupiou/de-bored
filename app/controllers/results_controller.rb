@@ -33,7 +33,7 @@ class ResultsController < ApplicationController
     # Total number of "No" votes
     @total_no = @total_answers.select { |k, v| v == 'No' }
     @total_no_tally = @total_no.tally
-    raise
+
   end
 
 end
