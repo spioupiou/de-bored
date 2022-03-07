@@ -1,0 +1,13 @@
+<h5> Total Yes's</h5>
+ <% @total_yes_tally.each do |id, count|%>
+  <% if count == @total_yes_tally.values.max %>
+  <p> <%= Player.find(id[0]).nickname %> had the most Yes's </p>
+  <% end %>
+  <% end %>
+
+  <h5> Total No's</h5>
+ <% @total_yes_tally.each do |id, count|%>
+  <% if count == @total_yes_tally.values.max %>
+  <p> <%= Player.find(id[0]).nickname %> had the most No's. </p>
+  <% end %>
+  <% end %>
