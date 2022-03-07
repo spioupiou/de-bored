@@ -34,6 +34,12 @@ const captureResults = () => {
       let fd = new FormData();
       // Append our Canvas image file to the form data
       fd.append("image", file);
+
+      // Append the result number to the form data
+      let url = window.location.href
+      const resultId = url.slice(url.length - 1)
+      fd.append("result", resultId)
+
       // And send it
       Rails.ajax({
         url: "/screenshot",
