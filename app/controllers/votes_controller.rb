@@ -44,7 +44,6 @@ class VotesController < ApplicationController
       ResultChannel.broadcast_to(
         @result,
         result_page: true,
-        #page: page here
       )
       redirect_to instance_result_path(@instance, @result)
     else
