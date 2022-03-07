@@ -37,6 +37,7 @@ gem 'devise'
 gem 'rqrcode'
 gem "chartkick"
 gem 'cloudinary', '~> 1.16.0'
+gem 'open-uri'
 
 group :development, :test do
   gem 'pry-byebug'
