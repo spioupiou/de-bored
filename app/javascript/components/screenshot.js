@@ -32,6 +32,7 @@ const downloadResults = () => {
 const tweetResults = () => {
   const results = document.querySelector('#result');
   let twitterBtn = document.querySelector('#twitter');
+  const title = results.querySelector('h1');
 
   function dataURLtoBlob(dataURL) {
     // Decode the dataURL
@@ -74,28 +75,25 @@ const tweetResults = () => {
         data: fd,
         processData: false,
         contentType: false,
+        success: tweetImgUrl,
+        error: function (error) { console.log(error) }
       });
     });
   }
 
-  const currentPageUrl = window.location.href;
-
-  const makeTweetableUrl = (text, pageUrl) => {
-    const tweetableText = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + encodeURIComponent(text);
-    return tweetableText;
-  }
+  const tweetImgUrl = (data) => {
+    console.log(data.url);
+    const tweetableUrl = "https://twitter.com/intent/tweet?url=" + data.url + "&text=" + encodeURIComponent(`Check our ${title.innerText} on www.de-bored.fun`);
+    twitterBtn.setAttribute("href", tweetableUrl);
+    var href = $(twitterBtn).attr('href');
+    window.open(href, "Twitter", "height=400,width=400,resizable=1");
+  };
 
   if (!!twitterBtn) {
-    const title = results.querySelector('h1');
-    let tweetableUrl = makeTweetableUrl(title.innerText, currentPageUrl);
-    twitterBtn.setAttribute("href", tweetableUrl);
-
     // Open the popup
     $(twitterBtn).click(function (e) {
       e.preventDefault();
       uploadScreenshot();
-      var href = $(this).attr('href');
-      window.open(href, "Twitter", "height=400,width=300,resizable=1");
     });
   }
 }
