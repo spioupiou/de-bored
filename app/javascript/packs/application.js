@@ -37,6 +37,7 @@ import { updateDiv } from "../components/auto_refresh";
 import { initResultCable } from "../channels/result_channel";
 import { downloadResults } from "../components/screenshot";
 import { tweetResults } from "../components/screenshot";
+import { showImposter } from "../components/show_imposter";
 
 
 // next 3 lines is from https://fontsource.org/fonts
@@ -56,5 +57,5 @@ document.addEventListener('turbolinks:load', () => {
   updateDiv();
   downloadResults();
   tweetResults();
-
+  showImposter();
 });

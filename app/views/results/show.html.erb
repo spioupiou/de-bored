@@ -7,28 +7,42 @@
 
 <div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="my-4 text-center">Game Results</h1>
+  
+    <div id="overlay" class="d-flex justify-content-center align-items-center">
+      <div id="impostor-reveal" class="d-none">
+        <%= render "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_voted_player: @highest_voted_player %>
+        <div class="text-center"><button id="return-screen" class="btn btn-warning">Back to Results</button></div>
+      </div>
+    </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <h1 class="my-4 text-center">Game Results</h1>
 
-        <!-- Partial for Imposter reveal -->
-        <div id="imposter-reveal" class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
-          <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
-        </div>
+          <!-- Partial for Imposter reveal -->
+          <div class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
+           <% if @total_voters == @total_votes %>
+             <div>
+                <h4 class="px-2">Revealing imposter in:</h4><h4 id="countdown">4</h4>
+             </div>
+          <% else %>
+            <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
+          <% end %>
+          </div>
 
-        <!-- Partial for chart -->
-        <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
-          <%= render  "result_chart", players: @players %>
-        </div>
+          <!-- Partial for chart -->
+          <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
+            <%= render  "result_chart", players: @players %>
+          </div>
 
         <!-- Partial for Vote Tally -->
         <div id="vote-tally" class="result-page" style="height:20vh;">
-          <%= render  "result_vote_tally" %>
+          <%= render  "result_stat" %>
         </div>
+
       </div>
     </div>
   </div>
-
 
   <!-- This shouldn't get refreshed -->
   <div id="result-footer" class="d-flex justify-content-center" style="height:5vh;" data-html2canvas-ignore>
