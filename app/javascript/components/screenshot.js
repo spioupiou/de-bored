@@ -6,6 +6,33 @@ const downloadResults = () => {
   const results = document.querySelector("#result");
   const saveBtn = document.querySelector("#download");
 
+  const takeScreenshot = () => {
+    html2canvas(results, {
+      backgroundColor: '#035d79cc',
+      allowTaint: true,
+      useCORS: true,
+      proxy: 'server.js', // Allow external images
+    }).then(canvas => {
+      console.log("Screenshot for local save!")
+      const image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+
+      // Download the image
+      const link = document.createElement('a');
+      link.download = "myresults_debored.png";
+      link.href = image;
+      link.click();
+    });
+  }
+
+  if (!!saveBtn) {
+    saveBtn.addEventListener('click', takeScreenshot)
+  }
+}
+
+const tweetResults = () => {
+  const results = document.querySelector('#result');
+  let twitterBtn = document.querySelector('#twitter');
+
   function dataURLtoBlob(dataURL) {
     // Decode the dataURL
     let binary = atob(dataURL.split(',')[1]);
@@ -18,19 +45,15 @@ const downloadResults = () => {
     return new Blob([new Uint8Array(array)], { type: 'image/png' });
   }
 
-  const takeScreenshot = () => {
+  const uploadScreenshot = () => {
     html2canvas(results, {
       backgroundColor: '#035d79cc',
       allowTaint: true,
       useCORS: true,
       proxy: 'server.js',
     }).then(canvas => {
-      console.log("Screenshot!")
+      console.log("Screenshot for cloudinary and result model!")
       const image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
-      // Insert image in element
-      // if (document.getElementById("screenshot")) {
-      //   document.getElementById("screenshot").src = image;
-      // }
 
       // Save in base64 image
       let file = dataURLtoBlob(image)
@@ -52,23 +75,8 @@ const downloadResults = () => {
         processData: false,
         contentType: false,
       });
-
-      // Download the image
-      const link = document.createElement('a');
-      link.download = "myresults_debored.png";
-      link.href = image;
-      link.click();
     });
   }
-
-  if (!!saveBtn) {
-    saveBtn.addEventListener('click', takeScreenshot)
-  }
-}
-
-const tweetResults = () => {
-  const results = document.querySelector('#result');
-  let twitterBtn = document.querySelector('#twitter');
 
   const currentPageUrl = window.location.href;
 
@@ -85,6 +93,7 @@ const tweetResults = () => {
     // Open the popup
     $(twitterBtn).click(function (e) {
       e.preventDefault();
+      uploadScreenshot();
       var href = $(this).attr('href');
       window.open(href, "Twitter", "height=400,width=300,resizable=1");
     });
