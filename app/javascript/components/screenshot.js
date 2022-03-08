@@ -68,7 +68,6 @@ const downloadResults = () => {
 
 const tweetResults = () => {
   const results = document.querySelector('#result');
-  const title = results.querySelector('h1');
   let twitterBtn = document.querySelector('#twitter');
 
   const currentPageUrl = window.location.href;
@@ -79,31 +78,7 @@ const tweetResults = () => {
   }
 
   if (!!twitterBtn) {
-    let tweetableUrl = makeTweetableUrl(title.innerText, currentPageUrl);
-    twitterBtn.setAttribute("href", tweetableUrl);
-
-    // Open the popup
-    $(twitterBtn).click(function (e) {
-      e.preventDefault();
-      var href = $(this).attr('href');
-      window.open(href, "Twitter", "height=400,width=300,resizable=1");
-    });
-  }
-}
-
-const fbResults = () => {
-  const results = document.querySelector('#result');
-  const title = results.querySelector('h1');
-  let twitterBtn = document.querySelector('#twitter');
-
-  const currentPageUrl = window.location.href;
-
-  const makeTweetableUrl = (text, pageUrl) => {
-    const tweetableText = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + encodeURIComponent(text);
-    return tweetableText;
-  }
-
-  if (!!twitterBtn) {
+    const title = results.querySelector('h1');
     let tweetableUrl = makeTweetableUrl(title.innerText, currentPageUrl);
     twitterBtn.setAttribute("href", tweetableUrl);
 
