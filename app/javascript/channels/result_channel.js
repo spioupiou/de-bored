@@ -1,4 +1,6 @@
 import consumer from "./consumer";
+import { showImposter } from "../components/show_imposter";
+
 const initResultCable = () => {
   const resultContainer = document.getElementById("result")
 
@@ -21,7 +23,9 @@ const initResultCable = () => {
               console.log("success")
             }
             if(data.result_page){
-              $( "#result" ).load(window.location.href + " #result" );
+              $( "#result" ).load(window.location.href + " #result", function(){
+                showImposter();
+              });
             }
           }
         });
