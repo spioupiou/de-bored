@@ -1,11 +1,12 @@
 <div class="container-fluid" style="height: 75vh;">
   <div class="d-flex justify-content-center align-items-center h-100">
     <div class="text-center">
+        <%= cl_image_tag current_user.avatar.key, class: "avatar my-3", size: "100x100"%>
       <% if current_player_is_impostor %>
-        <h3 class="notification">You are the impostor!</h3>
+        <h3 class="notification">You are the <strong id="notification-impostor">IMPOSTOR</strong></h3>
         <h5>Your job is to lie to your friends and to not get caught.</h5>
       <% else %>
-        <h3 class="notification">You are not the impostor!</h3>
+        <h3 class="notification">You're <strong id="notification-non">NOT</strong> the impostor!</h3>
         <h5>Good! Be honest with your friends and answer the questions sincerely.</h5>
       <% end %>
 
