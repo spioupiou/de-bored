@@ -32,7 +32,6 @@ const downloadResults = () => {
 const tweetResults = () => {
   const results = document.querySelector('#result');
   let twitterBtn = document.querySelector('#twitter');
-  const title = results.querySelector('h1');
 
   function dataURLtoBlob(dataURL) {
     // Decode the dataURL
@@ -83,6 +82,7 @@ const tweetResults = () => {
 
   const tweetImgUrl = (data) => {
     console.log(data.url);
+    const title = results.querySelector('h1');
     const tweetableUrl = "https://twitter.com/intent/tweet?url=" + data.url + "&text=" + encodeURIComponent(`Check our ${title.innerText} on www.de-bored.fun`);
     twitterBtn.setAttribute("href", tweetableUrl);
     var href = $(twitterBtn).attr('href');
