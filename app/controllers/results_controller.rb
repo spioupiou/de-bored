@@ -2,6 +2,7 @@ class ResultsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def show
+
     @instance = Instance.find(params[:instance_id])
     @votes = Vote.where(instance: @instance)
     @result = Result.find(params[:id])
@@ -9,7 +10,7 @@ class ResultsController < ApplicationController
 
     # Total number of votes
     @total_votes = Vote.where(instance: @instance).count
-    
+
     # Total number of voters
     @total_voters = Player.where(instance: @instance).count
 
@@ -23,6 +24,19 @@ class ResultsController < ApplicationController
     highest_vote = @vote_tally.values.max
     highest_voted_player_id = @vote_tally.key(highest_vote)
     @highest_voted_player = Player.find(highest_voted_player_id)
+    @highest_vote = @vote_tally.values.max
+
+    # Get the total of "Yes" and "No" votes of each player
+    @total_answers = PlayerInput.where(instance_id: @instance.id).pluck(:player_id, :input_value)
+
+    # Total number of "Yes" votes
+    @total_yes = @total_answers.select { |k, v| v == 'Yes' }
+    @total_yes_tally = @total_yes.tally
+
+    # Total number of "No" votes
+    @total_no = @total_answers.select { |k, v| v == 'No' }
+    @total_no_tally = @total_no.tally
+
   end
 
 end
