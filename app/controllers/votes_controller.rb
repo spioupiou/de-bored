@@ -6,8 +6,6 @@ class VotesController < ApplicationController
     @players = Player.where(instance_id: @instance.id)
     @current_user = current_or_guest_user
 
-    result = Result.create!(instance_id: @instance.id)
-    # Get players_id AND nicknames in one single object
     @vote = Vote.new
   end
 
@@ -37,8 +35,12 @@ class VotesController < ApplicationController
       voter: Player.find_by(user_id: current_or_guest_user.id)
     )
 
-    # Need to add most_voted_player/most yes_player etc.
+    # Create a result for the instance if not done already
     @result = Result.find_by_instance_id(@instance.id)
+
+    if @result.blank?
+      @result = Result.create!(instance_id: @instance.id)
+    end
 
     if @vote.save
       ResultChannel.broadcast_to(
