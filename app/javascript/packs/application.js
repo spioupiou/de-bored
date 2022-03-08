@@ -35,13 +35,14 @@ import { countdownTimer } from "../components/countdown_timer";
 import { autoFocus } from "../components/auto_focus";
 import { updateDiv } from "../components/auto_refresh";
 import { initResultCable } from "../channels/result_channel";
+import { downloadResults } from "../components/screenshot";
+import { tweetResults } from "../components/screenshot";
 
 
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";
 import "@fontsource/play";
 import "@fontsource/dosis";
-import { captureResults } from "../components/screenshot";
 
 document.addEventListener('turbolinks:load', () => {
 
@@ -53,5 +54,7 @@ document.addEventListener('turbolinks:load', () => {
   countdownTimer();
   autoFocus();
   updateDiv();
-  captureResults();
+  downloadResults();
+  tweetResults();
+
 });

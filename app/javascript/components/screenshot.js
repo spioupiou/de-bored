@@ -2,7 +2,7 @@ import Rails from "@rails/ujs";
 import html2canvas from 'html2canvas';
 
 
-const captureResults = () => {
+const downloadResults = () => {
   const results = document.querySelector("#result");
   const saveBtn = document.querySelector("#download");
 
@@ -32,7 +32,7 @@ const captureResults = () => {
       //   document.getElementById("screenshot").src = image;
       // }
 
-      // Find a way to save in base64 image
+      // Save in base64 image
       let file = dataURLtoBlob(image)
 
       let fd = new FormData();
@@ -42,7 +42,6 @@ const captureResults = () => {
       // Append the result number to the form data
       let url = window.location.href;
       const resultId = url.split("/").pop();
-      console.log(resultId);
       fd.append("result", resultId)
 
       // And send it
@@ -63,9 +62,59 @@ const captureResults = () => {
   }
 
   if (!!saveBtn) {
-    console.log(saveBtn)
     saveBtn.addEventListener('click', takeScreenshot)
   }
 }
 
-export { captureResults }
+const tweetResults = () => {
+  const results = document.querySelector('#result');
+  const title = results.querySelector('h1');
+  let twitterBtn = document.querySelector('#twitter');
+
+  const currentPageUrl = window.location.href;
+
+  const makeTweetableUrl = (text, pageUrl) => {
+    const tweetableText = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + encodeURIComponent(text);
+    return tweetableText;
+  }
+
+  if (!!twitterBtn) {
+    let tweetableUrl = makeTweetableUrl(title.innerText, currentPageUrl);
+    twitterBtn.setAttribute("href", tweetableUrl);
+
+    // Open the popup
+    $(twitterBtn).click(function (e) {
+      e.preventDefault();
+      var href = $(this).attr('href');
+      window.open(href, "Twitter", "height=400,width=300,resizable=1");
+    });
+  }
+}
+
+const fbResults = () => {
+  const results = document.querySelector('#result');
+  const title = results.querySelector('h1');
+  let twitterBtn = document.querySelector('#twitter');
+
+  const currentPageUrl = window.location.href;
+
+  const makeTweetableUrl = (text, pageUrl) => {
+    const tweetableText = "https://twitter.com/intent/tweet?url=" + pageUrl + "&text=" + encodeURIComponent(text);
+    return tweetableText;
+  }
+
+  if (!!twitterBtn) {
+    let tweetableUrl = makeTweetableUrl(title.innerText, currentPageUrl);
+    twitterBtn.setAttribute("href", tweetableUrl);
+
+    // Open the popup
+    $(twitterBtn).click(function (e) {
+      e.preventDefault();
+      var href = $(this).attr('href');
+      window.open(href, "Twitter", "height=400,width=300,resizable=1");
+    });
+  }
+}
+
+export { downloadResults };
+export { tweetResults };
