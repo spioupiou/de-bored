@@ -17,7 +17,7 @@ export const highlighter = () => {
               { 
                   type: 'highlight', 
                   color: "#52D75F",
-                  animationDuration: 1,
+                  animationDuration: 2000,
                   strokeWidth: 6,
                   iterations: 3,
                   padding: 20
@@ -33,7 +33,7 @@ export const highlighter = () => {
                   strokeWidth: 1,
                   iterations: 3,
               });
-              setTimeout(() => { annotation.show() }, 1 )
+              setTimeout(() => { annotation.show() }, 2700 )
               
           }
           
@@ -45,7 +45,7 @@ export const highlighter = () => {
               deBoredQuote.classList.add("active");
               setTimeout(() => {
                 playNow.classList.remove("d-none");
-              }, 1)
+              }, 3000)
     
       });
     }
