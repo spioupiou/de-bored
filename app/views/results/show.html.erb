@@ -1,8 +1,9 @@
 <!-- Change the metadata for the Results page -->
 <% content_for :meta_title, "Results" %>
 <% content_for :meta_description, "My #{DEFAULT_META["meta_product_name"]} results" %>
+
 <!-- Find a way to change image with results image -->
-<%# content_for :meta_image, cl_image_path(@offer.photo.path) %>
+<%# content_for :meta_image, cl_image_path(@result.photo.path) %>
 
 <div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
@@ -51,7 +52,7 @@
         <!-- Partial for SNS -->
         <div class="sns-icons d-flex justify-content-center my-2">
           <i class="fb_with_bg fab fa-facebook-square" id="facebook"></i>
-          <i class="fa_with_bg fab fa-twitter-square" id="twitter"></i>
+          <a href="" id="twitter"><i class="fa_with_bg fab fa-twitter-square"></i></a>
           <i class="fa_with_bg fab fa-instagram-square" id="instagram"></i>
           <i class="fa_with_bg fas fa-caret-square-down" id="download"></i>
         </div>
