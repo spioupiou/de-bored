@@ -5,7 +5,7 @@
       <%= link_to "Back", instance_path(@instance), method: :delete, class: "btn btn-warning" %>
     </div>
   <% else %>
-    <div class="col-6">
+    <div class="d-flex pt-3 pb-2">
       <!-- Leave Instance button for players -->
       <%= link_to "Leave lobby", instance_player_path(@instance, @players), method: :delete, class: "my-2 btn btn-warning" %>
     </div>
