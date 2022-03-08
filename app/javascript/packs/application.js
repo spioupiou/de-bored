@@ -36,6 +36,7 @@ import { autoFocus } from "../components/auto_focus";
 import { updateDiv } from "../components/auto_refresh";
 import { initResultCable } from "../channels/result_channel";
 import { showImposter } from "../components/show_imposter";
+import { showWinner } from "../components/show_winner";
 
 
 // next 3 lines is from https://fontsource.org/fonts
@@ -56,4 +57,5 @@ document.addEventListener('turbolinks:load', () => {
   updateDiv();
   captureResults();
   showImposter();
+  showWinner();
 });

@@ -26,6 +26,8 @@ class ResultsController < ApplicationController
     @highest_voted_player = Player.find(highest_voted_player_id)
     @highest_vote = @vote_tally.values.max
 
+    @announce_winner = determine_winner()
+
     # Get the total of "Yes" and "No" votes of each player
     @total_answers = PlayerInput.where(instance_id: @instance.id).pluck(:player_id, :input_value)
 
@@ -36,6 +38,19 @@ class ResultsController < ApplicationController
     # Total number of "No" votes
     @total_no = @total_answers.select { |k, v| v == 'No' }
     @total_no_tally = @total_no.tally
+
+  end
+
+  def determine_winner
+
+    if ((@highest_voted_player.nickname == @impostor.nickname) && 
+       (current_or_guest_user.nickname == @impostor.nickname)) ||
+       ((@highest_voted_player.nickname != @impostor.nickname) && 
+       (current_or_guest_user.nickname != @impostor.nickname))
+          return "LOSE"
+    else
+      return "WON"
+    end
 
   end
 
