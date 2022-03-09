@@ -31,3 +31,21 @@
 #impostor-result{
     font-size: 32px;
 }
+
+#most-yes-result {
+    background-color: $mizu;
+    border: 2px solid #151f52;
+    border-radius: 8px;
+    border-style: groove;
+    margin: 8px;
+    text-align: center;
+}
+
+#most-no-result {
+    background-color: $pink;
+    border: 2px solid #151f52;
+    border-radius: 8px;
+    margin: 8px;
+    text-align: center;
+
+}
