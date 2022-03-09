@@ -1,0 +1,27 @@
+#container-impostor-info{
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  // border: 1px solid red;
+}
+
+#btn-impostor-info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  margin-right: 8px;
+
+  font-size: 12px;
+}
+
+#popup-impostor-info{
+  border: 1px solid $kiroi;
+  position: absolute;
+  left: 64px;
+  width: 12rem;
+}
