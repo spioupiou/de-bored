@@ -21,13 +21,14 @@
 
           <!-- Partial for Imposter reveal -->
           <div class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
-           <% if @total_voters == @total_votes %>
-             <div>
-                <h4 class="px-2">Revealing imposter in:</h4><h4 id="countdown">4</h4>
-             </div>
-          <% else %>
-            <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
-          <% end %>
+            <% if @total_voters == @total_votes %>
+              <% winner = @impostor.nickname %>
+              <div id="winner-section"  data-winner-id="<%=winner%>" data-announce-winner="<%=@announce_winner%>">
+                <h4 class="px-2">Revealing impostor in:</h4><h4 id="countdown">4</h4>
+              </div>
+            <% else %>
+              <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
+            <% end %>
           </div>
 
           <!-- Partial for chart -->
