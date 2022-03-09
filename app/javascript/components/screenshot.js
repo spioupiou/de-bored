@@ -1,34 +1,6 @@
 import Rails from "@rails/ujs";
 import html2canvas from 'html2canvas';
 
-
-const downloadResults = () => {
-  const results = document.querySelector("#result");
-  const saveBtn = document.querySelector("#download");
-
-  const takeScreenshot = () => {
-    html2canvas(results, {
-      backgroundColor: '#035d79cc',
-      allowTaint: true,
-      useCORS: true,
-      proxy: 'server.js', // Allow external images
-    }).then(canvas => {
-      console.log("Screenshot for local save!")
-      const image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
-
-      // Download the image
-      const link = document.createElement('a');
-      link.download = "myresults_debored.png";
-      link.href = image;
-      link.click();
-    });
-  }
-
-  if (!!saveBtn) {
-    saveBtn.addEventListener('click', takeScreenshot)
-  }
-}
-
 const tweetResults = () => {
   const results = document.querySelector('#result');
   let twitterBtn = document.querySelector('#twitter');
@@ -96,5 +68,4 @@ const tweetResults = () => {
   }
 }
 
-export { downloadResults };
 export { tweetResults };

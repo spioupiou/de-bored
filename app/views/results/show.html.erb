@@ -7,14 +7,14 @@
 
 <div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
-  
+
     <div id="overlay" class="d-flex justify-content-center align-items-center">
       <div id="impostor-reveal" class="d-none">
         <%= render "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_voted_player: @highest_voted_player %>
         <div class="text-center"><button id="return-screen" class="btn btn-warning">Back to Results</button></div>
       </div>
     </div>
-      
+
       <div class="row">
         <div class="col-12">
           <h1 class="my-4 text-center">Game Results</h1>
@@ -55,7 +55,6 @@
           <i class="fb_with_bg fab fa-facebook-square" id="facebook"></i>
           <a href="" id="twitter"><i class="fa_with_bg fab fa-twitter-square"></i></a>
           <i class="fa_with_bg fab fa-instagram-square" id="instagram"></i>
-          <i class="fa_with_bg fas fa-caret-square-down" id="download"></i>
         </div>
 
         <!-- Continue button only for hos -->
