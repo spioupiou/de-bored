@@ -219,6 +219,7 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    shorturl (1.0.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -296,6 +297,7 @@ DEPENDENCIES
   rqrcode
   sass-rails (>= 6)
   selenium-webdriver
+  shorturl
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -309,4 +311,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.3.8
+   2.3.6
