@@ -84,9 +84,7 @@ const tweetResults = () => {
     console.log(data.url);
     const title = results.querySelector('h1');
     const tweetableUrl = "https://twitter.com/intent/tweet?url=" + data.url + "&text=" + encodeURIComponent(`Check our ${title.innerText} on www.de-bored.fun`);
-    twitterBtn.setAttribute("href", tweetableUrl);
-    var href = $(twitterBtn).attr('href');
-    window.open(href, "Twitter", "height=400,width=400,resizable=1");
+    window.open(tweetableUrl, "Twitter", "height=400,width=400,resizable=1");
   };
 
   if (!!twitterBtn) {
