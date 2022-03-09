@@ -7,14 +7,14 @@
 
 <div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
-  
+
     <div id="overlay" class="d-flex justify-content-center align-items-center">
       <div id="impostor-reveal" class="d-none">
         <%= render "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_voted_player: @highest_voted_player %>
         <div class="text-center"><button id="return-screen" class="btn btn-warning">Back to Results</button></div>
       </div>
     </div>
-      
+
       <div class="row">
         <div class="col-12">
           <h1 class="my-4 text-center">Game Results</h1>
@@ -31,13 +31,14 @@
           </div>
 
           <!-- Partial for chart -->
-          <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
+          <div id="chart" class="result-page my-2" style="heig ht:40vh; overflow: auto;">
             <%= render  "result_chart", players: @players %>
           </div>
 
-        <!-- Partial for Vote Tally -->
-        <div id="vote-tally" class="result-page" style="height:20vh;">
-          <%= render  "result_stat" %>
+          <!-- Partial for Stats -->
+          <div id="vote-stat px-2" class="result-page" style="height:40vh">
+            <%= render  "result_stat" %>
+          </div>
         </div>
 
       </div>
