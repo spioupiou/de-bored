@@ -23,6 +23,7 @@ const initResultCable = () => {
               console.log("success")
             }
             if(data.result_page){
+              location.reload();
               $( "#result" ).load(window.location.href + " #result", function(){
                 showImposter();
               });
