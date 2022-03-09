@@ -36,7 +36,6 @@ import { countdownTimer } from "../components/countdown_timer";
 import { autoFocus } from "../components/auto_focus";
 import { updateDiv } from "../components/auto_refresh";
 import { initResultCable } from "../channels/result_channel";
-import { downloadResults } from "../components/screenshot";
 import { tweetResults } from "../components/screenshot";
 import { showImposter } from "../components/show_imposter";
 import { showWinner } from "../components/show_winner";
@@ -57,7 +56,6 @@ document.addEventListener('turbolinks:load', () => {
   countdownTimer();
   autoFocus();
   updateDiv();
-  downloadResults();
   tweetResults();
   showImposter();
   showWinner();
