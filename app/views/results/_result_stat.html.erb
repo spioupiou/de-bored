@@ -5,8 +5,7 @@
       <h6>Who answered the most <strong>Yes's</strong></h6>
       <% @total_yes_tally.each do |id, count|%>
       <% if count == @total_yes_tally.values.max %>
-        <p><strong> <%= Player.find(id[0]).nickname %></strong>
-        </p>
+        <p><strong> <%= Player.find(id[0]).nickname %></strong></p>
       <% end %>
     <% end %>
     </div>
