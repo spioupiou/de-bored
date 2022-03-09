@@ -1,5 +1,5 @@
 <% players.each do |player| %>
-  <div id="result-card" class="card m-2 p-2" style="height: 80px">
+  <div id="result-card" class="card m-2 p-2">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <div id="result-avatar"><%= cl_image_tag player.user.avatar.key, class: "avatar" %></div>
