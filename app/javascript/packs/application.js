@@ -27,6 +27,7 @@ import "bootstrap";
 import "chartkick/chart.js"
 
 // Internal imports, e.g:
+import { showTaps } from "../components/show_taps";
 import { initInstanceChannel } from '../channels/instance_channel';
 import { highlighter } from "../plugins/rough_notation";
 import { initRoundCable } from '../channels/round_channel';
@@ -47,7 +48,7 @@ import "@fontsource/play";
 import "@fontsource/dosis";
 
 document.addEventListener('turbolinks:load', () => {
-
+  showTaps();
   initInstanceChannel();
   initRoundCable();
   initResultCable();
