@@ -3,13 +3,14 @@
   <button class="btn btn-info" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <div class="">Menu</div>
   </button>
+  <div class="d-flex align-items-center">
+    <span class="navbar-text px-3">
+    <div class="box2 sb12">Hello, I'm <%= (current_user.nickname).first(12) %></div>
+    </span>
 
-  <span class="navbar-text">
-    Hello <%= current_user.nickname %>
-  </span>
-
-  <div>
-    <%= cl_image_tag current_user.avatar.key, class: "avatar" %>
+    <div>
+      <%= cl_image_tag current_user.avatar.key, class: "avatar" %>
+    </div>
   </div>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
