@@ -16,10 +16,12 @@ class PlayersController < ApplicationController
 
   def edit_nickname_host
     @game_id = params[:game_id]
+    @current_user = current_or_guest_user
   end
 
   def edit_nickname_player
     @instance = Instance.find(params[:id])
+    @current_user = current_or_guest_user
   end
 
   def create_players
