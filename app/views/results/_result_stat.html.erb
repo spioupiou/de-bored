@@ -1,22 +1,17 @@
 <div class="row">
-  <div class="col-12">
-    <h5 style="text-align: center"> Results </h5>
-    <div id="most-yes-result">
-      <h6>Who answered the most <strong>Yes's</strong></h6>
-      <% @total_yes_tally.each do |id, count|%>
-      <% if count == @total_yes_tally.values.max %>
-        <p><strong> <%= Player.find(id[0]).nickname %></strong></p>
-      <% end %>
-    <% end %>
+  <div class="col-12 mt-1">
+    <h4 style="text-align:center;">Results</h4>
+  </div>
+
+  <div class="col-12 d-flex justify-content-center">
+    <div id="most-yes-result" style="width:45%;">
+      <h5>Most <strong>Yes's</strong></h5>
+      <p><%= cl_image_tag @yes_player.user.avatar.key, size: "30x30" %><strong> <%= @yes_player.nickname %> </strong></p>
     </div>
 
-    <div id="most-no-result">
-    <h6> Who answered the most <strong> No's </strong></h6>
-    <% @total_no_tally.each do |id, count|%>
-      <% if count == @total_no_tally.values.max %>
-        <p><strong> <%= Player.find(id[0]).nickname %></strong></p>
-      <% end %>
-    <% end %>
+    <div id="most-no-result" style="width:45%;">
+      <h5>Most <strong> No's </strong></h5>
+      <p><%= cl_image_tag @no_player.user.avatar.key, size: "30x30" %><strong> <%= @no_player.nickname %> </strong></p>
     </div>
   </div>
 </div>
