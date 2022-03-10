@@ -30,6 +30,9 @@ $modal-fade-transform: scale(.5);
 $body-bg: $bg;
 $body-color: white;
 
+body{
+    background: linear-gradient(blue, red);
+}
 
 #inputs {
     
