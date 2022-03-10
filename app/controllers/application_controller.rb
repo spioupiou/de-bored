@@ -56,8 +56,8 @@ class ApplicationController < ActionController::Base
 
   def create_guest_user
     player_prefix = "Player" << %w(X Y Z N A B C D E).sample
-    u = User.new(username: "#{player_prefix}#{Time.now.to_i.to_s}" , guest: true)  # Time.now to always be unique
-    u.nickname = player_prefix << rand(100..999).to_s
+    u = User.new(username: "#{player_prefix}#{Time.now.to_i.to_s}" , guest: true) # Time.now to always be unique
+    u.nickname = player_prefix << rand(0..999).to_s.rjust(3, '0')                 # rjust to add zeroes to the left in case number is below 100
     u.save!(validate: false)
     session[:guest_user_id] = u.id
     u
