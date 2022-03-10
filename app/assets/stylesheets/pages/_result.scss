@@ -10,6 +10,14 @@
     border-radius: 8px;
     border-style: groove;
 }
+
+#result-card-impostor{
+    background-color: $pink;
+    border: 2px solid #68132c;
+    border-radius: 8px;
+    border-style: groove;
+}
+
 #overlay{
     background-color: transparent;
     z-index: -9;
@@ -43,7 +51,7 @@
 
 #most-no-result {
     background-color: $pink;
-    border: 2px solid #151f52;
+    border: 2px solid #68132c;
     border-radius: 8px;
     margin: 8px;
     text-align: center;
