@@ -5,6 +5,9 @@
 <!-- Find a way to change image with results image -->
 <%# content_for :meta_image, cl_image_path(@result.photo.path) %>
 
+<div class="spinner d-none" id="loading">
+</div>
+
 <div class="container-fluid">
   <div id="result" data-result-id="<%=@result.id%>">
 
