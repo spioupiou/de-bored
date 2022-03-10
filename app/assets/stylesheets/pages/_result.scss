@@ -12,12 +12,22 @@
 }
 
 #result-card-impostor{
-    background-color: $pink;
-    border: 2px solid #68132c;
+    background-color: #f5b333;
+    border: 2px solid $orange;
     border-radius: 8px;
     border-style: groove;
+    color: black;
 }
 
+#impostor-label {
+  font-size: 10px;
+  font-family: "Nunito";
+  margin-left: 6px;
+  background-color: $pink;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
 #overlay{
     background-color: transparent;
     z-index: -9;

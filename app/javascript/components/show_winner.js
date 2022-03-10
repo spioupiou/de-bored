@@ -8,9 +8,9 @@ export const showWinner = () => {
 
       let announcement = ""
       if (announce === "LOSE") {
-        announcement = `<h4 class="victory-fail">VictorY</h4>`
+        announcement = `<h4 class="victory-fail">You lost!</h4>`
       } else{
-        announcement = `<h4 class="victory-fail">Fail</h4>`
+        announcement = `<h4 class="victory-fail">You won!</h4>`
       }
 
       returnBtn.addEventListener("click", (e) => {
@@ -20,6 +20,7 @@ export const showWinner = () => {
             if (card.innerText == impostor) {
               const impostorCard = card;
               impostorCard.setAttribute("id", "result-card-impostor");
+              impostorCard.querySelector('p').insertAdjacentHTML('beforeend', `<span id="impostor-label">IMPOSTOR</span>`)
             }
           })
 
