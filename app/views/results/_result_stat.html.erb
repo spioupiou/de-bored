@@ -6,12 +6,20 @@
   <div class="col-12 d-flex justify-content-center">
     <div id="most-yes-result" style="width:45%;">
       <h5>Most <strong>Yes's</strong></h5>
-      <p><%= cl_image_tag @yes_player.user.avatar.key, size: "30x30" %><strong> <%= @yes_player.nickname %> </strong></p>
+      <% unless @yes_players.empty? %>
+        <% @yes_players.each do |player| %>
+          <p><%= cl_image_tag player.user.avatar.key, size: "30x30" %><strong> <%= player.nickname %> </strong></p>
+        <% end %>
+      <% end %>
     </div>
 
     <div id="most-no-result" style="width:45%;">
       <h5>Most <strong> No's </strong></h5>
-      <p><%= cl_image_tag @no_player.user.avatar.key, size: "30x30" %><strong> <%= @no_player.nickname %> </strong></p>
+      <% unless @no_players.empty? %>
+        <% @no_players.each do |player| %>
+        <p><%= cl_image_tag player.user.avatar.key, size: "30x30" %><strong> <%= player.nickname %> </strong></p>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
