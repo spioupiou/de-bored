@@ -28,24 +28,32 @@ class ResultsController < ApplicationController
 
     @announce_winner = determine_winner()
 
-    # Get the total of "Yes" and "No" votes of each player
+    # Get the total of "Yes" and "No" answers of each player
     @total_answers = PlayerInput.where(instance_id: @instance.id).pluck(:player_id, :input_value)
 
-    # Total number of "Yes" votes
+    # Total number of "Yes" answers
     @total_yes = @total_answers.select { |k, v| v == 'Yes' }
     @total_yes_tally = @total_yes.tally
+    @yes_players = []
+    @total_yes_tally.each do |id, count|
+      @yes_players.push(Player.find(id[0])) if count == @total_yes_tally.values.max
+    end
 
-    # Total number of "No" votes
+    # Total number of "No" answers
     @total_no = @total_answers.select { |k, v| v == 'No' }
     @total_no_tally = @total_no.tally
+    @no_players = []
+    @total_no_tally.each do |id, count|
+      @no_players.push(Player.find(id[0])) if count == @total_no_tally.values.max
+    end
 
   end
 
   def determine_winner
 
-    if ((@highest_voted_player.nickname == @impostor.nickname) && 
+    if ((@highest_voted_player.nickname == @impostor.nickname) &&
        (current_or_guest_user.nickname == @impostor.nickname)) ||
-       ((@highest_voted_player.nickname != @impostor.nickname) && 
+       ((@highest_voted_player.nickname != @impostor.nickname) &&
        (current_or_guest_user.nickname != @impostor.nickname))
           return "LOSE"
     else
