@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 const tweetResults = () => {
   const results = document.querySelector('#result');
   let twitterBtn = document.querySelector('#twitter');
+  const loader = document.getElementById('loading');
 
   function dataURLtoBlob(dataURL) {
     // Decode the dataURL
@@ -53,9 +54,9 @@ const tweetResults = () => {
   }
 
   const tweetImgUrl = (data) => {
-    console.log(data.url);
     const title = results.querySelector('h1');
     const tweetableUrl = "https://twitter.com/intent/tweet?url=" + data.url + "&text=" + encodeURIComponent(`Check our ${title.innerText} on www.de-bored.fun`);
+    loader.classList.add('d-none');
     window.open(tweetableUrl, "Twitter", "height=400,width=400,resizable=1");
   };
 
@@ -63,6 +64,7 @@ const tweetResults = () => {
     // Open the popup
     $(twitterBtn).click(function (e) {
       e.preventDefault();
+      loader.classList.remove('d-none');
       uploadScreenshot();
     });
   }
