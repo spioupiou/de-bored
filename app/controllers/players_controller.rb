@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   skip_before_action :authenticate_user!
 
   def join_instance
-    @instance = Instance.find_by(passcode: params[:passcode], status: "waiting")
+    @instance = Instance.find_by(passcode: params[:passcode].downcase, status: "waiting")
 
     if @instance.blank?
       redirect_to games_path, alert: "Lobby not found, the game you tried to join may have already started."

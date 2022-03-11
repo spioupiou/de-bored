@@ -27,19 +27,18 @@ import "bootstrap";
 import "chartkick/chart.js"
 
 // Internal imports, e.g:
-import { showTaps } from "../components/show_taps";
-import { initInstanceChannel } from '../channels/instance_channel';
-import { highlighter } from "../plugins/rough_notation";
-import { initRoundCable } from '../channels/round_channel';
-import { autoClick } from "../components/popup";
-import { countdownTimer } from "../components/countdown_timer";
-import { autoFocus } from "../components/auto_focus";
-import { updateDiv } from "../components/auto_refresh";
-import { initResultCable } from "../channels/result_channel";
-import { tweetResults } from "../components/screenshot";
-import { showImposter } from "../components/show_imposter";
-import { showWinner } from "../components/show_winner";
-
+import { showTaps }             from "../components/show_taps";
+import { initInstanceChannel }  from '../channels/instance_channel';
+import { highlighter }          from "../plugins/rough_notation";
+import { initRoundCable }       from '../channels/round_channel';
+import { autoClick }            from "../components/popup";
+import { countdownTimer }       from "../components/countdown_timer";
+import { autoFocus }            from "../components/auto_focus";
+import { updateDiv }            from "../components/auto_refresh";
+import { initResultCable }      from "../channels/result_channel";
+import { tweetResults }         from "../components/screenshot";
+import { showImposter }         from "../components/show_imposter";
+import { showWinner }           from "../components/show_winner";
 
 // next 3 lines is from https://fontsource.org/fonts
 import "@fontsource/roboto";

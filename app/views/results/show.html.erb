@@ -36,9 +36,10 @@
             <%= render  "result_chart", players: @players %>
           </div>
 
-        <!-- Partial for Vote Tally -->
-        <div id="vote-tally" class="result-page" style="height:20vh;">
-          <%= render  "result_stat" %>
+          <!-- Partial for Stats -->
+          <div id="vote-stat px-2" class="result-page" style="height:30vh overflow: hidden;">
+            <%= render  "result_stat" %>
+          </div>
         </div>
 
       </div>

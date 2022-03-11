@@ -1,13 +1,22 @@
-<h5> Total Yes's</h5>
-<% @total_yes_tally.each do |id, count|%>
-  <% if count == @total_yes_tally.values.max %>
-    <p> <%= Player.find(id[0]).nickname %> had the most Yes's </p>
-  <% end %>
-<% end %>
-
-<h5> Total No's</h5>
-<% @total_no_tally.each do |id, count|%>
-  <% if count == @total_no_tally.values.max %>
-    <p> <%= Player.find(id[0]).nickname %> had the most No's. </p>
+<div class="row">
+  <div class="col-12">
+    <h5 style="text-align: center"> Results </h5>
+    <div id="most-yes-result">
+      <h6>Who answered the most <strong>Yes's</strong></h6>
+      <% @total_yes_tally.each do |id, count|%>
+      <% if count == @total_yes_tally.values.max %>
+        <p><strong> <%= Player.find(id[0]).nickname %></strong></p>
+      <% end %>
     <% end %>
-<% end %>
+    </div>
+
+    <div id="most-no-result">
+    <h6> Who answered the most <strong> No's </strong></h6>
+    <% @total_no_tally.each do |id, count|%>
+      <% if count == @total_no_tally.values.max %>
+        <p><strong> <%= Player.find(id[0]).nickname %></strong></p>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>

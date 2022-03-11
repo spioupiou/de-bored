@@ -51,16 +51,14 @@
         <div class="col-10">
           <% @round = Round.new %>
           <%= simple_form_for([@instance, @round]) do |f| %>
-            <%= f.submit "Start Game", class:"btn btn-primary", style: "width: 280px" %>
+          <div>
+            <%= f.submit "Start Game", class:"btn btn-primary", style: "width: 70vw" %>
+          </div>
           <% end %>
         </div>
       <% end %>
     </div>
   </div>
-
-
-
-
 
     <div id="settings" class="col-lg-4 col-md-4 col-sm-6 p-3 my-1" style="height: fit-content">
 
