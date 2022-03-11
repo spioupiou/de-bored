@@ -3,10 +3,15 @@
   z-index: 10;
   min-width: 100vw;
   min-height: 100vh;
+  display: flex;
+  background-size: 50px;
   justify-content: center;
   align-items: center;
-  margin:0;
-  padding:0;
+}
+
+.circular-background {
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 50%
 }
 
 /* From cssbuttons.io by @satyamchaudharydev */
