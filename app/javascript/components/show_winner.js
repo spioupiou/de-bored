@@ -20,7 +20,7 @@ export const showWinner = () => {
             if (card.innerText == impostor) {
               const impostorCard = card;
               impostorCard.setAttribute("id", "result-card-impostor");
-              impostorCard.querySelector('p').insertAdjacentHTML('beforeend', `<span id="impostor-label">IMPOSTOR</span>`)
+              document.getElementById("impostor-label").classList.remove("d-none")
             }
           })
 
