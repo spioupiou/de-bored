@@ -14,6 +14,7 @@ const initInstanceChannel = () => {
     const host_name = instanceContainer.dataset.hostName;
     const player_id = instanceContainer.dataset.playerId
     const player_name = instanceContainer.dataset.playerName
+    const notifs = document.getElementById("notifs")
 
     consumer.subscriptions.create({ channel: "InstanceChannel", id :instance_id }, {
       connected() {
@@ -40,7 +41,7 @@ const initInstanceChannel = () => {
 
           playerList.innerHTML = data.page;
           currentPlayerCount.innerHTML = data.count;
-          instanceContainer.insertAdjacentHTML("beforebegin", notice_player);
+          notifs.innerHTML = notice_player
           const playersSelector = document.getElementById("instance_max_players");
           playersSelector.setAttribute("min", currentPlayerCount.innerHTML);
         }
@@ -52,7 +53,7 @@ const initInstanceChannel = () => {
 
           playerList.innerHTML = data.page;
           currentPlayerCount.innerHTML = data.count;
-          instanceContainer.insertAdjacentHTML("beforebegin", player_left);
+          notifs.innerHTML = player_left
         }
         if (data.game_settings){
           const update_game =
@@ -60,14 +61,12 @@ const initInstanceChannel = () => {
               <span aria-hidden="true">&times;</span></button></div>`
           gameSettings.innerHTML = data.page;
           playerCount.innerHTML = data.count;
-          instanceContainer.insertAdjacentHTML("beforeend", update_game);
+          notifs.innerHTML = update_game
         }
 
         if (data.head == 100){
           window.location.pathname = data.path;
-          setTimeout(() => {
-            
-          })
+      
         }
       }
     });
