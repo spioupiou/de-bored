@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   skip_before_action :authenticate_user!
 
   def join_instance
-    @instance = Instance.find_by(passcode: params[:passcode], status: "waiting")
+    @instance = Instance.find_by(passcode: params[:passcode].downcase, status: "waiting")
 
     if @instance.blank?
       redirect_to games_path, alert: "Lobby not found, the game you tried to join may have already started."
@@ -16,10 +16,12 @@ class PlayersController < ApplicationController
 
   def edit_nickname_host
     @game_id = params[:game_id]
+    @current_user = current_or_guest_user
   end
 
   def edit_nickname_player
     @instance = Instance.find(params[:id])
+    @current_user = current_or_guest_user
   end
 
   def create_players
