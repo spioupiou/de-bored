@@ -21,11 +21,11 @@
     </div>
   </div>
   <div class="d-flex">
-    <p>Submitted answers:</p>
-    <div class="px-1" id="player-input-count">
-      <%= render "show_player_inputs_count", round: round %>
-    </div>/
-    <div class="px-1">
+    <p class="px-1">Submitted answers:</p>
+    <div id="player-input-count">
+        <%= render "show_player_inputs_count", round: round %>
+    </div><div class="px-1">/</div>
+    <div>
       <%= render "instances/min_player_count", players: instance.players %>
     </div>
   </div>
