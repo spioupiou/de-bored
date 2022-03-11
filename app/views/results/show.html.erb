@@ -66,7 +66,7 @@
             <%= simple_form_for Instance.new do |f| %>
               <%# needed to get last_instance_id for creation of new instance %>
               <%= hidden_field_tag 'last_instance_id', @instance.id %>
-              <%= f.submit "Play again?", class: "btn btn-primary" %>
+              <%= f.submit "Play again", class: "btn btn-primary" %>
             <% end %>
           <% end %>
         </div>
