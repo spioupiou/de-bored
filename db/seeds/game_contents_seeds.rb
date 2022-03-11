@@ -1,7 +1,7 @@
 class CreateGameContentsSeeds
   def self.generate_sentences
     [
-      "eaten pizza with pineapple",
+      "eaten pizza with pineapples",
       "caught something on fire while cooking",
       "used someone else’s Netflix account",
       "cheated on a test",
