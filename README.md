@@ -55,7 +55,7 @@ rails s
 
 ## Team Members
 de.Bored was built by four hard-working and dedicated developers. If you enjoyed the game, don’t hesitate to drop us a message!  
-- [Hiro] (https://www.linkedin.com/in/hiroya-takemura-b98024209/)
+- [Hiro](https://www.linkedin.com/in/hiroya-takemura-b98024209/)
 - [Carl](https://www.linkedin.com/in/carlnoval/)
 - [Shante](https://www.linkedin.com/in/shantejohnson-moore/)
-- [Cedrine] (https://www.linkedin.com/in/cedrinemonnet/)
+- [Cedrine](https://www.linkedin.com/in/cedrinemonnet/)
