@@ -22,7 +22,7 @@ yarn install
 ```
 
 ### ENV Variables
-We use (Cloudinary)[https://cloudinary.com] to host our cute robot avatars:
+We use [Cloudinary](https://cloudinary.com) to host our cute robot avatars. You will need an API key to see them properly:
 Create `.env` file
 ```
 touch .env
@@ -59,4 +59,3 @@ de.Bored was built by four hard-working and dedicated developers. If you enjoyed
 - [Carl](https://www.linkedin.com/in/carlnoval/)
 - [Shante](https://www.linkedin.com/in/shantejohnson-moore/)
 - [Cedrine] (https://www.linkedin.com/in/cedrinemonnet/)
-![image](https://user-images.githubusercontent.com/68413600/159096368-f1a9769c-5015-40a9-a944-65ef812895ee.png)
