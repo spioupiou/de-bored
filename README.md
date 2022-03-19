@@ -23,6 +23,7 @@ yarn install
 
 ### ENV Variables
 We use [Cloudinary](https://cloudinary.com) to host our cute robot avatars. You will need an API key to see them properly:
+<br>
 Create `.env` file
 ```
 touch .env
