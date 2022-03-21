@@ -46,7 +46,7 @@ import "@fontsource/play";
 import "@fontsource/dosis";
 
 document.addEventListener('turbolinks:load', () => {
-  showTaps();
+  // showTaps(); // Uncomment if you want to see the cursor on mobile
   initInstanceChannel();
   initRoundCable();
   initResultCable();
