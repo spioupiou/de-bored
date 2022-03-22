@@ -32,6 +32,20 @@ RSpec.describe PlayerInput, type: :model do
         end
       end
 
+      context 'no input_value' do
+        before { player_input.input_value = nil }
+
+        it 'generates an invalid player_input' do
+          expect(player_input.valid?).to eq(false)
+        end
+
+        it 'generates an error message' do
+          player_input.valid?
+          # Player_id must be present / must reference foreign key 'user'
+          expect(player_input.errors.messages).to eq({:input_value => ["can't be blank"]})
+        end
+      end
+
       # User can only answer once every round
       context 'identical round' do
         # Create a Player Input with same player_id/round_id combination
