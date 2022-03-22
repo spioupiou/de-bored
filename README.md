@@ -4,8 +4,9 @@ Have you run out of conversation topics with your friends? Do you need a rapid s
 Do not worry, we got you! Just install de.Bored on your phone and ask your friends to join a game session. And let the fun begin!
 
 
-![de-bored](https://user-images.githubusercontent.com/68413600/159096381-81764408-83a3-4f8e-8b04-b3cdd3c88008.png)
-<br>
+![de-bored screenshots](https://user-images.githubusercontent.com/68413600/159492221-f9b0ed1c-441b-46ae-99d9-521aace309d5.png)
+
+
 App home: https://www.de-bored.fun
    
 
@@ -23,7 +24,8 @@ yarn install
 
 ### ENV Variables
 We use [Cloudinary](https://cloudinary.com) to host our cute robot avatars. You will need an API key to see them properly:
-<br>
+
+
 Create `.env` file
 ```
 touch .env
