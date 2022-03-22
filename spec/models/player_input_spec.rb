@@ -40,7 +40,13 @@ RSpec.describe PlayerInput, type: :model do
         it 'is invalid if the combination round_id/player_id already exists' do
           expect(player_input).to be_invalid
         end
+
+        it 'generates an error message' do
+          player_input.valid?
+          expect(player_input.errors.messages).to eq({:player_id => ["has already been taken"]})
+        end
       end
+
     end
   end
 end
