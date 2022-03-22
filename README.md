@@ -56,7 +56,7 @@ rails s
 
 
 ## Acknowledgements
-A big thank you to all the teachers at Le Wagon for all their support and encouragement.
+A big thank you to all the teachers at Le Wagon for their support and encouragement.
 
 ## Team Members
 de.Bored was built by four hard-working and dedicated developers. If you enjoyed the game, don’t hesitate to drop us a message!  
