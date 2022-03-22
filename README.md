@@ -4,7 +4,7 @@ Have you run out of conversation topics with your friends? Do you need a rapid s
 Do not worry, we got you! Just install de.Bored on your phone and ask your friends to join a game session. And let the fun begin!
 
 
-![de-bored screenshots](https://user-images.githubusercontent.com/68413600/159492221-f9b0ed1c-441b-46ae-99d9-521aace309d5.png)
+![Screen Shot 2022-03-22 at 19 21 24](https://user-images.githubusercontent.com/68413600/159495354-fe0b1a55-58a7-4d39-8105-76d44ad7fddc.png)
 
 
 App home: https://www.de-bored.fun
