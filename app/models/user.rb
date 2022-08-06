@@ -28,11 +28,11 @@ class User < ApplicationRecord
     seed = rand(0..999).to_s << self.nickname.last(4)   # just a random seed so each user will have a unique robot avatar
     bg_color = "000d50"
     border_radius = "50"                                # 50px
-    
+
     scale = "85"                                        # 85% so it could fit in the circular radius
     pixel_size = 60
     flip = rand(0..1)                                   # robots may face left or right
-    file = URI.open("https://avatars.dicebear.com/api/#{dicebear_avatar_type}/#{seed}.png?b=%23#{bg_color}&r=#{border_radius}&size=#{pixel_size}&scale=#{scale}&flip=#{flip}")
+    file = URI.open("https://avatars.dicebear.com/api/#{dicebear_avatar_type}/#{seed}.png?b=%23#{bg_color}&r=#{border_radius}&size=#{pixel_size}&scale=#{scale}&flip=#{flip == 0}")
     self.avatar.attach(io: file, filename: "#{self.username}.png", content_type: 'image/png')
   end
 end
