@@ -5,7 +5,7 @@ class CreateGameContentsSeeds
       "caught something on fire while cooking",
       "used someone else’s Netflix account",
       "cheated on a test",
-      "gotten lost in Tokyo Station"
+      "gotten lost in Tokyo Station",
       "pretended to know someone you didn't",
       "watched Star Wars",
       "created a Youtube video",
